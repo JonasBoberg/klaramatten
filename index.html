@@ -55,7 +55,6 @@
         }
     </style>
 </head>
-
 <body class="bg-slate-900 py-10 px-4 font-sans text-slate-200">
 
     <div id="app" class="w-full max-w-xl mx-auto">
@@ -105,6 +104,7 @@
                 currentSubArea: null,
                 currentDifficulty: null,
                 tasks: [],
+                examplesMap: {}, // Sparar exempel separat
                 currentTaskIndex: 0
             };
 
@@ -133,13 +133,35 @@
                 return btn;
             }
 
-            // Hjälpfunktion för att formattera text och omvandla Markdown-bilder till HTML-bilder
+            // Hjälpfunktion för att säkert formattera text, hantera <, > och bilder
             function formatContent(text) {
                 if (!text) return '';
-                let htmlString = String(text);
-                // Leta efter markdown-bilder: ![alt-text](bildlänk) och gör om till <img>
-                htmlString = htmlString.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1">');
-                return htmlString;
+                let html = String(text);
+                
+                // 1. Extrahera bilder till placeholders så de inte förstörs av HTML-escaping
+                const images = [];
+                // Hantera markdown-bilder: ![alt-text](bildlänk)
+                html = html.replace(/!\[(.*?)\]\((.*?)\)/g, (match, alt, url) => {
+                    images.push(`<img src="${url}" alt="${alt}">`);
+                    return `[[IMG_${images.length - 1}]]`;
+                });
+                // Hantera custom bilder: img: 'bildlänk' eller img: "bildlänk"
+                html = html.replace(/img:\s*["']([^"']+)["']/g, (match, url) => {
+                    images.push(`<img src="${url}" alt="Exempel">`);
+                    return `[[IMG_${images.length - 1}]]`;
+                });
+                
+                // 2. Byt ut <br> mot placeholder
+                html = html.replace(/<br\s*\/?>/g, '[[BR]]');
+                
+                // 3. Escapa < och > för att inte webbläsaren ska tolka dem som HTML-taggar
+                html = html.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                
+                // 4. Återställ placeholders
+                html = html.replace(/\[\[BR\]\]/g, '<br>');
+                html = html.replace(/\[\[IMG_(\d+)\]\]/g, (match, idx) => images[parseInt(idx)]);
+                
+                return html;
             }
 
             function renderMath(elementId) {
@@ -229,7 +251,6 @@
                     filteredGroups = filteredGroups.filter(g => g.subArea === state.currentSubArea);
                 }
                 
-                // Filtrera bort grupper som saknar difficulty eller versions
                 const availableDifficulties = [...new Set(filteredGroups.filter(g => g.difficulty).map(g => g.difficulty))].sort();
                 const subAreaText = state.currentSubArea === 'all' ? state.currentArea : state.currentSubArea;
 
@@ -275,17 +296,37 @@
                 const taskNum = state.currentTaskIndex + 1;
                 const totalTasks = state.tasks.length;
 
-                // SVG Icon for calculator
+                // Kolla om det finns ett exempel sparad för denna grupps ID
+                const currentExample = state.examplesMap[task.groupId] || null;
+
+                // SVG Icons
                 const calcIcon = `<svg class="w-5 h-5 mr-2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>`;
+                const infoIcon = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
 
                 view.innerHTML = `
                     <div class="flex justify-between items-center mb-6">
                         <button id="btn-leave-task" class="flex items-center gap-2 text-slate-400 hover:text-slate-200 transition-colors duration-200 group">
                             <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Avsluta
                         </button>
-                        <span class="font-semibold text-sm text-slate-400 tracking-wider">UPPGIFT ${taskNum} / ${totalTasks}</span>
+                        <div class="flex items-center gap-4">
+                            ${currentExample ? `
+                                <button id="btn-show-example" class="flex items-center gap-1 text-slate-300 hover:text-indigo-400 font-semibold text-sm tracking-wider transition-colors duration-200">
+                                    ${infoIcon} Exempel
+                                </button>
+                            ` : ''}
+                            <span class="font-semibold text-sm text-slate-400 tracking-wider">UPPGIFT ${taskNum} / ${totalTasks}</span>
+                        </div>
                     </div>
                     
+                    ${currentExample ? `
+                        <div id="example-box" class="hidden bg-indigo-900/20 p-5 rounded-xl border border-indigo-500/30 mb-4 shadow-inner">
+                            <p class="font-semibold text-indigo-400 text-sm tracking-wider mb-2">EXEMPEL OCH FÖRKLARING</p>
+                            <div id="task-example" class="mt-1 text-indigo-200 math-question">
+                                ${formatContent(currentExample)}
+                            </div>
+                        </div>
+                    ` : ''}
+
                     <div class="bg-slate-800 p-6 rounded-xl shadow-lg mb-6 border border-slate-700/50">
                         <div id="task-question" class="math-question text-slate-100">
                             ${formatContent(task.question)}
@@ -321,6 +362,18 @@
                 `;
 
                 document.getElementById('btn-leave-task').onclick = renderDifficulty;
+                
+                // Logik för att visa/dölja exempel
+                if (currentExample && document.getElementById('btn-show-example')) {
+                    document.getElementById('btn-show-example').onclick = () => {
+                        const exBox = document.getElementById('example-box');
+                        exBox.classList.toggle('hidden');
+                        if (!exBox.classList.contains('hidden')) {
+                            renderMath('task-example');
+                        }
+                    };
+                }
+
                 renderMath('task-question');
                 renderMath('task-answer');
             }
@@ -362,16 +415,25 @@
                     filteredGroups = filteredGroups.filter(g => g.subArea === state.currentSubArea);
                 }
 
-                // ROBUSTHET: Säkerställ att g.versions finns för att undvika krasch
-                state.tasks = filteredGroups.flatMap(g => 
-                    (g.versions || []).map(v => ({
-                        ...v,
-                        groupId: g.groupId,
-                        calculator: g.calculator || false,
-                        area: g.area,
-                        subArea: g.subArea
-                    }))
-                );
+                state.examplesMap = {}; // Nollställ exempel
+                state.tasks = filteredGroups.flatMap(g => {
+                    // Leta efter och spara undan eventuell "Ex"-version
+                    const ex = (g.versions || []).find(v => v.versionLabel === "Ex");
+                    if (ex && ex.example) {
+                        state.examplesMap[g.groupId] = ex.example;
+                    }
+                    
+                    // Filtrera bort "Ex" så de inte blir vanliga uppgifter
+                    return (g.versions || [])
+                        .filter(v => v.versionLabel !== "Ex")
+                        .map(v => ({
+                            ...v,
+                            groupId: g.groupId,
+                            calculator: g.calculator || false,
+                            area: g.area,
+                            subArea: g.subArea
+                        }));
+                });
 
                 state.currentTaskIndex = 0;
                 renderTask();

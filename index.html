@@ -11,7 +11,7 @@
     <!-- Modern Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Tailwind Config -->
     <script>
@@ -53,15 +53,27 @@
             margin-top: 1rem;
             border: 1px solid rgba(255,255,255,0.1);
         }
+        /* Glow animation for background */
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.05); }
+        }
+        .glow-orb {
+            animation: pulse-glow 8s infinite ease-in-out;
+        }
     </style>
 </head>
-<body class="bg-slate-900 py-10 px-4 font-sans text-slate-200">
+<body class="bg-slate-950 py-10 px-4 font-sans text-slate-200 relative overflow-x-hidden">
 
-    <div id="app" class="w-full max-w-xl mx-auto">
+    <!-- Bakgrundseffekter (Glow Orbs) -->
+    <div class="fixed top-[-10%] left-[-10%] w-[40rem] h-[40rem] bg-indigo-600/30 rounded-full blur-[120px] glow-orb z-0"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[40rem] h-[40rem] bg-pink-600/20 rounded-full blur-[120px] glow-orb z-0" style="animation-delay: 4s;"></div>
+
+    <div id="app" class="w-full max-w-xl mx-auto relative z-10">
         <!-- Header -->
-        <div class="text-center mb-10">
-            <h1 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-teal-400 pb-1">Klara Matten!</h1>
-            <p class="text-slate-400 mt-3 text-lg">Välj område och nivå för att börja öva</p>
+        <div class="text-center mb-12">
+            <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 drop-shadow-md">Klara Matten!</h1>
+            <p class="text-slate-400 mt-4 text-lg font-medium">Välj område och nivå för att börja öva</p>
         </div>
 
         <!-- Vy: Välj Kurs -->
@@ -117,9 +129,10 @@
                 document.getElementById(id).classList.remove('hidden');
             }
 
-            function createButton(text, onClick, colorClass = 'bg-indigo-600 hover:bg-indigo-500') {
+            function createButton(text, onClick, colorClass = 'bg-gradient-to-r from-indigo-600 to-violet-600 shadow-indigo-900/50 hover:shadow-indigo-700/60') {
                 const btn = document.createElement('button');
-                btn.className = `w-full text-left p-4 rounded-xl text-white font-semibold shadow-sm transition-all duration-200 hover:scale-[1.02] hover:shadow-md ${colorClass}`;
+                // Uppdaterad klass för gradient och glow
+                btn.className = `w-full text-left p-4 rounded-xl text-white font-semibold shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl ${colorClass}`;
                 btn.innerText = text;
                 btn.onclick = onClick;
                 return btn;
@@ -127,8 +140,8 @@
 
             function createBackButton(onClick) {
                 const btn = document.createElement('button');
-                btn.className = 'mb-6 flex items-center gap-2 text-slate-400 hover:text-slate-200 transition-colors duration-200 group';
-                btn.innerHTML = `<svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Tillbaka`;
+                btn.className = 'mb-6 flex items-center gap-2 text-slate-400 hover:text-white transition-colors duration-200 group font-medium';
+                btn.innerHTML = `<svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Tillbaka`;
                 btn.onclick = onClick;
                 return btn;
             }
@@ -140,12 +153,10 @@
                 
                 // 1. Extrahera bilder till placeholders så de inte förstörs av HTML-escaping
                 const images = [];
-                // Hantera markdown-bilder: ![alt-text](bildlänk)
                 html = html.replace(/!\[(.*?)\]\((.*?)\)/g, (match, alt, url) => {
                     images.push(`<img src="${url}" alt="${alt}">`);
                     return `[[IMG_${images.length - 1}]]`;
                 });
-                // Hantera custom bilder: img: 'bildlänk' eller img: "bildlänk"
                 html = html.replace(/img:\s*["']([^"']+)["']/g, (match, url) => {
                     images.push(`<img src="${url}" alt="Exempel">`);
                     return `[[IMG_${images.length - 1}]]`;
@@ -177,12 +188,13 @@
                 
                 const courses = [...new Set(taskBank.flatMap(g => g.courses || []))].sort();
                 
-                view.innerHTML = '<h2 class="text-xl font-bold mb-5 text-slate-300">1. Välj din kurs</h2>';
+                view.innerHTML = '<h2 class="text-xl font-bold mb-5 text-slate-300 tracking-wide">1. Välj din kurs</h2>';
                 const container = document.createElement('div');
-                container.className = 'space-y-3';
+                container.className = 'space-y-4';
                 
                 courses.forEach(course => {
-                    container.appendChild(createButton(course, () => selectCourse(course), 'bg-indigo-600 hover:bg-indigo-500'));
+                    // Gradient: Indigo till Blå
+                    container.appendChild(createButton(course, () => selectCourse(course), 'bg-gradient-to-r from-indigo-600 to-blue-600 shadow-indigo-900/40 hover:shadow-indigo-700/60'));
                 });
 
                 view.appendChild(container);
@@ -199,15 +211,16 @@
                 view.appendChild(createBackButton(() => renderCourses()));
                 
                 const title = document.createElement('h2');
-                title.className = 'text-xl font-bold mb-5 text-slate-300';
+                title.className = 'text-xl font-bold mb-5 text-slate-300 tracking-wide';
                 title.innerText = '2. Välj område';
                 view.appendChild(title);
                 
                 const container = document.createElement('div');
-                container.className = 'space-y-3';
+                container.className = 'space-y-4';
                 
                 areas.forEach(area => {
-                    container.appendChild(createButton(area, () => selectArea(area), 'bg-teal-600 hover:bg-teal-500'));
+                    // Gradient: Lila till Indigo
+                    container.appendChild(createButton(area, () => selectArea(area), 'bg-gradient-to-r from-violet-600 to-indigo-600 shadow-violet-900/40 hover:shadow-violet-700/60'));
                 });
 
                 view.appendChild(container);
@@ -225,17 +238,18 @@
                 view.appendChild(createBackButton(() => renderAreas()));
                 
                 const title = document.createElement('h2');
-                title.className = 'text-xl font-bold mb-5 text-slate-300';
+                title.className = 'text-xl font-bold mb-5 text-slate-300 tracking-wide';
                 title.innerText = `3. Välj delområde inom ${state.currentArea}`;
                 view.appendChild(title);
                 
                 const container = document.createElement('div');
-                container.className = 'space-y-3';
+                container.className = 'space-y-4';
                 
-                container.appendChild(createButton(`Alla uppgifter på ${state.currentArea}`, () => selectSubArea('all'), 'bg-teal-700 hover:bg-teal-600'));
+                container.appendChild(createButton(`Alla uppgifter på ${state.currentArea}`, () => selectSubArea('all'), 'bg-gradient-to-r from-purple-600 to-violet-600 shadow-purple-900/40 hover:shadow-purple-700/60'));
                 
                 subAreas.forEach(sub => {
-                    container.appendChild(createButton(sub, () => selectSubArea(sub), 'bg-teal-600 hover:bg-teal-500'));
+                    // Gradient: Lila till Rosa
+                    container.appendChild(createButton(sub, () => selectSubArea(sub), 'bg-gradient-to-r from-purple-600 to-fuchsia-600 shadow-purple-900/40 hover:shadow-fuchsia-700/60'));
                 });
 
                 view.appendChild(container);
@@ -258,19 +272,20 @@
                 view.appendChild(createBackButton(() => renderSubAreas()));
                 
                 const title = document.createElement('h2');
-                title.className = 'text-xl font-bold mb-5 text-slate-300';
+                title.className = 'text-xl font-bold mb-5 text-slate-300 tracking-wide';
                 title.innerText = `4. Välj nivå för ${subAreaText}`;
                 view.appendChild(title);
                 
                 const container = document.createElement('div');
-                container.className = 'space-y-3';
+                container.className = 'space-y-4';
                 
                 if(availableDifficulties.length === 0) {
-                    container.innerHTML = '<p class="text-red-400">Inga uppgifter finns för detta urval. Saknas versions eller nivå i tasks.js?</p>';
+                    container.innerHTML = '<p class="text-red-400 bg-red-900/20 p-4 rounded-lg border border-red-500/30">Inga uppgifter finns för detta urval.</p>';
                 } else {
                     availableDifficulties.forEach(diff => {
                         const label = diff === 1 ? 'Nivå 1 (Grund)' : diff === 2 ? 'Nivå 2 (Medel)' : 'Nivå 3 (Svår)';
-                        container.appendChild(createButton(label, () => selectDifficulty(diff), 'bg-amber-600 hover:bg-amber-500'));
+                        // Gradient: Rosa till Röd
+                        container.appendChild(createButton(label, () => selectDifficulty(diff), 'bg-gradient-to-r from-fuchsia-600 to-pink-600 shadow-fuchsia-900/40 hover:shadow-pink-700/60'));
                     });
                 }
 
@@ -286,7 +301,7 @@
                     view.innerHTML = '';
                     view.appendChild(createBackButton(() => renderDifficulty()));
                     const errorMsg = document.createElement('p');
-                    errorMsg.className = 'text-center text-red-400 mt-10';
+                    errorMsg.className = 'text-center text-red-400 mt-10 bg-red-900/20 p-4 rounded-lg border border-red-500/30';
                     errorMsg.innerText = 'Det finns inga uppgifter för detta urval.';
                     view.appendChild(errorMsg);
                     return;
@@ -296,58 +311,56 @@
                 const taskNum = state.currentTaskIndex + 1;
                 const totalTasks = state.tasks.length;
 
-                // Kolla om det finns ett exempel sparad för denna grupps ID
                 const currentExample = state.examplesMap[task.groupId] || null;
 
-                // SVG Icons
-                const calcIcon = `<svg class="w-5 h-5 mr-2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>`;
+                const calcIcon = `<svg class="w-5 h-5 mr-2 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>`;
                 const infoIcon = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
 
                 view.innerHTML = `
                     <div class="flex justify-between items-center mb-6">
-                        <button id="btn-leave-task" class="flex items-center gap-2 text-slate-400 hover:text-slate-200 transition-colors duration-200 group">
+                        <button id="btn-leave-task" class="flex items-center gap-2 text-slate-300 hover:text-white transition-colors duration-200 group font-medium bg-slate-800/50 hover:bg-slate-800 px-4 py-2 rounded-lg border border-slate-700">
                             <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Avsluta
                         </button>
                         <div class="flex items-center gap-4">
                             ${currentExample ? `
-                                <button id="btn-show-example" class="flex items-center gap-1 text-slate-300 hover:text-indigo-400 font-semibold text-sm tracking-wider transition-colors duration-200">
+                                <button id="btn-show-example" class="flex items-center gap-1.5 text-indigo-300 hover:text-indigo-200 font-semibold text-sm tracking-wider transition-colors duration-200 bg-indigo-900/30 hover:bg-indigo-900/50 px-3 py-2 rounded-lg border border-indigo-500/30">
                                     ${infoIcon} Exempel
                                 </button>
                             ` : ''}
-                            <span class="font-semibold text-sm text-slate-400 tracking-wider">UPPGIFT ${taskNum} / ${totalTasks}</span>
+                            <span class="font-bold text-sm text-slate-400 tracking-wider bg-slate-800/50 px-3 py-2 rounded-lg border border-slate-700">${taskNum} / ${totalTasks}</span>
                         </div>
                     </div>
                     
                     ${currentExample ? `
-                        <div id="example-box" class="hidden bg-indigo-900/20 p-5 rounded-xl border border-indigo-500/30 mb-4 shadow-inner">
-                            <p class="font-semibold text-indigo-400 text-sm tracking-wider mb-2">EXEMPEL OCH FÖRKLARING</p>
-                            <div id="task-example" class="mt-1 text-indigo-200 math-question">
+                        <div id="example-box" class="hidden bg-indigo-900/20 p-5 rounded-xl border border-indigo-500/40 mb-4 shadow-lg shadow-indigo-900/20 backdrop-blur-sm">
+                            <p class="font-bold text-indigo-300 text-sm tracking-wider mb-3 flex items-center gap-2">${infoIcon} EXEMPEL OCH FÖRKLARING</p>
+                            <div id="task-example" class="mt-1 text-indigo-100 math-question">
                                 ${formatContent(currentExample)}
                             </div>
                         </div>
                     ` : ''}
 
-                    <div class="bg-slate-800 p-6 rounded-xl shadow-lg mb-6 border border-slate-700/50">
+                    <div class="bg-slate-900/60 p-6 rounded-xl shadow-xl mb-6 border border-slate-700/50 backdrop-blur-sm">
                         <div id="task-question" class="math-question text-slate-100">
                             ${formatContent(task.question)}
                             ${task.img ? `<img src="${task.img}" alt="Uppgiftsbild" class="mt-4 rounded-lg border border-slate-700">` : ''}
                         </div>
-                        ${task.calculator ? `<div class="mt-5 pt-4 border-t border-slate-700/50 text-sm text-slate-400 flex items-center">${calcIcon} Räknare tillåten</div>` : ''}
+                        ${task.calculator ? `<div class="mt-5 pt-4 border-t border-slate-700/50 text-sm text-indigo-300 flex items-center font-medium">${calcIcon} Räknare tillåten</div>` : ''}
                     </div>
 
                     <div id="check-answer-container" class="mb-4">
-                        <button onclick="showAnswer()" class="w-full p-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow-sm transition-all duration-200 hover:scale-[1.02]">
+                        <button onclick="showAnswer()" class="w-full p-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white font-bold shadow-lg shadow-emerald-900/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-emerald-700/50">
                             Kontrollera svar
                         </button>
                     </div>
 
-                    <div id="answer-box" class="hidden bg-slate-800/60 p-5 rounded-xl border border-emerald-500/30 mb-4 shadow-inner">
-                        <p class="font-semibold text-emerald-400 text-sm tracking-wider mb-2">FACIT</p>
+                    <div id="answer-box" class="hidden bg-slate-900/60 p-6 rounded-xl border border-emerald-500/30 mb-4 shadow-lg shadow-emerald-900/10 backdrop-blur-sm">
+                        <p class="font-bold text-emerald-400 text-sm tracking-wider mb-3">FACIT</p>
                         <div id="task-answer" class="mt-1 text-emerald-300 math-question">
                             ${formatContent(task.solution)}
                         </div>
                         <div id="solution-btn-container" class="mt-5 border-t border-slate-700/50 pt-4">
-                            <button onclick="showSolution()" class="w-full p-2.5 rounded-lg bg-emerald-900/30 hover:bg-emerald-900/50 text-emerald-300 font-medium transition text-sm border border-emerald-600/30">
+                            <button onclick="showSolution()" class="w-full p-3 rounded-lg bg-emerald-900/40 hover:bg-emerald-900/60 text-emerald-300 font-medium transition text-sm border border-emerald-500/30">
                                 Visa lösningsgång
                             </button>
                         </div>
@@ -356,14 +369,13 @@
                         </div>
                     </div>
 
-                    <button onclick="nextTask()" class="w-full p-3.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold transition-all duration-200 border border-slate-600 hover:scale-[1.02]">
+                    <button onclick="nextTask()" class="w-full p-4 rounded-xl bg-gradient-to-r from-slate-800 to-slate-700 hover:from-slate-700 hover:to-slate-600 text-white font-semibold shadow-lg shadow-black/40 transition-all duration-300 border border-slate-600/50 hover:scale-[1.02]">
                         Nästa uppgift &rarr;
                     </button>
                 `;
 
                 document.getElementById('btn-leave-task').onclick = renderDifficulty;
                 
-                // Logik för att visa/dölja exempel
                 if (currentExample && document.getElementById('btn-show-example')) {
                     document.getElementById('btn-show-example').onclick = () => {
                         const exBox = document.getElementById('example-box');
@@ -415,15 +427,13 @@
                     filteredGroups = filteredGroups.filter(g => g.subArea === state.currentSubArea);
                 }
 
-                state.examplesMap = {}; // Nollställ exempel
+                state.examplesMap = {};
                 state.tasks = filteredGroups.flatMap(g => {
-                    // Leta efter och spara undan eventuell "Ex"-version
                     const ex = (g.versions || []).find(v => v.versionLabel === "Ex");
                     if (ex && ex.example) {
                         state.examplesMap[g.groupId] = ex.example;
                     }
                     
-                    // Filtrera bort "Ex" så de inte blir vanliga uppgifter
                     return (g.versions || [])
                         .filter(v => v.versionLabel !== "Ex")
                         .map(v => ({
@@ -456,11 +466,13 @@
                 } else {
                     const view = document.getElementById('view-task');
                     view.innerHTML = `
-                        <div class="text-center mt-10 bg-slate-800 p-10 rounded-xl border border-slate-700/50 shadow-lg flex flex-col items-center">
-                            <svg class="w-16 h-16 text-emerald-400 mb-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <h2 class="text-2xl font-bold text-slate-100 mb-3">Snygt jobbat!</h2>
+                        <div class="text-center mt-10 bg-slate-900/60 p-10 rounded-xl border border-emerald-500/30 shadow-xl flex flex-col items-center backdrop-blur-sm">
+                            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/30">
+                                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300 mb-3">Snygt jobbat!</h2>
                             <p class="mb-8 text-slate-400">Du har gjort alla uppgifter i detta område.</p>
-                            <button onclick="renderDifficulty()" class="w-full max-w-xs p-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold shadow-sm transition-all duration-200 hover:scale-[1.02]">
+                            <button onclick="renderDifficulty()" class="w-full max-w-xs p-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 text-white font-bold shadow-lg shadow-indigo-900/40 transition-all duration-300 hover:scale-[1.02]">
                                 Välj ny nivå / område
                             </button>
                         </div>

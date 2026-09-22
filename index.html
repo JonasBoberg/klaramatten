@@ -382,18 +382,22 @@
 
                 const calcIcon = `<svg class="w-5 h-5 mr-2 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>`;
                 const infoIcon = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+                const shuffleIcon = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"></path></svg>`;
 
                 view.innerHTML = `
                     <div class="flex justify-between items-center mb-6">
                         <button id="btn-leave-task" class="flex items-center gap-2 text-slate-300 hover:text-white transition-colors duration-200 group font-medium bg-slate-800/50 hover:bg-slate-800 px-4 py-2 rounded-lg border border-slate-700">
                             <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Avsluta
                         </button>
-                        <div class="flex items-center gap-4">
+                        <div class="flex items-center gap-3">
                             ${currentExample ? `
                                 <button id="btn-show-example" class="flex items-center gap-1.5 text-indigo-300 hover:text-indigo-200 font-semibold text-sm tracking-wider transition-colors duration-200 bg-indigo-900/30 hover:bg-indigo-900/50 px-3 py-2 rounded-lg border border-indigo-500/30">
                                     ${infoIcon} Exempel
                                 </button>
                             ` : ''}
+                            <button onclick="randomTask()" class="flex items-center justify-center text-slate-300 hover:text-white transition-colors duration-200 font-medium bg-slate-800/50 hover:bg-slate-800 px-3 py-2 rounded-lg border border-slate-700" title="Slumpa uppgift">
+                                ${shuffleIcon}
+                            </button>
                             <span class="font-bold text-sm text-slate-400 tracking-wider bg-slate-800/50 px-3 py-2 rounded-lg border border-slate-700">${taskNum} / ${totalTasks}</span>
                         </div>
                     </div>
@@ -465,6 +469,7 @@
             window.showAnswer = showAnswer;
             window.showSolution = showSolution;
             window.nextTask = nextTask;
+            window.randomTask = randomTask;
 
             function selectCourse(course) {
                 state.currentCourse = course;
@@ -545,6 +550,20 @@
                         </div>
                     `;
                 }
+            }
+
+            function randomTask() {
+                // Om det bara finns 0 eller 1 uppgift finns inget att slumpa
+                if(state.tasks.length <= 1) return;
+
+                let newIndex;
+                // Se till att vi inte slumpar fram exakt samma uppgift som vi redan är på
+                do {
+                    newIndex = Math.floor(Math.random() * state.tasks.length);
+                } while (newIndex === state.currentTaskIndex);
+
+                state.currentTaskIndex = newIndex;
+                renderTask();
             }
 
             renderCourses();

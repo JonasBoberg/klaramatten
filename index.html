@@ -8,6 +8,24 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Modern Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
     <!-- MathJax -->
     <script>
         MathJax = {
@@ -23,15 +41,19 @@
             font-size: 1.25rem;
             line-height: 1.8;
         }
+        /* Tvinga MathJax att ärva textfärgen (viktigt för dark mode) */
+        mjx-container[jax="CHTML"] {
+            color: inherit !important;
+        }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen flex flex-col items-center justify-center p-4 font-sans text-gray-800">
+<body class="bg-slate-900 min-h-screen flex flex-col items-center justify-center p-4 font-sans text-slate-200">
 
     <div id="app" class="w-full max-w-xl">
         <!-- Header -->
-        <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-blue-600">🧮 Klara Matten!</h1>
-            <p class="text-gray-500 mt-2">Välj område och nivå för att börja öva</p>
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-teal-400 pb-1">Klara Matten!</h1>
+            <p class="text-slate-400 mt-3 text-lg">Välj område och nivå för att börja öva</p>
         </div>
 
         <!-- Vy: Välj Kurs -->
@@ -56,21 +78,18 @@
     <!-- Huvudlogik -->
     <script>
         // --- ROBUSTHETSCHECK ---
-        // Om taskBank inte laddas in från tasks.js, visa ett felmeddelande
         if (typeof taskBank === 'undefined' || !Array.isArray(taskBank) || taskBank.length === 0) {
             document.getElementById('view-courses').innerHTML = `
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-center" role="alert">
+                <div class="bg-red-900/30 border border-red-500/50 text-red-300 px-6 py-4 rounded-xl relative text-center backdrop-blur-sm" role="alert">
                     <strong class="font-bold">Fel: Hittar ingen uppgiftsbank!</strong><br>
-                    <span class="block sm:inline">Säkerställ att filen <u>tasks.js</u> ligger i samma mapp som index.html, och att databasen heter <u>const taskBank = [ ... ]</u> (inte export).</span>
+                    <span class="block sm:inline mt-2 text-sm">Säkerställ att filen <u>tasks.js</u> ligger i samma mapp som index.html, och att databasen heter <u>const taskBank = [ ... ]</u> (inte export).</span>
                 </div>
             `;
         } else {
-            // Allt är laddat korrekt, starta appen!
             initializeApp();
         }
 
         function initializeApp() {
-            // --- APP TILLSTÅND ---
             let state = {
                 currentCourse: null,
                 currentArea: null,
@@ -80,7 +99,6 @@
                 currentTaskIndex: 0
             };
 
-            // --- HJÄLPFUNKTIONER ---
             function hideAllViews() {
                 document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
             }
@@ -90,10 +108,18 @@
                 document.getElementById(id).classList.remove('hidden');
             }
 
-            function createButton(text, onClick, colorClass = 'bg-blue-500 hover:bg-blue-600') {
+            function createButton(text, onClick, colorClass = 'bg-indigo-600 hover:bg-indigo-500') {
                 const btn = document.createElement('button');
-                btn.className = `w-full text-left p-4 rounded-lg text-white font-medium transition ${colorClass}`;
+                btn.className = `w-full text-left p-4 rounded-xl text-white font-semibold shadow-sm transition-all duration-200 hover:scale-[1.02] hover:shadow-md ${colorClass}`;
                 btn.innerText = text;
+                btn.onclick = onClick;
+                return btn;
+            }
+
+            function createBackButton(onClick) {
+                const btn = document.createElement('button');
+                btn.className = 'mb-6 flex items-center gap-2 text-slate-400 hover:text-slate-200 transition-colors duration-200 group';
+                btn.innerHTML = `<svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Tillbaka`;
                 btn.onclick = onClick;
                 return btn;
             }
@@ -111,12 +137,12 @@
                 
                 const courses = [...new Set(taskBank.flatMap(g => g.courses))].sort();
                 
-                view.innerHTML = '<h2 class="text-xl font-bold mb-4 text-gray-700">1. Välj din kurs</h2>';
+                view.innerHTML = '<h2 class="text-xl font-bold mb-5 text-slate-300">1. Välj din kurs</h2>';
                 const container = document.createElement('div');
                 container.className = 'space-y-3';
                 
                 courses.forEach(course => {
-                    container.appendChild(createButton(course, () => selectCourse(course), 'bg-indigo-500 hover:bg-indigo-600'));
+                    container.appendChild(createButton(course, () => selectCourse(course), 'bg-indigo-600 hover:bg-indigo-500'));
                 });
 
                 view.appendChild(container);
@@ -129,16 +155,19 @@
                 
                 const areas = [...new Set(taskBank.filter(g => g.courses.includes(state.currentCourse)).map(g => g.area))].sort();
                 
-                view.innerHTML = `
-                    <button onclick="renderCourses()" class="mb-4 text-blue-600 hover:text-blue-800 transition">&larr; Tillbaka till kurser</button>
-                    <h2 class="text-xl font-bold mb-4 text-gray-700">2. Välj område</h2>
-                `;
+                view.innerHTML = '';
+                view.appendChild(createBackButton(() => renderCourses()));
+                
+                const title = document.createElement('h2');
+                title.className = 'text-xl font-bold mb-5 text-slate-300';
+                title.innerText = '2. Välj område';
+                view.appendChild(title);
                 
                 const container = document.createElement('div');
                 container.className = 'space-y-3';
                 
                 areas.forEach(area => {
-                    container.appendChild(createButton(area, () => selectArea(area), 'bg-teal-500 hover:bg-teal-600'));
+                    container.appendChild(createButton(area, () => selectArea(area), 'bg-teal-600 hover:bg-teal-500'));
                 });
 
                 view.appendChild(container);
@@ -152,18 +181,21 @@
                 const groupsInArea = taskBank.filter(g => g.courses.includes(state.currentCourse) && g.area === state.currentArea);
                 const subAreas = [...new Set(groupsInArea.map(g => g.subArea))].sort();
                 
-                view.innerHTML = `
-                    <button onclick="renderAreas()" class="mb-4 text-blue-600 hover:text-blue-800 transition">&larr; Tillbaka till områden</button>
-                    <h2 class="text-xl font-bold mb-4 text-gray-700">3. Välj delområde inom ${state.currentArea}</h2>
-                `;
+                view.innerHTML = '';
+                view.appendChild(createBackButton(() => renderAreas()));
+                
+                const title = document.createElement('h2');
+                title.className = 'text-xl font-bold mb-5 text-slate-300';
+                title.innerText = `3. Välj delområde inom ${state.currentArea}`;
+                view.appendChild(title);
                 
                 const container = document.createElement('div');
                 container.className = 'space-y-3';
                 
-                container.appendChild(createButton(`Alla uppgifter på ${state.currentArea}`, () => selectSubArea('all'), 'bg-teal-600 hover:bg-teal-700'));
+                container.appendChild(createButton(`Alla uppgifter på ${state.currentArea}`, () => selectSubArea('all'), 'bg-teal-700 hover:bg-teal-600'));
                 
                 subAreas.forEach(sub => {
-                    container.appendChild(createButton(sub, () => selectSubArea(sub), 'bg-teal-500 hover:bg-teal-600'));
+                    container.appendChild(createButton(sub, () => selectSubArea(sub), 'bg-teal-600 hover:bg-teal-500'));
                 });
 
                 view.appendChild(container);
@@ -180,23 +212,25 @@
                 }
                 
                 const availableDifficulties = [...new Set(filteredGroups.map(g => g.difficulty))].sort();
-                
                 const subAreaText = state.currentSubArea === 'all' ? state.currentArea : state.currentSubArea;
 
-                view.innerHTML = `
-                    <button onclick="renderSubAreas()" class="mb-4 text-blue-600 hover:text-blue-800 transition">&larr; Tillbaka till delområden</button>
-                    <h2 class="text-xl font-bold mb-4 text-gray-700">4. Välj nivå för ${subAreaText}</h2>
-                `;
+                view.innerHTML = '';
+                view.appendChild(createBackButton(() => renderSubAreas()));
+                
+                const title = document.createElement('h2');
+                title.className = 'text-xl font-bold mb-5 text-slate-300';
+                title.innerText = `4. Välj nivå för ${subAreaText}`;
+                view.appendChild(title);
                 
                 const container = document.createElement('div');
                 container.className = 'space-y-3';
                 
                 if(availableDifficulties.length === 0) {
-                    container.innerHTML = '<p class="text-red-500">Inga uppgifter finns för detta urval.</p>';
+                    container.innerHTML = '<p class="text-red-400">Inga uppgifter finns för detta urval.</p>';
                 } else {
                     availableDifficulties.forEach(diff => {
                         const label = diff === 1 ? 'Nivå 1 (Grund)' : diff === 2 ? 'Nivå 2 (Medel)' : 'Nivå 3 (Svår)';
-                        container.appendChild(createButton(label, () => selectDifficulty(diff), 'bg-orange-500 hover:bg-orange-600'));
+                        container.appendChild(createButton(label, () => selectDifficulty(diff), 'bg-amber-600 hover:bg-amber-500'));
                     });
                 }
 
@@ -209,10 +243,12 @@
                 const view = document.getElementById('view-task');
                 
                 if(state.tasks.length === 0) {
-                    view.innerHTML = `
-                        <button onclick="renderDifficulty()" class="mb-4 text-blue-600 hover:text-blue-800 transition">&larr; Tillbaka</button>
-                        <p class="text-center text-red-500 mt-10">Det finns inga uppgifter för detta urval.</p>
-                    `;
+                    view.innerHTML = '';
+                    view.appendChild(createBackButton(() => renderDifficulty()));
+                    const errorMsg = document.createElement('p');
+                    errorMsg.className = 'text-center text-red-400 mt-10';
+                    errorMsg.innerText = 'Det finns inga uppgifter för detta urval.';
+                    view.appendChild(errorMsg);
                     return;
                 }
 
@@ -220,51 +256,56 @@
                 const taskNum = state.currentTaskIndex + 1;
                 const totalTasks = state.tasks.length;
 
+                // SVG Icon for calculator
+                const calcIcon = `<svg class="w-5 h-5 mr-2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>`;
+
                 view.innerHTML = `
                     <div class="flex justify-between items-center mb-6">
-                        <button onclick="renderDifficulty()" class="text-blue-600 hover:text-blue-800 transition">&larr; Avsluta</button>
-                        <span class="font-bold text-gray-600">Uppgift ${taskNum} / ${totalTasks}</span>
+                        <button id="btn-leave-task" class="flex items-center gap-2 text-slate-400 hover:text-slate-200 transition-colors duration-200 group">
+                            <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Avsluta
+                        </button>
+                        <span class="font-semibold text-sm text-slate-400 tracking-wider">UPPGIFT ${taskNum} / ${totalTasks}</span>
                     </div>
                     
-                    <div class="bg-white p-6 rounded-xl shadow-md mb-6 border border-gray-100">
-                        <div id="task-question" class="math-question text-gray-800">
+                    <div class="bg-slate-800 p-6 rounded-xl shadow-lg mb-6 border border-slate-700/50">
+                        <div id="task-question" class="math-question text-slate-100">
                             ${task.question}
                         </div>
-                        ${task.calculator ? '<div class="mt-4 text-sm text-gray-500 flex items-center"><span class="text-xl mr-2">🧮</span> Räknare tillåten</div>' : ''}
+                        ${task.calculator ? `<div class="mt-5 pt-4 border-t border-slate-700/50 text-sm text-slate-400 flex items-center">${calcIcon} Räknare tillåten</div>` : ''}
                     </div>
 
                     <div id="check-answer-container" class="mb-4">
-                        <button onclick="showAnswer()" class="w-full p-3 rounded-lg bg-green-500 hover:bg-green-600 text-white font-medium transition">
+                        <button onclick="showAnswer()" class="w-full p-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow-sm transition-all duration-200 hover:scale-[1.02]">
                             Kontrollera svar
                         </button>
                     </div>
 
-                    <div id="answer-box" class="hidden bg-green-50 p-4 rounded-xl border border-green-200 mb-4">
-                        <p class="font-semibold text-green-800">Facit:</p>
-                        <div id="task-answer" class="mt-2 text-green-900">
+                    <div id="answer-box" class="hidden bg-slate-800/60 p-5 rounded-xl border border-emerald-500/30 mb-4 shadow-inner">
+                        <p class="font-semibold text-emerald-400 text-sm tracking-wider mb-2">FACIT</p>
+                        <div id="task-answer" class="mt-1 text-emerald-300 math-question">
                             ${task.solution}
                         </div>
-                        <div id="solution-btn-container" class="mt-4 border-t border-green-200 pt-4">
-                            <button onclick="showSolution()" class="w-full p-2 rounded-lg bg-green-200 hover:bg-green-300 text-green-800 font-medium transition text-sm">
+                        <div id="solution-btn-container" class="mt-5 border-t border-slate-700/50 pt-4">
+                            <button onclick="showSolution()" class="w-full p-2.5 rounded-lg bg-emerald-900/30 hover:bg-emerald-900/50 text-emerald-300 font-medium transition text-sm border border-emerald-600/30">
                                 Visa lösningsgång
                             </button>
                         </div>
-                        <div id="solution-box" class="hidden mt-4 text-sm text-gray-600 italic">
+                        <div id="solution-box" class="hidden mt-4 text-sm text-slate-400 italic">
                             Lösningsgången visas ovan i facit.
                         </div>
                     </div>
 
-                    <button onclick="nextTask()" class="w-full p-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-medium transition">
+                    <button onclick="nextTask()" class="w-full p-3.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold transition-all duration-200 border border-slate-600 hover:scale-[1.02]">
                         Nästa uppgift &rarr;
                     </button>
                 `;
 
+                document.getElementById('btn-leave-task').onclick = renderDifficulty;
                 renderMath('task-question');
                 renderMath('task-answer');
             }
 
             // --- LOGIKFUNKTIONER ---
-            // För att onclick i HTML ska hitta dessa, lägger vi dem på window
             window.renderCourses = renderCourses;
             window.renderAreas = renderAreas;
             window.renderSubAreas = renderSubAreas;
@@ -332,10 +373,11 @@
                 } else {
                     const view = document.getElementById('view-task');
                     view.innerHTML = `
-                        <div class="text-center mt-10 bg-white p-8 rounded-xl shadow-md">
-                            <h2 class="text-2xl font-bold text-green-600 mb-4">Snygt jobbat! 🎉</h2>
-                            <p class="mb-6 text-gray-600">Du har gjort alla uppgifter i detta område.</p>
-                            <button onclick="renderDifficulty()" class="p-3 rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-medium transition">
+                        <div class="text-center mt-10 bg-slate-800 p-10 rounded-xl border border-slate-700/50 shadow-lg flex flex-col items-center">
+                            <svg class="w-16 h-16 text-emerald-400 mb-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <h2 class="text-2xl font-bold text-slate-100 mb-3">Snygt jobbat!</h2>
+                            <p class="mb-8 text-slate-400">Du har gjort alla uppgifter i detta område.</p>
+                            <button onclick="renderDifficulty()" class="w-full max-w-xs p-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold shadow-sm transition-all duration-200 hover:scale-[1.02]">
                                 Välj ny nivå / område
                             </button>
                         </div>
@@ -343,7 +385,6 @@
                 }
             }
 
-            // Starta renderingen
             renderCourses();
         }
     </script>

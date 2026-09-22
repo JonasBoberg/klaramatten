@@ -377,6 +377,7 @@
                 const task = state.tasks[state.currentTaskIndex];
                 const taskNum = state.currentTaskIndex + 1;
                 const totalTasks = state.tasks.length;
+                const isFirstTask = state.currentTaskIndex === 0;
 
                 const currentExample = state.examplesMap[task.groupId] || null;
 
@@ -440,9 +441,14 @@
                         </div>
                     </div>
 
-                    <button onclick="nextTask()" class="w-full p-4 rounded-xl bg-gradient-to-r from-slate-800 to-slate-700 hover:from-slate-700 hover:to-slate-600 text-white font-semibold shadow-lg shadow-black/40 transition-all duration-300 border border-slate-600/50 hover:scale-[1.02]">
-                        Nästa uppgift &rarr;
-                    </button>
+                    <div class="flex gap-4">
+                        <button onclick="prevTask()" class="flex-1 p-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold shadow-lg shadow-black/40 transition-all duration-300 border border-slate-700/50 hover:scale-[1.02] ${isFirstTask ? 'opacity-40 pointer-events-none' : ''}">
+                            &larr; Föregående
+                        </button>
+                        <button onclick="nextTask()" class="flex-1 p-4 rounded-xl bg-gradient-to-r from-slate-800 to-slate-700 hover:from-slate-700 hover:to-slate-600 text-white font-semibold shadow-lg shadow-black/40 transition-all duration-300 border border-slate-600/50 hover:scale-[1.02]">
+                            Nästa &rarr;
+                        </button>
+                    </div>
                 `;
 
                 document.getElementById('btn-leave-task').onclick = renderDifficulty;
@@ -469,6 +475,7 @@
             window.showAnswer = showAnswer;
             window.showSolution = showSolution;
             window.nextTask = nextTask;
+            window.prevTask = prevTask;
             window.randomTask = randomTask;
 
             function selectCourse(course) {
@@ -549,6 +556,13 @@
                             </button>
                         </div>
                     `;
+                }
+            }
+
+            function prevTask() {
+                if(state.currentTaskIndex > 0) {
+                    state.currentTaskIndex--;
+                    renderTask();
                 }
             }
 

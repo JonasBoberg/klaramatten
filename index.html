@@ -53,6 +53,41 @@
             margin-top: 1rem;
             border: 1px solid rgba(255,255,255,0.1);
         }
+
+        /* Stil för tabeller */
+        .math-table {
+            width: auto;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            border-collapse: collapse;
+            font-size: 1.1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+        .math-table th, .math-table td {
+            padding: 0.75rem 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .math-table thead {
+            background-color: rgba(139, 92, 246, 0.2); /* Lite lila bakgrund på rubriken */
+        }
+        .math-table th {
+            font-weight: 600;
+            color: #c4b5fd; /* indigo-300 */
+        }
+        .math-table tr:last-child td {
+            border-bottom: none;
+        }
+        .math-table tbody tr:nth-child(even) {
+            background-color: rgba(255,255,255,0.03);
+        }
+        .math-table td {
+            color: #e2e8f0; /* slate-200 */
+        }
+
         /* Glow animation for background */
         @keyframes pulse-glow {
             0%, 100% { opacity: 0.4; transform: scale(1); }
@@ -146,20 +181,51 @@
                 return btn;
             }
 
-            // Hjälpfunktion för att säkert formattera text, hantera <, > och bilder
+            // Hjälpfunktion för att säkert formattera text, hantera <, >, bilder och tabeller
             function formatContent(text) {
                 if (!text) return '';
                 let html = String(text);
                 
-                // 1. Extrahera bilder till placeholders så de inte förstörs av HTML-escaping
+                // 1. Extrahera specialblock (bilder och tabeller) till placeholders
                 const images = [];
+                const tables = [];
+
+                // Hantera markdown-bilder: ![alt-text](bildlänk)
                 html = html.replace(/!\[(.*?)\]\((.*?)\)/g, (match, alt, url) => {
                     images.push(`<img src="${url}" alt="${alt}">`);
                     return `[[IMG_${images.length - 1}]]`;
                 });
+                
+                // Hantera custom bilder: img: 'bildlänk' eller img: "bildlänk"
                 html = html.replace(/img:\s*["']([^"']+)["']/g, (match, url) => {
                     images.push(`<img src="${url}" alt="Exempel">`);
                     return `[[IMG_${images.length - 1}]]`;
+                });
+
+                // Hantera custom tabeller: {table\n x | y \n 1 | 2 \n}
+                html = html.replace(/\{table\s+([\s\S]*?)\}/g, (match, content) => {
+                    const rows = content.split('\n').filter(r => r.trim() !== '');
+                    if (rows.length === 0) return '';
+                    
+                    let tableHtml = '<table class="math-table"><thead><tr>';
+                    let headers = rows[0].split('|').map(h => h.trim());
+                    headers.forEach(h => {
+                        tableHtml += `<th>${h}</th>`;
+                    });
+                    tableHtml += '</tr></thead><tbody>';
+                    
+                    for (let i = 1; i < rows.length; i++) {
+                        let cols = rows[i].split('|').map(c => c.trim());
+                        tableHtml += '<tr>';
+                        cols.forEach(c => {
+                            tableHtml += `<td>${c}</td>`;
+                        });
+                        tableHtml += '</tr>';
+                    }
+                    tableHtml += '</tbody></table>';
+                    
+                    tables.push(tableHtml);
+                    return `[[TABLE_${tables.length - 1}]]`;
                 });
                 
                 // 2. Byt ut <br> mot placeholder
@@ -171,6 +237,7 @@
                 // 4. Återställ placeholders
                 html = html.replace(/\[\[BR\]\]/g, '<br>');
                 html = html.replace(/\[\[IMG_(\d+)\]\]/g, (match, idx) => images[parseInt(idx)]);
+                html = html.replace(/\[\[TABLE_(\d+)\]\]/g, (match, idx) => tables[parseInt(idx)]);
                 
                 return html;
             }

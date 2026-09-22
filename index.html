@@ -45,6 +45,14 @@
         mjx-container[jax="CHTML"] {
             color: inherit !important;
         }
+        /* Stil för inbäddade bilder */
+        .math-question img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
     </style>
 </head>
 <body class="bg-slate-900 min-h-screen flex flex-col items-center justify-center p-4 font-sans text-slate-200">
@@ -124,6 +132,15 @@
                 return btn;
             }
 
+            // Hjälpfunktion för att formattera text och omvandla Markdown-bilder till HTML-bilder
+            function formatContent(text) {
+                if (!text) return '';
+                let htmlString = String(text);
+                // Leta efter markdown-bilder: ![alt-text](bildlänk) och gör om till <img>
+                htmlString = htmlString.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1">');
+                return htmlString;
+            }
+
             function renderMath(elementId) {
                 if(window.MathJax && MathJax.typesetPromise) {
                     MathJax.typesetPromise([document.getElementById(elementId)]);
@@ -135,7 +152,7 @@
                 showView('view-courses');
                 const view = document.getElementById('view-courses');
                 
-                const courses = [...new Set(taskBank.flatMap(g => g.courses))].sort();
+                const courses = [...new Set(taskBank.flatMap(g => g.courses || []))].sort();
                 
                 view.innerHTML = '<h2 class="text-xl font-bold mb-5 text-slate-300">1. Välj din kurs</h2>';
                 const container = document.createElement('div');
@@ -211,7 +228,8 @@
                     filteredGroups = filteredGroups.filter(g => g.subArea === state.currentSubArea);
                 }
                 
-                const availableDifficulties = [...new Set(filteredGroups.map(g => g.difficulty))].sort();
+                // Filtrera bort grupper som saknar difficulty eller versions
+                const availableDifficulties = [...new Set(filteredGroups.filter(g => g.difficulty).map(g => g.difficulty))].sort();
                 const subAreaText = state.currentSubArea === 'all' ? state.currentArea : state.currentSubArea;
 
                 view.innerHTML = '';
@@ -226,7 +244,7 @@
                 container.className = 'space-y-3';
                 
                 if(availableDifficulties.length === 0) {
-                    container.innerHTML = '<p class="text-red-400">Inga uppgifter finns för detta urval.</p>';
+                    container.innerHTML = '<p class="text-red-400">Inga uppgifter finns för detta urval. Saknas versions eller nivå i tasks.js?</p>';
                 } else {
                     availableDifficulties.forEach(diff => {
                         const label = diff === 1 ? 'Nivå 1 (Grund)' : diff === 2 ? 'Nivå 2 (Medel)' : 'Nivå 3 (Svår)';
@@ -269,7 +287,8 @@
                     
                     <div class="bg-slate-800 p-6 rounded-xl shadow-lg mb-6 border border-slate-700/50">
                         <div id="task-question" class="math-question text-slate-100">
-                            ${task.question}
+                            ${formatContent(task.question)}
+                            ${task.image ? `<img src="${task.image}" alt="Uppgiftsbild">` : ''}
                         </div>
                         ${task.calculator ? `<div class="mt-5 pt-4 border-t border-slate-700/50 text-sm text-slate-400 flex items-center">${calcIcon} Räknare tillåten</div>` : ''}
                     </div>
@@ -283,7 +302,8 @@
                     <div id="answer-box" class="hidden bg-slate-800/60 p-5 rounded-xl border border-emerald-500/30 mb-4 shadow-inner">
                         <p class="font-semibold text-emerald-400 text-sm tracking-wider mb-2">FACIT</p>
                         <div id="task-answer" class="mt-1 text-emerald-300 math-question">
-                            ${task.solution}
+                            ${formatContent(task.solution)}
+                            ${task.solutionImage ? `<img src="${task.solutionImage}" alt="Lösningsbild">` : ''}
                         </div>
                         <div id="solution-btn-container" class="mt-5 border-t border-slate-700/50 pt-4">
                             <button onclick="showSolution()" class="w-full p-2.5 rounded-lg bg-emerald-900/30 hover:bg-emerald-900/50 text-emerald-300 font-medium transition text-sm border border-emerald-600/30">
@@ -342,8 +362,9 @@
                     filteredGroups = filteredGroups.filter(g => g.subArea === state.currentSubArea);
                 }
 
+                // ROBUSTHET: Säkerställ att g.versions finns för att undvika krasch
                 state.tasks = filteredGroups.flatMap(g => 
-                    g.versions.map(v => ({
+                    (g.versions || []).map(v => ({
                         ...v,
                         groupId: g.groupId,
                         calculator: g.calculator || false,

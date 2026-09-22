@@ -55,7 +55,8 @@
         }
     </style>
 </head>
-<body class="bg-slate-900 min-h-screen flex flex-col items-center justify-center p-4 font-sans text-slate-200">
+<!-- ÄNDRING HÄR: Tagit bort justify-center, lagt till py-10 så att den fäster uppifrån med lite luft -->
+<body class="bg-slate-900 min-h-screen flex flex-col items-center py-10 px-4 font-sans text-slate-200">
 
     <div id="app" class="w-full max-w-xl">
         <!-- Header -->
@@ -256,7 +257,6 @@
             }
 
             // --- VY: UPPGIFT ---
-                        // --- VY: UPPGIFT ---
             function renderTask() {
                 showView('view-task');
                 const view = document.getElementById('view-task');

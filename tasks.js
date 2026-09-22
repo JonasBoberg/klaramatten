@@ -926,24 +926,24 @@ question: "Vilket värde på \\( x \\) uppfyller inte villkoret \\( 2x+1 \\ge 5 
 difficulty: 1,
 solution: "Svar: 2"
 },
-{ groupId: "vilka ligger i intervallet?", area: "Algebra", subArea: "Olikheter och intervall", courses: ["Ma1a", "Ma1b", "Ma1c", "Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ groupId: "vilka ligger i intervallet?", area: "Algebra", subArea: "Olikheter och intervall", courses: ["Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 634, versionLabel: "A", question: "Vilka av följande heltal, \\( x \\), ligger i intervallet \\( 5 \\leq x < 12 \\)?<br><br>Alternativ: -2, 3, 5, 10, 12, 15.", solution: "Svar: 5 och 10." },
 { id: 635, versionLabel: "B", question: "Vilka av följande tal, \\( x \\), ligger i intervallet \\( -3,5 < x \\leq -0,5 \\)?<br><br>Alternativ: -4 ; -3,5 ; -1 ; -3,8 ; 1,2.", solution: "Svar: -1 och -3,8." },
 { id: 636, versionLabel: "C", question: "Vilka av följande heltal, \\( x \\), ligger i intervallet \\( -2 \\leq x < 4 \\)?<br><br>Alternativ: -3, -2, 0, 3, 4, 6.", solution: "Svar: -2, 0 och 3." },
 { id: 637, versionLabel: "D", question: "Vilka av följande tal, \\( x \\), ligger i intervallet \\( 1,5 < x \\leq 5,5 \\)?<br><br>Alternativ: 1,2 ; 2 ; 5,5 ; 6 ; 1,5.", solution: "Svar: 2 och 5,5." },
 { id: 638, versionLabel: "E", question: "Vilka av följande heltal, \\( x \\), ligger i intervallet \\( -10 < x \\leq -6 \\)?<br><br>Alternativ: -11, -10, -9, -7, -6, -5.", solution: "Svar: -9, -7 och -6." }
 ] },
-{ groupId: "lös olikheten, simpel", area: "Algebra", subArea: "Olikheter och intervall", courses: ["Ma1a", "Ma1b", "Ma1c", "Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ groupId: "lös olikheten, simpel", area: "Algebra", subArea: "Olikheter och intervall", courses: ["Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 639, versionLabel: "A", question: "Lös olikheten \\( 2+4x<12 \\).", solution: "Svar: \\( x<2,5 \\)" },
 { id: 640, versionLabel: "B", question: "Lös olikheten \\( 10>5x \\).", solution: "Svar: \\( x<2 \\)" },
 { id: 641, versionLabel: "C", question: "Lös olikheten \\( \\frac{x}{3}+1>22 \\).", solution: "Svar: \\( x>63 \\)" }
 ] },
-{ groupId: "Lös olikheten, negativ / behöver vända", area: "Algebra", subArea: "Olikheter och intervall", courses: ["Ma1a", "Ma1b", "Ma1c", "Ma2a", "Ma2b", "Ma2c"], difficulty: 2, versions: [
+{ groupId: "Lös olikheten, negativ / behöver vända", area: "Algebra", subArea: "Olikheter och intervall", courses: ["Ma1b", "Ma1c"], difficulty: 2, versions: [
 { id: 642, versionLabel: "A", question: "Lös olikheten \\( 4-3x<16 \\).", solution: "Svar: \\( x>-4 \\)" },
 { id: 643, versionLabel: "B", question: "Lös olikheten \\( 16 \\leq -10x+1 \\).", solution: "Svar: \\( x \\leq -1,5 \\)" },
 { id: 644, versionLabel: "C", question: "Lös olikheten \\( \\frac{-x}{2}+4>-10 \\).", solution: "Svar: \\( x<28 \\)" }
 ] },
-{ groupId: "Vilka tal uppfyller olikhet, med alternativ", area: "Algebra", subArea: "Olikheter och intervall", courses: ["Ma1a", "Ma1b", "Ma1c", "Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ groupId: "Vilka tal uppfyller olikhet, med alternativ", area: "Algebra", subArea: "Olikheter och intervall", courses: ["Ma1b", "Ma1c", "Ma2a"], difficulty: 1, versions: [
 { id: 645, versionLabel: "A", question: "Vilket eller vilka av följande tal uppfyller olikheten \\( \\frac{5x}{2}>100 \\)?<br><br>Alternativ: 10 / 30 / 40 / 60", solution: "Svar: 60" },
 { id: 646, versionLabel: "B", question: "Vilket eller vilka av följande tal uppfyller olikheten \\( -2x+1>5 \\)?<br><br>Alternativ: 2 / 4 / -2 / -4", solution: "Svar: -4" },
 { id: 647, versionLabel: "C", question: "Vilket eller vilka av följande tal uppfyller olikheten \\( -10>x+4 \\)?<br><br>Alternativ: -12 / -13 / -14 / -15", solution: "Svar: -15" },
@@ -951,7 +951,7 @@ solution: "Svar: 2"
 { id: 649, versionLabel: "E", question: "Vilket eller vilka av följande tal uppfyller olikheten \\( 3<x+4 \\)?<br><br>Alternativ: 0 / -1 / -2 / -3", solution: "Svar: 0" },
 { id: 650, versionLabel: "F", question: "Vilket eller vilka av följande tal uppfyller olikheten \\( 12x<-24 \\)?<br><br>Alternativ: 0 / -2 / -4 / -6", solution: "Svar: -4 och -6" },
 ] },
-{ groupId: "Hitta tal mellan två olikheter", area: "Algebra", subArea: "Olikheter och intervall", courses: ["Ma1a", "Ma1b", "Ma1c", "Ma2a", "Ma2b", "Ma2c"], calculator: false, difficulty: 2, versions: [
+{ groupId: "Hitta tal mellan två olikheter", area: "Algebra", subArea: "Olikheter och intervall", courses: ["Ma1b", "Ma1c"], difficulty: 2, versions: [
 { id: 651, versionLabel: "A", question: "Ange ett heltal \\( x \\) som uppfyller olikheterna \\( 4x+7 \\geq 15 \\) och \\( 10>x+5 \\).", solution: "Svar: 2, 3 eller 4" },
 { id: 652, versionLabel: "B", question: "Ange ett heltal \\( x \\) som uppfyller olikheterna \\( 11-2x \\geq 3 \\) och \\( \\frac{x}{3}>1 \\).", solution: "Svar: 4" }
 ] },

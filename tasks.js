@@ -386,7 +386,7 @@ const taskBank = [
 { id: 276, versionLabel: "C", question: "Beräkna:<br>a) \\( 40+3+(-4) \\)<br>b) \\(1+(-5)\\)", solution: "a) \\(39\\)<br>b) \\(-4\\)", exp: "a) \\( 40+3+(-4)=40+3-4=43-4=39 \\)<br>b) \\(1+(-5)=1-5=-4\\)" },
 { id: 277, versionLabel: "D", question: "Beräkna:<br>a) \\( 10+(-8)+2 \\)<br>b) \\(-11+(-2)\\)", solution: "a) \\(4\\)<br>b) \\(-13\\)", exp: "a) \\( 10+(-8)+2=10-8+2=2+2=4 \\)<br>b) \\(-11+(-2)=-11-2=-13\\)" },
 { id: 278, versionLabel: "E", question: "Beräkna:<br>a) \\( 2+3+(-8) \\)<br>b) \\( 7+(-1) \\)", solution: "a) \\(-3\\)<br>b) \\(6\\)", exp: "a) \\( 2+3+(-8)=2+3-8=-3\\)<br>b) \\( 7+(-1)=7-1=6 \\)" },
-{ id: 279, versionLabel: "F", question: "Beräkna:<br>a) \\( 10+(-4)-3 \\)<br>b) \\( 18+(-19) \\)", solution: "a) \\(3\\)<br>b) \\(-1\\)", exp: "a) \\( 10+(-4)-3=10-4-3=3 \\)<br>b) \\( 18+(-19)=18-19=-1\\)" }
+{ id: 279, versionLabel: "F", question: "Beräkna:<br>a) \\( 10+(-4)-3 \\)<br>b) \\( 18+(-19) \\)", solution: "a) \\(3\\)<br>b) \\(-1\\)", exp: "a) \\( 10+(-4)-3=10-4-3=3 \\)<br>b) \\( 18+(-19)=18-19=-1\\)" },
 { id: 280, versionLabel: "Ex", example: "Ett plus- och ett minustecken \"bredvid\" varandra kan ersättas mot ett minus.<br>\\( 5+(-4)=5-4=1\\)" },
 ] },
 { groupId: "Två minustecken 1", area: "Aritmetik", subArea: "Negativa tal", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
@@ -397,7 +397,7 @@ const taskBank = [
 { id: 285, versionLabel: "E", question: "Beräkna:<br>a) \\( 1-(-9) \\)<br>b) \\(-4-(-12)\\)", solution: "a) \\(10\\)<br>b) \\(8\\)", exp: "a) \\( 1-(-9)=1+9=10 \\)<br>b) \\(-4-(-12)=-4+12=8\\)" },
 { id: 286, versionLabel: "F", question: "Beräkna:<br>a) \\( 3-(-2) \\)<br>b) \\(-10-(-8)\\)", solution: "a) \\(5\\)<br>b) \\(-2\\)", exp: "a) \\( 3-(-2)=3+2=5 \\)<br>b) \\(-10-(-8)=-10+8=-2\\)" },
 { id: 287, versionLabel: "G", question: "Beräkna:<br>a) \\( 7-(-1) \\)<br>b) \\(-3-(-3)\\)", solution: "a) \\(8\\)<br>b) \\(0\\)", exp: "a) \\( 7-(-1)=7+1=8 \\)<br>b) \\(-3-(-3)=-3+3=0\\)" },
-{ id: 288, versionLabel: "H", question: "Beräkna:<br>a) \\( 6-(-2) \\)<br>b) \\(-9-(-10)\\)", solution: "a) \\(8\\)<br>b) \\(1\\)", exp: "a) \\( 6-(-2)=6+2=8 \\)<br>b) \\(-9-(-10)=-9+10=1\\)" }
+{ id: 288, versionLabel: "H", question: "Beräkna:<br>a) \\( 6-(-2) \\)<br>b) \\(-9-(-10)\\)", solution: "a) \\(8\\)<br>b) \\(1\\)", exp: "a) \\( 6-(-2)=6+2=8 \\)<br>b) \\(-9-(-10)=-9+10=1\\)" },
 { id: 289, versionLabel: "Ex", example: "Två minustecken \"bredvid\" varandra kan ersättas mot ett plus.<br>\\( 3-(-8)=3+8=11\\)" },
 ] },
 { groupId: "Multiplikation negativa tal 1", area: "Aritmetik", subArea: "Negativa tal", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [

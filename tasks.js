@@ -446,7 +446,7 @@ const taskBank = [
 { id: 324, versionLabel: "D", question: "Beräkna: \\( 4+(-1)-3-(-8) \\)", solution: "Svar: \\(8\\)", exp: "\\( 4+(-1)-3-(-8)=4-1-3+8=3-3+8=8 \\)" },
 { id: 325, versionLabel: "E", question: "Beräkna: \\( 10-(-2)+3+(-12) \\)", solution: "Svar: \\(3\\)", exp: "\\( 10-(-2)+3+(-12)=10+2+3-12=12+3-12=15-12=3 \\)" },
 { id: 326, versionLabel: "F", question: "Beräkna: \\( -3-(-4)+(-1)+5 \\)", solution: "Svar: \\(5\\)", exp: "\\( -3-(-4)+(-1)+5=-3+4-1+5=1-1+5=5 \\)" },
-] }
+] },
 { groupId: "De fyra räknesätten med negativa tal - ett tal saknas", area: "Aritmetik", subArea: "Negativa tal", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 327, versionLabel: "A", question: "Vilket tal ska stå i rutan?<br>a) \\( 15-\\square=18 \\)<br>b) \\( \\frac{50}{\\square}=-25 \\)", solution: "a) -3<br>b) -2" },
 { id: 328, versionLabel: "B", question: "Vilket tal ska stå i rutan?<br>a) \\( \\square-10=-12 \\)<br>b) \\( (-7)\\cdot\\square=21 \\)", solution: "a) -2<br>b) -3" },

@@ -520,9 +520,9 @@ const taskBank = [
 {id: 376, versionLabel: "I", question: "Låt \\(x=12\\) och \\(y=8\\) och beräkna värdet av:<br>a) \\( x+2y \\)<br>b) \\(2x-10+y\\)", solution: "a) 28<br>b) 22" },
 ] },
 { groupId: "Beräkna värdet av uttryck - svåra med positiva tal", area: "Algebra", subArea: "Beräkna värdet av uttryck", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 2, versions: [
-{id: 377, versionLabel: "A", question: "Låt \\(x=12\\) och \\(y=3\\) och beräkna värdet av \\( \\frac{x}{y^2-6}+2(x-y).\\)", solution: "22" },
-{id: 378, versionLabel: "B", question: "Låt \\(a=5\\) och \\(b=9\\) och beräkna värdet av \\( 2(\\frac{1}{a-1} + \\frac{2ab}{80+2a} + \\frac{a}{2b+2}).\\)", solution: "3" },
-{id: 379, versionLabel: "C", question: "Låt \\(x=10\\) och \\(y=12\\) och beräkna värdet av \\( x(y-x)-3(\\frac{x+2}{y})+x^2.\\)", solution: "117" },
+{id: 377, versionLabel: "A", question: "Låt \\(x=12\\) och \\(y=3\\) och beräkna värdet av \\( \\frac{x}{y^2-6}+2(x-y).\\)", solution: "22", exp: "Sätt in värdena: \\(\\frac{12}{3^2-6}+2(12-3)=\\frac{12}{3}+18=4+18=22\\)."},
+{id: 378, versionLabel: "B", question: "Låt \\(a=5\\) och \\(b=9\\) och beräkna värdet av \\( 2(\\frac{1}{a-1} + \\frac{2ab}{80+2a} + \\frac{a}{2b+2}).\\)", solution: "3", exp: "Sätt in värdena: \\(2(\\frac14+\\frac{90}{90}+\\frac{5}{20})=2(\\frac14+1+\\frac14)=2\\cdot\\frac32=3\\)."},
+{id: 379, versionLabel: "C", question: "Låt \\(x=10\\) och \\(y=12\\) och beräkna värdet av \\( x(y-x)-3(\\frac{x+2}{y})+x^2.\\)", solution: "117", exp: "Sätt in värdena: \\(10(12-10)-3\\left(\\frac{10+2}{12}\\right)+10^2=20-3+100=117\\)."},
 ] },
 { groupId: "Beräkna värdet av uttryck - negativa tal - steg 1", area: "Algebra", subArea: "Beräkna värdet av uttryck", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 {id: 380, versionLabel: "A", question: "Låt \\(x=-3\\) och beräkna värdet av:<br>a) \\(5x\\)<br>b) \\(x+5\\)", solution: "a) -15<br>b) 2" },

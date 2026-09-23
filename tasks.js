@@ -1,11 +1,11 @@
 const taskBank = [
 { groupId: "Beräkna del utan räknare", area: "Procent", subArea: "Del, andel, hela", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
-{ id: 1, listid: 1, versionLabel: "A", question: "Beräkna:<br>a) 10% av 3000 kr<br>b) 15% av 500 kr", solution: "a) 300 kr<br>b) 75 kr" },
-{ id: 2, listid: 2, versionLabel: "B", question: "Beräkna:<br>a) 20% av 3000 kr<br>b) 40% av 200 kr", solution: "a) 600 kr<br>b) 80 kr" },
-{ id: 3, listid: 3, versionLabel: "C", question: "Vad är 30% av 3000kr?", solution: "Svar: 900 kr" },
-{ id: 4, listid: 4, versionLabel: "D", question: "Vad är 20% av 5000kr?", solution: "Svar: 1000 kr" },
-{ id: 5, listid: 5, versionLabel: "E", question: "Vad är 20% av 1000kr?", solution: "Svar: 200 kr" },
-{ id: 6, listid: 6, versionLabel: "F", question: "Vad är 20% av 150kr?", solution: "Svar: 30 kr" },
+{ id: 1, versionLabel: "A", question: "Beräkna:<br>a) 10% av 3000 kr<br>b) 15% av 500 kr", solution: "a) 300 kr<br>b) 75 kr" },
+{ id: 2, versionLabel: "B", question: "Beräkna:<br>a) 20% av 3000 kr<br>b) 40% av 200 kr", solution: "a) 600 kr<br>b) 80 kr" },
+{ id: 3, versionLabel: "C", question: "Vad är 30% av 3000kr?", solution: "Svar: 900 kr" },
+{ id: 4, versionLabel: "D", question: "Vad är 20% av 5000kr?", solution: "Svar: 1000 kr" },
+{ id: 5, versionLabel: "E", question: "Vad är 20% av 1000kr?", solution: "Svar: 200 kr" },
+{ id: 6, versionLabel: "F", question: "Vad är 20% av 150kr?", solution: "Svar: 30 kr" },
 ] },
 {groupId: "Beräkna andel med räknare", area: "Procent", subArea: "Del, andel, hela", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 1, versions: [
 { id: 7, listid: 7, versionLabel: "A", question: "I en låda finns 18 röda kulor och 42 blå kulor.<br>Hur stor andel av kulorna är röda? Svara i procentform.", solution: "Totalt antal kulor: 60<br>\\(18/60=0,30\\)<br>Svar: 30%."},
@@ -31,7 +31,7 @@ const taskBank = [
 { id: 23, listid: 16, versionLabel: "D", question: "I klass 8B går det 40 elever. 30% spelar fotboll och 20% spelar innebandy. Resten spelar ingen av dessa sporter. Hur många elever spelar ingen av dessa sporter?", solution: "Svar: 20 st (50% av 40)" },
 { id: 24, listid: 17, versionLabel: "E", question: "I ett bibliotek finns det 90 böcker på ett bord. 20% är deckare och 50% är faktaböcker. Resten är romaner. Hur många romaner finns det på bordet?", solution: "Svar: 27 st (30% av 90)" },
 ] },
-{ groupId: "Procentuell förändring 1", area: "Procent", subArea: "Procentuell förändring", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 1, versions: [
+{ groupId: "Procentuell förändring 1", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 1, versions: [
 { id: 25, listid: 20, versionLabel: "A", question: "En jacka kostade först 800 kr men säljs nu för 680 kr. Med hur många procent har priset minskat?", solution: "Svar: Det har minskat med 15%." },
 { id: 26, listid: 21, versionLabel: "B", question: "En mobil kostade först 4000 kr men kostar nu 4800 kr. Med hur många procent har priset ökat?", solution: "Svar: Det har ökat med 20%." },
 { id: 27, listid: 22, versionLabel: "C", question: "En tröja kostade först 440 kr men säljs nu för 360 kr. Med hur många procent har priset minskat? Svara med en decimal.", solution: "Svar: Det har minskat med 18,2%." },
@@ -40,7 +40,7 @@ const taskBank = [
 { id: 30, listid: 25, versionLabel: "F", question: "Förra året hade du 34 000 kr i månadslön. I år har du 35 400 kr. Med hur många procent har din måndaslön ökat det senaste året?", solution: "Svar: Den har ökat med ca 4,1%." },
 { id: 31, listid: 26, versionLabel: "Ex", example: "Använd formeln: \\( \\textrm{procentuell förändring}=\\frac{\\textrm{Skillnaden}}{\\textrm{Ursprunget}} \\).<br>Ex. En minskning från 530 till 490 är en minskning på \\( \\frac{40}{530}=0,075=7,5\\%.\\)" },
 ] },
-{ groupId: "Ange förändringsfaktorn", area: "Procent", subArea: "Förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Ange förändringsfaktorn", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 32, listid: 27, versionLabel: "A", question: "En vara ökar i värde med 12%. Vad är förändringsfaktorn?", solution: "Svar: 1,12." },
 { id: 33, listid: 28, versionLabel: "B", question: "En vara minskar i värde med 12%. Vad är förändringsfaktorn?", solution: "Svar: 0,88." },
 { id: 34, listid: 29, versionLabel: "C", question: "En vara ökar i värde med 5,8%. Vad är förändringsfaktorn?", solution: "Svar: 1,058." },
@@ -50,7 +50,7 @@ const taskBank = [
 { id: 38, listid: 33, versionLabel: "G", question: "Vilken förändringsfaktor motsvarar de olika förändringarna?<br>a) En ökning med 87%.<br>b) En ökning med 112%.", solution: "a) 1,87<br>b) 2,12" },
 { id: 39, listid: 19, versionLabel: "Ex", example: "Utgå från 100%. Addera eller subtrahera skillnaden beroende på om det är en ökning eller minskning. Gör därefter om till decimalform.<br><br>En ökning med 14% motsvarar förändringsfaktorn \\(100\\%+14\\%=114\\%=1,14.\\) Svar: ff=1,14<br><br>En minskning med 14% motsvarar förändringsfaktorn \\(100\\%-14\\%=86\\%=0,86.\\) Svar: ff=0,86" },
 ] },
-{ groupId: "Tolka förändringsfaktorn", area: "Procent", subArea: "Förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Tolka förändringsfaktorn", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 40, listid: 34, versionLabel: "A", question: "Priset på en vara förändras. Förändringsfaktorn är 1,55. Beskriv hur varans värde har förändrats.", solution: "Svar: Varans värde har ökat med 55%." },
 { id: 41, listid: 35, versionLabel: "B", question: "Priset på en vara förändras. Förändringsfaktorn är 0,91. Beskriv hur varans värde har förändrats.", solution: "Svar: Varans värde har minskat med 9%." },
 { id: 42, listid: 36, versionLabel: "C", question: "Priset på en vara förändras. Förändringsfaktorn är 0,64. Beskriv hur varans värde har förändrats.", solution: "Svar: Varans värde har minskat med 36%." },
@@ -61,13 +61,13 @@ const taskBank = [
 { id: 47, listid: 39, versionLabel: "H", question: "Nedan ser du två förändringsfaktorer. Beskriv vilken förändring de motsvarar.<br>a) 1,9<br>b) 3,0", solution: "a) En ökning med 90%<br>b) En ökning med 200%" },
 { id: 48, listid: 40, versionLabel: "I", question: "Nedan ser du två förändringsfaktorer. Beskriv vilken förändring de motsvarar.<br>a) 0,05<br>b) 2,5", solution: "a) En minskning med 95%<br>b) En ökning med 150%" },
 ] },
-{ groupId: "Beräkna nytt värde", area: "Procent", subArea: "Förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 1, versions: [
+{ groupId: "Beräkna nytt värde", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 1, versions: [
 { id: 49, listid: 41, versionLabel: "A", question: "Förra året hade Lena 34 000 kr i månadslön. I år fick hon en löneökning på 4%. Vad är hennes månadslön idag?", solution: "Svar: Den är nu 35 360 kr / månad." },
 { id: 50, listid: 42, versionLabel: "B", question: "Förra året hade Adam 32 000 kr i månadslön. I år fick han en löneökning på 4,5%. Vad är hans månadslön idag?", solution: "Svar: Den är nu 33 440 kr / månad." },
 { id: 51, listid: 43, versionLabel: "C", question: "Förra året köpte Erik en dator för 6000 kr. Den har sedan dess minskat i värde med 12%. Vad är datorn värd idag?", solution: "Svar: Den är värd 5280 kr." },
 { id: 52, listid: 44, versionLabel: "D", question: "En vara som tidigare kostat 1 800 kr har nu ökat i värde med 4,5%. Vad kostar varan idag?", solution: "Svar: Den kostar 1881 kr." },
 ] },
-{ groupId: "beräkna nytt värde, många år", area: "Procent", subArea: "Förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
+{ groupId: "beräkna nytt värde, många år", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
 { id: 53, listid: 45, versionLabel: "A", question: "Du sätter in 40 000 kr på ett sparkonto med 3% ränta. Hur mycket pengar har du på kontot efter 10 år om du inte sätter in eller tar ut något under denna period?", solution: "\\( 40 000 \\cdot 1,03^{10} = 53 757\\) kr." },
 { id: 54, listid: 46, versionLabel: "B", question: "Du köper en motorcykel för 92 500 kr. Motorcykelns värde minskar med 7% per år. Hur mycket är motorcykeln värd 6 år efter att du köpt den?", solution: "\\( 92 500 \\cdot 0,93^6 = 59 847\\) kr." },
 { id: 55, listid: 47, versionLabel: "C", question: "Du sätter in 12 800 kr på ett konto. Pengarna ökar med 3,5% per år. Hur mycket finns på kontot efter 9 år?", solution: "\\( 12 800 \\cdot 1,035^9 = 17 440 \\) kr." },
@@ -76,31 +76,31 @@ const taskBank = [
 { id: 58, listid: 50, versionLabel: "F", question: "Du köper en dator för 18 900 kr. Datorns värde minskar med 12% per år. Hur mycket är datorn värd efter 4 år?", solution: "\\( 18 900 \\cdot 0,88^4 = 11 325 \\) kr." },
 { id: 59, listid: 51, versionLabel: "G", question: "Du köper en bil för 80 000 kr. Bilens värde minskar med 6% per år. Hur mycket är bilen värd 8 år efter att du köpt den?", solution: "\\( 80 000 \\cdot 0,94^8 = 48 766\\) kr." },
 ] },
-{ groupId: "beräkna gammalt värde", area: "Procent", subArea: "Förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 1, versions: [
+{ groupId: "beräkna gammalt värde", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 1, versions: [
 { id: 60, listid: 52, versionLabel: "A", question: "Det är REA i hela klädbutiken och alla byxor säljs med 25% rabatt. Du betalar 600kr för ett par jeans. Vad kostade de innan REAn?", solution: "Svar: 800 kr"},
 { id: 61, listid: 53, versionLabel: "B", question: "Alla jackor i en butik säljs med 40 % rabatt. Du betalar 1 200 kr för en jacka. Hur mycket kostade den före rabatten?", solution: "Svar: 2000 kr"},
 { id: 62, listid: 54, versionLabel: "C", question: "Du köper en tröja som säljs med 40% rabatt. Du betalar 450 kr för den. Vad var tröjans ordinarie pris?", solution: "Lösning: dividera det nya värdet med förändringsfaktorn \\( \\frac{450}{0,6}=750\\).<br>Svar: Den kostade 750 kr."},
 ] },
-{ groupId: "beräkna gammalt värde - många år", area: "Procent", subArea: "Förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
+{ groupId: "beräkna gammalt värde - många år", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
 { id: 63, versionLabel: "A", question: "För två år sedan köpte du en bil. Bilens värde har sedan dess minskat med 8% per år och är nu värd 124 000 kr. Vad kostade bilen när du köpte den?", solution: "Svar: ca 146 500 kr"},
 { id: 64, versionLabel: "B", question: "För tre år sedan köpte du en moped. Mopedens värde har sedan dess minskat med 11% per år och är nu värd 15 510 kr. Vad kostade mopeden när du köpte den?", solution: "Svar: Den kostade 22 000 kr"},
 ] },
-{ groupId: "total förändringsfaktor 1", area: "Procent", subArea: "Förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
+{ groupId: "total förändringsfaktor 1", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
 { id: 65, versionLabel: "A", question: "Priset på en vara ökar med 20% och minskar därefter med 20%. Har priset på varan förändrats från ordinarie pris? Om ja, med hur många procent?", solution: "Svar: \\( 1,2 \\cdot 0,8 = 0,96\\).<br>Priset har minskat med 4%." },
 { id: 66, versionLabel: "B", question: "Du köper en bil som under första året minskar med 10% i värde. Året därpå minskar den med 12%. Med hur många procent har den minskat i värde totalt? Svara exakt.", solution: "Svar: \\( 0,9 \\cdot 0,88 = 0,792\\). Den har minskat med 20,8%." },
 ] },
-{ groupId: "total förändringsfaktor 2", area: "Procent", subArea: "Förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
+{ groupId: "total förändringsfaktor 2", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
 { id: 67, versionLabel: "A", question: "Antalet träd i Trollskogen har de senaste åren ökat med 8,5% per år. Med hur många procent har antalet träd ökat de senaste 4 åren? Svara i procentform med en decimal.", solution: "Svar: \\( 1,085^4 = 1,3856\\). Antalet träd har ökat med 38,6%." },
 { id: 68, versionLabel: "B", question: "Din nya TV förväntas minska i värde med 14% per år. Med hur många procent har TV:n minskat i värde efter 5 år? Svara i procent med en decimal.", solution: "Svar: \\( 0,86^5 = 0,470427\\). Värdet har minskat med 53,0%." },
 { id: 69, versionLabel: "C", question: "Du sätter in pengar på ett sparkonto med 4% ränta. Med hur många procent har värdet av pengarna ökat efter 3 år? Svara i procent med en decimal.", solution: "Svar: Pengarnas värde har ökat med 12,5%.", exp: "Förändringsfaktorn för ett år är \\(1,04\\). Tre år i rad blir detta: \\( 1,04^3 = 1,124864\\) vilket motsvarar en ökning med ca 12,5%." },
 ] },
-{ groupId: "förändringsfaktor NP 1", area: "Procent", subArea: "Förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
-{ id: 70, versionLabel: "A", question: "En aktie har från början värdet 200 kr. Första veckan ökar värdet med 10% och andra veckan minskar värdet med 10%. Aktiens värde fortsätter att förändras i samma mönster. (NP Ma1abc).<br>a) Hur mycket är aktien värd efter två veckor?<br>b) Hur mycket är aktien värd efter 100 veckor?", solution: "a) 198kr<br>b) 121 kr" },
+{ groupId: "förändringsfaktor NP 1", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
+{ id: 70, versionLabel: "A", question: "En aktie har från början värdet 200 kr. Första veckan ökar värdet med 10% och andra veckan minskar värdet med 10%. Aktiens värde fortsätter att förändras i samma mönster. (NP Ma1abc).<br>a) Hur mycket är aktien värd efter två veckor?<br>b) Hur mycket är aktien värd efter 100 veckor?", solution: "a) 198 kr<br>b) 121 kr" },
 ] },
-{ groupId: "förändringsfaktor NP 2", area: "Procent", subArea: "Förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
+{ groupId: "förändringsfaktor NP 2", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
 { id: 71, versionLabel: "A", question: "Oskar vinner x kr i en tävling. Ahmed vinner 40 % mer än Oskar. Stina vinner 20 % mindre än Oskar. Hur många procent större är Ahmeds vinst jämfört med Stinas?", solution: "\\(\\frac{0,6x}{0,8x}=0,75\\). Svar: 75%." },
 ] },
-{ groupId: "vinkelsumma med ff", area: "Procent", subArea: "Förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
+{ groupId: "vinkelsumma med ff", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
 { id: 72, versionLabel: "A", question: "En triangel har vinklarna U, V och W. Vinkel V är 20 % mindre än vinkel U och vinkel W är 40 % större än vinkel W. Bestäm vinkel W.", solution: "Svar: Lös ekvationen \\(x+1,4x+0,8x=180\\). \\(W=78,75^{\\circ} \\)." },
 { id: 73, versionLabel: "B", question: "En triangel har vinklarna U, V och W. Vinkel V och vinkel W är båda 30 % mindre än vinkel U. Bestäm vinkel V.", solution: "Svar: Lös ekvationen \\(x+0,7x+0,7x=180\\). \\(V=52,5^{\\circ} \\)." },
 { id: 74, versionLabel: "C", question: "En triangel har vinklarna A, B och C. Vinkel B är 72 % mindre än vinkel A. Vinkel C är 60 % större än vinkel A. Bestäm triangelns vinklar. (NP 1a, 1b, 1c)", solution: "Svar: Lös ekvationen \\(x+0,28x+1,6x=180\\) så får du \\(A=62,5^{\\circ} \\), \\(B=17,5^{\\circ} \\) och \\(C=100^{\\circ} \\)." }
@@ -1979,7 +1979,7 @@ solution: "a) B<br>b) B"
 { id: 1119, versionLabel: "D", question: "Ett bageri bakar limpor vars vikt är normalfördelad. Medelvärdet är 750g och standardavvikelsen är 5,5g. Beräkna sannolikheten att en slumpmässigt vald limpa väger mindre än 745g.", solution: "Svar: Det är 18,17% chans." },
 { id: 1120, versionLabel: "E", question: "Ett företag säljer hantlar vars vikt är normalfördelad. Medelvärdet är 5kg och standardavvikelsen är 2,3g. Beräkna sannolikheten att en slumpmässigt vald hantel väger mellan 4999 g och 5001 g.", solution: "Svar: Det är 33,6% chans." },
 ]  },
-{ groupId: "Kvadratrotsmetoden - 1", area: "Andragradare", subArea: "Kvadratrotsmetoden", courses: ["Ma1b", "Ma1c", "Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ groupId: "Kvadratrotsmetoden - 1", area: "Andragradare", subArea: "Kvadratrotsmetoden", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 1121, versionLabel: "A", question: "Lös ekvationen: \\( x^2=9 \\).", solution: "\\( x_1=3 \\) och \\( x_2=-3 \\)" },
 { id: 1122, versionLabel: "B", question: "Lös ekvationen: \\( x^2+5=30 \\).", solution: "\\( x_1=5 \\) och \\( x_2=-5 \\)" },
 { id: 1123, versionLabel: "C", question: "Lös ekvationen: \\( 2x^2-8=24 \\).", solution: "\\( x_1=4 \\) och \\( x_2=-4 \\)" },
@@ -2275,7 +2275,7 @@ solution: "(1 ; 4,5)"
 { id: 1276, versionLabel: "B", question: "Beräkna:<br>a) \\( \\lg 50+\\lg 20 \\)<br>b) \\( \\lg 90-\\lg 9 \\)", solution: "a) 3<br>b) 1"},
 { id: 1277, versionLabel: "C", question: "Beräkna:<br>a) \\( \\lg 2000+\\lg 5 \\)<br>b) \\( \\lg 3-\\lg 0,3 \\)", solution: "a) 4<br>b) 1"},
 ] },
-{ groupId: "Längdenheter", area: "Geometri", subArea: "Enheter", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Längdenheter", area: "Geometri", subArea: "Enheter", courses: ["Ma1a"], difficulty: 1, versions: [
 { id: 1278, versionLabel: "A", question: "Skriv rätt tal på raden:<br>a) 5 m = __________ cm<br>b) 12 mm = __________ cm", solution: "a) 500<br>b) 1,2"},
 { id: 1279, versionLabel: "B", question: "Skriv rätt tal på raden:<br>a) 10 dm = __________ cm<br>b) 0,5 m = __________ cm", solution: "a) 100<br>b) 40"},
 { id: 1280, versionLabel: "C", question: "Skriv rätt tal på raden:<br>a) 17 dm = __________ m<br>b) 6 km = __________ m", solution: "a) 1,7<br>b) 6000"},

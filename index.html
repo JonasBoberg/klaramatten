@@ -151,7 +151,7 @@
                 currentSubArea: null,
                 currentDifficulty: null,
                 tasks: [],
-                taskTypes: [], // Ny vektor för att spara unika uppgiftstyper och deras startindex
+                taskTypes: [], 
                 examplesMap: {}, 
                 currentTaskIndex: 0
             };
@@ -181,7 +181,7 @@
                 return btn;
             }
 
-            // Hjälpfunktion för att säkert formattera text, hantera <, >, bilder och tabeller
+            // Hjälpfunktion för att säkert formattera text, hantera <, >, bilder, tabeller och listor
             function formatContent(text) {
                 if (!text) return '';
                 let html = String(text);
@@ -189,6 +189,7 @@
                 const images = [];
                 const tables = [];
 
+                // 1. Extrahera specialblock (bilder och tabeller) till placeholders
                 html = html.replace(/!\[(.*?)\]\((.*?)\)/g, (match, alt, url) => {
                     images.push(`<img src="${url}" alt="${alt}">`);
                     return `[[IMG_${images.length - 1}]]`;
@@ -224,10 +225,32 @@
                     return `[[TABLE_${tables.length - 1}]]`;
                 });
                 
+                // 2. Byt ut tillåtna HTML-taggar mot placeholders innan escaping
                 html = html.replace(/<br\s*\/?>/g, '[[BR]]');
+                html = html.replace(/<ul>/g, '[[UL]]');
+                html = html.replace(/<\/ul>/g, '[[UL_END]]');
+                html = html.replace(/<li>/g, '[[LI]]');
+                html = html.replace(/<\/li>/g, '[[LI_END]]');
+                html = html.replace(/<b>/g, '[[B]]');
+                html = html.replace(/<\/b>/g, '[[B_END]]');
+                html = html.replace(/<i>/g, '[[I]]');
+                html = html.replace(/<\/i>/g, '[[I_END]]');
+                
+                // 3. Escapa < och > för att inte webbläsaren ska tolka dem som HTML-taggar
                 html = html.replace(/</g, '&lt;').replace(/>/g, '&gt;');
                 
+                // 4. Återställ placeholders med Tailwind-styling
                 html = html.replace(/\[\[BR\]\]/g, '<br>');
+                html = html.replace(/\[\[UL\]\]/g, '<ul class="list-disc pl-6 mt-2 space-y-1">');
+                html = html.replace(/\[\[UL_END\]\]/g, '</ul>');
+                html = html.replace(/\[\[LI\]\]/g, '<li>');
+                html = html.replace(/\[\[LI_END\]\]/g, '</li>');
+                html = html.replace(/\[\[B\]\]/g, '<strong>');
+                html = html.replace(/\[\[B_END\]\]/g, '</strong>');
+                html = html.replace(/\[\[I\]\]/g, '<em>');
+                html = html.replace(/\[\[I_END\]\]/g, '</em>');
+                
+                // 5. Återställ bilder och tabeller
                 html = html.replace(/\[\[IMG_(\d+)\]\]/g, (match, idx) => images[parseInt(idx)]);
                 html = html.replace(/\[\[TABLE_(\d+)\]\]/g, (match, idx) => tables[parseInt(idx)]);
                 
@@ -518,7 +541,7 @@
                 }
 
                 state.examplesMap = {};
-                state.taskTypes = []; // Nollställ uppgiftstyper
+                state.taskTypes = []; 
                 state.tasks = filteredGroups.flatMap(g => {
                     const ex = (g.versions || []).find(v => v.versionLabel === "Ex");
                     if (ex && ex.example) {
@@ -536,7 +559,6 @@
                         }));
                 });
 
-                // Identifiera unika uppgiftstyper (groupId) och spara deras startindex
                 let seenGroups = new Set();
                 state.tasks.forEach((task, index) => {
                     if (!seenGroups.has(task.groupId)) {

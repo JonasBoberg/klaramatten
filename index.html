@@ -396,9 +396,6 @@
                 const hasTextExp = !!task.exp;
                 const hasVideo = !!task.video;
                 const hasSolutionDetails = hasTextExp || hasVideo;
-                let solutionBtnText = "Visa lösningsgång";
-                if (hasVideo && !hasTextExp) solutionBtnText = "Visa videolösning";
-                if (hasVideo && hasTextExp) solutionBtnText = "Visa lösningsgång & video";
 
                 const calcIcon = `<svg class="w-5 h-5 mr-2 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>`;
                 const infoIcon = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
@@ -470,20 +467,33 @@
                         </div>
                         
                         ${hasSolutionDetails ? `
-                            <div id="solution-btn-container" class="mt-5 border-t border-slate-700/50 pt-4">
-                                <button onclick="showSolution()" class="w-full p-3 rounded-lg bg-emerald-900/40 hover:bg-emerald-900/60 text-emerald-300 font-medium transition text-sm border border-emerald-500/30">
-                                    ${solutionBtnText}
-                                </button>
-                            </div>
-                            <div id="solution-box" class="hidden mt-4 pt-4 border-t border-slate-700/50 text-slate-300 math-question text-base leading-relaxed">
-                                ${hasTextExp ? formatContent(task.exp) : ''}
+                            <div class="mt-5 border-t border-slate-700/50 pt-4 flex gap-4">
+                                ${hasTextExp ? `
+                                    <button id="btn-text-sol" onclick="showTextSolution()" class="flex-1 p-3 rounded-lg bg-emerald-900/40 hover:bg-emerald-900/60 text-emerald-300 font-medium transition text-sm border border-emerald-500/30">
+                                        Visa lösningsgång
+                                    </button>
+                                ` : ''}
                                 ${hasVideo ? `
-                                    <video controls class="w-full mt-4 rounded-lg border border-slate-700 shadow-lg">
+                                    <button id="btn-video-sol" onclick="showVideoSolution()" class="flex-1 p-3 rounded-lg bg-indigo-900/40 hover:bg-indigo-900/60 text-indigo-300 font-medium transition text-sm border border-indigo-500/30">
+                                        Visa videolösning
+                                    </button>
+                                ` : ''}
+                            </div>
+                            
+                            ${hasTextExp ? `
+                                <div id="solution-text-box" class="hidden mt-4 pt-4 border-t border-slate-700/50 text-slate-300 math-question text-base leading-relaxed">
+                                    ${formatContent(task.exp)}
+                                </div>
+                            ` : ''}
+                            
+                            ${hasVideo ? `
+                                <div id="solution-video-box" class="hidden mt-4 pt-4 border-t border-slate-700/50">
+                                    <video controls class="w-full rounded-lg border border-slate-700 shadow-lg">
                                         <source src="${task.video}" type="video/mp4">
                                         Din webbläsare stöder inte videouppspelning.
                                     </video>
-                                ` : ''}
-                            </div>
+                                </div>
+                            ` : ''}
                         ` : ''}
                     </div>
 
@@ -519,7 +529,8 @@
             window.renderSubAreas = renderSubAreas;
             window.renderDifficulty = renderDifficulty;
             window.showAnswer = showAnswer;
-            window.showSolution = showSolution;
+            window.showTextSolution = showTextSolution;
+            window.showVideoSolution = showVideoSolution;
             window.nextTask = nextTask;
             window.prevTask = prevTask;
             window.randomTask = randomTask;
@@ -564,7 +575,7 @@
                     return (g.versions || [])
                         .filter(v => v.versionLabel !== "Ex")
                         .map(v => ({
-                            ...v, // Här kopieras även "video" automatiskt om det finns!
+                            ...v, 
                             groupId: g.groupId,
                             calculator: g.calculator || false,
                             area: g.area,
@@ -589,14 +600,22 @@
                 document.getElementById('answer-box').classList.remove('hidden');
             }
 
-            function showSolution() {
-                const solBtn = document.getElementById('solution-btn-container');
-                const solBox = document.getElementById('solution-box');
-                
-                if (solBtn) solBtn.classList.add('hidden');
-                if (solBox) {
-                    solBox.classList.remove('hidden');
-                    renderMath('solution-box');
+            function showTextSolution() {
+                const txtBtn = document.getElementById('btn-text-sol');
+                const txtBox = document.getElementById('solution-text-box');
+                if (txtBtn) txtBtn.classList.add('hidden');
+                if (txtBox) {
+                    txtBox.classList.remove('hidden');
+                    renderMath('solution-text-box');
+                }
+            }
+
+            function showVideoSolution() {
+                const vidBtn = document.getElementById('btn-video-sol');
+                const vidBox = document.getElementById('solution-video-box');
+                if (vidBtn) vidBtn.classList.add('hidden');
+                if (vidBox) {
+                    vidBox.classList.remove('hidden');
                 }
             }
 

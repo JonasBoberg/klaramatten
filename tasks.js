@@ -2163,7 +2163,7 @@ solution: "(1 ; 4,5)"
 ] },
 { groupId: "Lös systemet grafiskt", area: "Ekvationssystem", subArea: "Lös grafiskt", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 1202, versionLabel: "A", question: "Lös ekvationssystemet nedan.", solution: "\\( \\begin{cases} x=2 \\\\ y=3 \\end{cases} \\)", img: "bilder/Ekvationssystem/IMG_0500.jpg" },
-{ id: 1203, versionLabel: "B", question: "Lös ekvationssystemet \\( \\begin{cases} y=1,5x-1 \\\\ y=-2x+6 \\end{cases} \\)", solution: "\\( \\begin{cases} x=2 \\\\ y=2 \\end{cases} \\)", img: "bilder/Ekvationssystem/IMG_0501.jpg" },
+{ id: 1203, versionLabel: "B", question: "Lös ekvationssystemet \\( \\begin{cases} y=1,5x-1 \\\\ y=-2x+6 \\end{cases} \\)", solution: "\\( \\begin{cases} x=2 \\\\ y=2 \\end{cases} \\)", img: "bilder/Ekvationssystem/IMG_0501.jpg", video: "filmer/Ekvationssystem_grafiskt.mp4" },
 { id: 1204, versionLabel: "C", question: "Lös ekvationssystemet \\( \\begin{cases} y=x+3 \\\\ y=-2x-9 \\end{cases} \\)", solution: "\\( \\begin{cases} x=-4 \\\\ y=-4 \\end{cases} \\)", img: "bilder/Ekvationssystem/IMG_0502.jpg"},
 ] },
 { groupId: "Lös systemet algebraiskt utan räknare", area: "Ekvationssystem", subArea: "Lös algebraiskt", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [

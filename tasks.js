@@ -803,7 +803,7 @@ const taskBank = [
 { id: 591, versionLabel: "F", question: "Bryt ut faktorn \\(2x\\) ur uttrycket: \\( 16x-8x^3 \\).", solution: "Svar: \\( 2x(8-4x^2) \\)" },
 ] },
 { groupId: "Faktorisering, största möjliga, singel", area: "Algebra", subArea: "Faktorisering", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
-{ id: 592, versionLabel: "A", question: "Faktorisera uttrycket \\( 5y+50 \\) genom att bryta ut största möjliga faktor.", solution: "Svar: \\( 5(y+10) \\)", exp: "Största gemensamma faktor är 5 eftersom \\(5y=5\\cdoty\\) och \\(50=5\\cdot10\\).<br>Så \\(5y+50=5\\cdoty+5\\cdot10=5(y+10)\\)"},
+{ id: 592, versionLabel: "A", question: "Faktorisera uttrycket \\( 5y+50 \\) genom att bryta ut största möjliga faktor.", solution: "Svar: \\( 5(y+10) \\)", exp: "Största gemensamma faktor är 5 eftersom \\(5y=5\\cdot y\\) och \\(50=5\\cdot10\\).<br>Så \\(5y+50=5\\cdot y+5\\cdot10=5(y+10)\\)"},
 { id: 593, versionLabel: "B", question: "Faktorisera uttrycket \\( 15x+5 \\) genom att bryta ut största möjliga faktor.", solution: "Svar: \\( 5(3x+1) \\)", exp: "Största gemensamma faktor är 5 eftersom \\(15x=5\\cdot3x\\) och \\(5=5\\cdot1\\).<br>Så \\(15x+5=5\\cdot3x+5\\cdot1=5(3x+1)\\)"},
 { id: 594, versionLabel: "C", question: "Faktorisera uttrycket \\( 100-200x \\) genom att bryta ut största möjliga faktor.", solution: "Svar: \\( 100(1-2x) \\)", exp: "Största gemensamma faktor är 100 eftersom \\(100=100\\cdot1\\) och \\(200x=100\\cdot2x\\).<br>Så \\(100-200x=100\\cdot1-100\\cdot2x=100(1-2x)\\)"},
 { id: 595, versionLabel: "D", question: "Faktorisera uttrycket \\( 3x-12 \\) genom att bryta ut största möjliga faktor.", solution: "Svar: \\( 3(x-4) \\)", exp: "Största gemensamma faktor är 3 eftersom \\(3x=3\\cdot x\\) och \\(12=3\\cdot4\\).<br>Så \\(3x-12=3\\cdot x-3\\cdot4=3(x-4)\\)"},
@@ -989,20 +989,20 @@ solution: "Svar: 2"
 { id: 673, versionLabel: "B", question: "Ange ett heltal \\( x \\) som uppfyller olikheterna \\( 11-2x \\geq 3 \\) och \\( \\frac{x}{3}>1 \\).", solution: "Svar: 4" }
 ] },
 { groupId: "Potenslag - multiplikation", area: "Potenslagar och potensekvationer", subArea: "Potenslagar", courses: ["Ma1b", "Ma1c" ,"Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
-{ id: 674, versionLabel: "A", question: "Förenkla uttrycket \\( 4^y \\cdot 4^{3y} \\).", solution: "Svar: \\( 4^{4y} \\)." },
-{ id: 675, versionLabel: "B", question: "Förenkla uttrycket \\( x^3 \\cdot x^4 \\cdot x \\).", solution: "Svar: \\( x^8 \\)." },
-{ id: 676, versionLabel: "C", question: "Förenkla uttrycket \\( 5^{8y} \\cdot 5^{5y} \\cdot 5^{-10y} \\).", solution: "Svar: \\( 5^{3y} \\)." },
-{ id: 677, versionLabel: "D", question: "Förenkla uttrycket \\( a^{10} \\cdot a \\cdot a^{3} \\).", solution: "Svar: \\( a^{14} \\)." },
+{ id: 674, versionLabel: "A", question: "Förenkla uttrycket \\( 4^y \\cdot 4^{3y} \\).", solution: "Svar: \\( 4^{4y} \\).", exp: "Vid multiplikation ska vi addera exponenterna: \\(4^y \\cdot 4^{3y} = 4^{y+3y} = 4^{4y}\\)" },
+{ id: 675, versionLabel: "B", question: "Förenkla uttrycket \\( x^3 \\cdot x^4 \\cdot x \\).", solution: "Svar: \\( x^8 \\).", exp: "Vid multiplikation ska vi addera exponenterna: \\(x^3 \\cdot x^4 \\cdot x = x^{3+4+1} = x^8\\)" },
+{ id: 676, versionLabel: "C", question: "Förenkla uttrycket \\( 5^{8y} \\cdot 5^{5y} \\cdot 5^{-10y} \\).", solution: "Svar: \\( 5^{3y} \\).", exp: "Vid multiplikation ska vi addera exponenterna: \\(5^{8y} \\cdot 5^{5y} \\cdot 5^{-10y} = 5^{8y+5y-10y} = 5^{3y}\\)" },
+{ id: 677, versionLabel: "D", question: "Förenkla uttrycket \\( a^{10} \\cdot a \\cdot a^{3} \\).", solution: "Svar: \\( a^{14} \\).", exp: "Vid multiplikation ska vi addera exponenterna: \\(a^{10} \\cdot a \\cdot a^3 = a^{10+1+3} = a^{14}\\)" },
 ] },
 { groupId: "Potenslag - division", area: "Potenslagar och potensekvationer", subArea: "Potenslagar", courses: ["Ma1b", "Ma1c" ,"Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
-{ id: 678, versionLabel: "A", question: "Förenkla uttrycket \\( \\frac{5^{10}}{5^2} \\).", solution: "Svar: \\( 5^8 \\)." },
-{ id: 679, versionLabel: "B", question: "Förenkla uttrycket \\( \\frac{3^{12x}}{3^{5x}} \\).", solution: "Svar: \\( 3^{7x} \\)." },
-{ id: 680, versionLabel: "C", question: "Förenkla uttrycket \\( \\frac{y\\cdot y^5}{y^7} \\).", solution: "Svar: \\( y^{-1} \\) eller \\( \\frac{1}{y} \\)." },
-{ id: 681, versionLabel: "D", question: "Förenkla uttrycket \\( \\frac{x^4}{x^{-3}} \\).", solution: "Svar: \\( x^7 \\)." },
-{ id: 682, versionLabel: "E", question: "Förenkla uttrycket \\( \\frac{7^{10}}{7^{-2}} \\).", solution: "Svar: \\( 7^{12} \\)." },
+{ id: 678, versionLabel: "A", question: "Förenkla uttrycket \\( \\frac{5^{10}}{5^2} \\).", solution: "Svar: \\( 5^8 \\).", exp: "Vid division ska vi subtrahera exponenterna: \\(\\frac{5^{10}}{5^2} = 5^{10-2} = 5^8\\)" },
+{ id: 679, versionLabel: "B", question: "Förenkla uttrycket \\( \\frac{3^{12x}}{3^{5x}} \\).", solution: "Svar: \\( 3^{7x} \\).", exp: "Vid division ska vi subtrahera exponenterna: \\(\\frac{3^{12x}}{3^{5x}} = 3^{12x-5x} = 3^{7x}\\)" },
+{ id: 680, versionLabel: "C", question: "Förenkla uttrycket \\( \\frac{y\\cdot y^5}{y^7} \\).", solution: "Svar: \\( y^{-1} \\) eller \\( \\frac{1}{y} \\).", exp: "Först adderar vi exponenterna i täljaren och sedan subtraherar vi exponenterna: \\(\\frac{y\\cdot y^5}{y^7} = \\frac{y^{1+5}}{y^7} = y^{6-7} = y^{-1} = \\frac{1}{y}\\)" },
+{ id: 681, versionLabel: "D", question: "Förenkla uttrycket \\( \\frac{x^4}{x^{-3}} \\).", solution: "Svar: \\( x^7 \\).", exp: "Vid division ska vi subtrahera exponenterna: \\(\\frac{x^4}{x^{-3}} = x^{4-(-3)} = x^7\\)" },
+{ id: 682, versionLabel: "E", question: "Förenkla uttrycket \\( \\frac{7^{10}}{7^{-2}} \\).", solution: "Svar: \\( 7^{12} \\).", exp: "Vid division ska vi subtrahera exponenterna: \\(\\frac{7^{10}}{7^{-2}} = 7^{10-(-2)} = 7^{12}\\)" },
 ] },
 { groupId: "Potenslag - enkla ekvationer", area: "Potenslagar och potensekvationer", subArea: "Potenslagar", courses: ["Ma1b", "Ma1c" ,"Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
-{ id: 683, versionLabel: "A", question: "Lös ekvationen \\( \\frac{5^{8x}}{5^{2x}}=5^{12} \\).", solution: "Svar: \\( x=2 \\)." },
+{ id: 683, versionLabel: "A", question: "Lös ekvationen \\( \\frac{5^{8x}}{5^{2x}}=5^{12} \\).", solution: "Svar: \\( x=2 \\)."},
 { id: 684, versionLabel: "B", question: "Lös ekvationen \\(3^{4x+2}\\cdot 3^{x}=3^{22}\\).", solution: "Svar: \\( x=4 \\)." },
 { id: 685, versionLabel: "C", question: "Bestäm \\(x\\) så att \\(a^{x+5}\\cdot a^{4x}=a^{-10}\\).", solution: "Svar: \\( x=-3 \\)." },
 { id: 686, versionLabel: "D", question: "Bestäm \\(x\\) så att \\(b^{3x}\\cdot b=b^{10}\\).", solution: "Svar: \\( x=3 \\)." },
@@ -1263,7 +1263,7 @@ solution: "Svar: 2"
 { id: 865, versionLabel: "B", question: "Funktionen \\( g(x)=x^2+bx+c \\) är given. Bestäm \\( b \\) och \\( c \\) förutsatt att \\( g(0)=-5 \\) och \\( g(3)=10 \\).", solution: "\\( g(0)=-5 \\) ger oss att \\( c=-5 \\). Då blir \\( g(3)=9+3b-5=3b+4 \\) så \\( b=2 \\)." },
 ] },
 { groupId: "Bestäm uttryck för sammansatt funktion", area: "Funktioner", subArea: "f(x) algebraiskt", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 3, versions: [
-{ id: 866, versionLabel: "A", question: "Funktionen \\( f(x)=10-5x \\) är given. Ange ett uttryck för \\( f(f(x)) \\) och förenkla så långt som möjligt.", solution: "\\( f(f(x))=f(10-5x)=\\)<br>\\(=10-5(10-5x)=10-50+25x=\\)<br>\\(=25x-40 \\).<br>Svar: \\(25x-40\\)."},
+{ id: 866, versionLabel: "A", question: "Funktionen \\( f(x)=10-5x \\) är given. Ange ett uttryck för \\( f(f(x)) \\) och förenkla så långt som möjligt.", solution: "\\( Svar: \\(25x-40\\).", exp: "f(f(x))=\\)<br>\\(f(10-5x)=\\)<br>\\(=10-5(10-5x)=\\)<br>\\(=10-50+25x=\\)<br>\\(=25x-40 \\)"},
 { id: 867, versionLabel: "B", question: "Funktionen \\( g(x)=3x+6 \\) är given. Ange ett uttryck för \\( g(g(x)) \\) och förenkla så långt som möjligt.", solution: "\\( g(g(x))=g(3x+6)=\\)<br>\\(=3(3x+6)+6=9x+18+6=\\)<br>\\(=9x+24 \\).<br>Svar: \\(9x+24\\)."},
 { id: 868, versionLabel: "C", question: "Funktionerna \\( f(x)=2x-1 \\) och \\( g(x)=x+5 \\) är givna. Ange ett uttryck för \\( f(g(a)) \\) och förenkla så långt som möjligt.", solution: "\\( f(g(a))=f(a+5)=\\)<br>\\(=2(a+5)-1=2a+10-1=\\)<br>\\(=2a+9 \\).<br>Svar: \\(2a+9\\)."},
 ] },
@@ -1411,7 +1411,7 @@ solution: "\\( k=\\frac{5-(-1)}{a-1}=-3 \\). Om vi löser \\( a \\) från denna 
 },
 { groupId: "Skriv linjär funktion 1", area: "Funktioner", subArea: "Linjära funktioner", courses: ["Ma1a", "Ma1b", "Ma1c", "Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 945, versionLabel: "A", question: "Vid en mätning är mängden koldioxid i ett ämne 200 mg. Man ser sedan att mängden ökar med 10 mg per timme. Skriv en funktion, \\( f(t) \\), som beskriver hur mängden koldioxid i ämnet \\( t \\) timmar efter den förstst mätningen.", solution: "Svar: \\( f(t)=200+10t \\)." },
-{ id: 946, versionLabel: "B", question: "Du har 1500 kr på i din spargris och sparar 200 kr varje månad. Skriv en funktion, \\( S(t) \\), som beskriver hur mycket pengar du har i spargrisen efter \\( t \\) månader.", solution: "Svar: \\( S(t)=200t+1500 \\)." },
+{ id: 946, versionLabel: "B", question: "Du har 1500 kr i din spargris och sparar 200 kr varje månad. Skriv en funktion, \\( S(t) \\), som beskriver hur mycket pengar du har i spargrisen efter \\( t \\) månader.", solution: "Svar: \\( S(t)=200t+1500 \\)." },
 { id: 947, versionLabel: "C", question: "Att hyra en skoter kostar 500kr i startavgift och därefter 250 kr/h. Skriv en funktion, \\( K(t) \\), som beskriver den kostnaden att hyra en skoter \\( t \\) timmar.", solution: "Svar: \\( K(t)=250t+500 \\)." },
 { id: 948, versionLabel: "D", question: "Ett vattenbad innehåller från början 50 liter vatten och fylls på med 15 liter per minut. Skriv en funktion, \\( V(t) \\), som beskriver vattenmängden efter \\( t \\) minuter.", solution: "Svar: \\( V(t)=15t+50 \\)." },
 { id: 949, versionLabel: "E", question: "År 2010 fanns det 1500 granar i Storskogen men antalet minskar med 40 st varje år. Skriv en funktion, \\( G(t) \\), som beskriver hur många granar det finns i skogen \\( t \\) år efter 2010.", solution: "Svar: \\( G(t)=1500-40t \\)." },
@@ -2163,7 +2163,7 @@ solution: "(1 ; 4,5)"
 ] },
 { groupId: "Lös systemet grafiskt", area: "Ekvationssystem", subArea: "Lös grafiskt", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 1202, versionLabel: "A", question: "Lös ekvationssystemet nedan.", solution: "\\( \\begin{cases} x=2 \\\\ y=3 \\end{cases} \\)", img: "bilder/Ekvationssystem/IMG_0500.jpg" },
-{ id: 1203, versionLabel: "B", question: "Lös ekvationssystemet \\( \\begin{cases} y=1,5x-1 \\\\ y=-2x+6 \\end{cases} \\)", solution: "\\( \\begin{cases} x=2 \\\\ y=2 \\end{cases} \\)", img: "bilder/Ekvationssystem/IMG_0501.jpg", exp: "Lösningen till ett ekvationssystem är skärningspunkten mellan linjerna.<br>Dessa linjer skär varandra i punkten (2, 2). Så svaret är \\( \\begin{cases} x=2 \\\\ y=2 \\end{cases} \\)",video: "filmer/Ekvationssystem_grafiskt.mp4" },
+{ id: 1203, versionLabel: "B", question: "Lös ekvationssystemet \\( \\begin{cases} y=1,5x-1 \\\\ y=-2x+6 \\end{cases} \\)", solution: "\\( \\begin{cases} x=2 \\\\ y=2 \\end{cases} \\)", img: "bilder/Ekvationssystem/IMG_0501.jpg" },
 { id: 1204, versionLabel: "C", question: "Lös ekvationssystemet \\( \\begin{cases} y=x+3 \\\\ y=-2x-9 \\end{cases} \\)", solution: "\\( \\begin{cases} x=-4 \\\\ y=-4 \\end{cases} \\)", img: "bilder/Ekvationssystem/IMG_0502.jpg"},
 ] },
 { groupId: "Lös systemet algebraiskt utan räknare", area: "Ekvationssystem", subArea: "Lös algebraiskt", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [

@@ -1049,7 +1049,7 @@ solution: "Svar: 2"
 ] },
 { groupId: "Basbyte i potenser - enkla ekvationer med multiplikation", area: "Potenslagar och potensekvationer", subArea: "Basbyte i potenser", courses: ["Ma1b", "Ma1c", "Ma2a"], difficulty: 2, versions: [
 { id: 715, versionLabel: "A", question: "Lös ekvationen \\( 4^{3x} \\cdot 2^{5x} = 2^{33} \\).", solution: "Svar: \\( x=3 \\)." },
-{ id: 716, versionLabel: "B", question: "Lös ekvationen \\( 3^x \\cdot 9^{3x} = 3^{17,5} \\).", solution: "Svar: \\( x=2,5 \\)." },
+{ id: 716, versionLabel: "B", question: "Lös ekvationen \\( 3^x \\cdot 9^{3x} = 3^{17,5} \\).", solution: "Svar: \\( x=2,5 \\).", video: "filmer/Uppgift_001.webm"},
 { id: 717, versionLabel: "C", question: "Lös ekvationen \\( 5^{2x} \\cdot 5^{3x} = 25^{10} \\).", solution: "Svar: \\( x=4 \\)." },
 { id: 718, versionLabel: "D", question: "Lös ekvationen \\( 8^{2x} \\cdot 2^{x} = 2^{21} \\).", solution: "Svar: \\( x=3 \\)." },
 { id: 719, versionLabel: "E", question: "Lös ekvationen \\( 9^{x} \\cdot 3^{2x} = 3^{12} \\).", solution: "Svar: \\( x=3 \\)." },

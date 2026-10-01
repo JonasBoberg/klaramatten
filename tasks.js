@@ -1054,7 +1054,7 @@ solution: "Svar: 2"
 { id: 718, versionLabel: "E", question: "Skriv uttrycket \\( 9^{6} \\cdot 3^{2} \\) som en potens med basen 3.", solution: "Svar: \\(3^{14}\\)" },
 ] },
 { groupId: "Basbyte i potenser - enkla ekvationer med multiplikation", area: "Potenslagar och potensekvationer", subArea: "Basbyte i potenser", courses: ["Ma1b", "Ma1c", "Ma2a"], difficulty: 2, versions: [
-{ id: 719, versionLabel: "A", question: "Lös ekvationen \\( 4^{3x} \\cdot 2^{5x} = 2^{33} \\).", solution: "Svar: \\( x=3 \\)." },
+{ id: 719, versionLabel: "A", question: "Lös ekvationen \\( 4^{3x} \\cdot 2^{5x} = 2^{33} \\).", solution: "Svar: \\( x=3 \\).", video: "filmer/Uppgift_001.webm"},
 { id: 720, versionLabel: "B", question: "Lös ekvationen \\( 3^x \\cdot 9^{3x} = 3^{17,5} \\).", solution: "Svar: \\( x=2,5 \\)." },
 { id: 721, versionLabel: "C", question: "Lös ekvationen \\( 5^{2x} \\cdot 5^{3x} = 25^{10} \\).", solution: "Svar: \\( x=4 \\)." },
 { id: 722, versionLabel: "D", question: "Lös ekvationen \\( 8^{2x} \\cdot 2^{x} = 2^{21} \\).", solution: "Svar: \\( x=3 \\)." },
@@ -1156,7 +1156,7 @@ solution: "Svar: 2"
 { id: 788, versionLabel: "D", question: "Beräkna \\( 51^2 \\) med hjälp av kvadreringsregeln.", solution: "\\( 51^2 = (50+1)^2 \\)<br>\\(=2500+100+1=2601\\)" },
 ] },
 { groupId: "Faktorisera kvadreringsreglerna 1", area: "Konjugat / Kvadrering", subArea: "Faktorisera", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
-{ id: 789, versionLabel: "A", question: "Faktorisera uttrycket: \\( x^2+6x+9 \\).", solution: "\\( (x+3)^2 \\)" },
+{ id: 789, versionLabel: "A", question: "Faktorisera uttrycket: \\( x^2+6x+9 \\).", solution: "\\( (x+3)^2 \\)", video: "filmer/Uppgift_002.webm"},
 { id: 790, versionLabel: "B", question: "Faktorisera uttrycket: \\( x^2-6x+9 \\).", solution: "\\( (x-3)^2 \\)" },
 { id: 791, versionLabel: "C", question: "Faktorisera uttrycket: \\( x^2-10x+25 \\).", solution: "\\( (x-5)^2 \\)" },
 { id: 792, versionLabel: "D", question: "Faktorisera uttrycket: \\( x^2+8x+16 \\).", solution: "\\( (x+4)^2 \\)" },
@@ -2015,7 +2015,7 @@ difficulty: 2,
 solution: "\\( x_1=\\sqrt{2} \\) och \\( x_2=-\\sqrt{2} \\)"
 },
 { groupId: "Nollproduktsmetoden från två parenteser", area: "Andragradare", subArea: "Nollproduktsmetoden", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
-{ id: 1134, versionLabel: "A", question: "Lös ekvationen: \\( (x+1)(2x-1)=0.\\)", solution: "\\( x_1=-1 \\) och \\( x_2=0,5 \\)" },
+{ id: 1134, versionLabel: "A", question: "Lös ekvationen: \\( (x+1)(2x-1)=0.\\)", solution: "\\( x_1=-1 \\) och \\( x_2=0,5 \\)", video: "filmer/Uppgift_003.webm"},
 { id: 1135, versionLabel: "B", question: "Lös ekvationen: \\( (2x+10)(x+3)=0.\\)", solution: "\\( x_1=-5 \\) och \\( x_2=-3 \\)" },
 { id: 1136, versionLabel: "C", question: "Lös ekvationen: \\( (x-4)(x+15)=0.\\)", solution: "\\( x_1=4 \\) och \\( x_2=-15 \\)" },
 { id: 1137, versionLabel: "D", question: "Lös ekvationen: \\( 6(x-4)(1+2x)=0.\\)", solution: "\\( x_1=4 \\) och \\( x_2=-0,5 \\)"},
@@ -2204,11 +2204,11 @@ solution: "(1 ; 4,5)"
 { id: 1229, versionLabel: "B", question: "Summan av två positiva tal är 54 och produkten av talen är 686,75. Vilka är talen?", solution: "Lös ekvationssystemet \\( \\begin{cases} x+y=54 \\\\ xy=686,75 \\end{cases} \\). Svar: 20,5 och 33,5." },
 ] },
 { groupId: "Hur många lösningar har systemet?", area: "Ekvationssystem", subArea: "Hur många lösningar?", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, calculator: true, versions: [
-{ id: 1230, versionLabel: "A", question: "Hur många lösningar har ekvationssystemet \\( \\begin{cases}  y+4x=-100 \\\\ y=4x-100 \\end{cases} \\)?", solution: "Ekvationssystemet har endast en lösning eftersom de två linjerna har olika k-värden." },
+{ id: 1230, versionLabel: "A", question: "Hur många lösningar har ekvationssystemet \\( \\begin{cases}  y+4x=-100 \\\\ y=4x-100 \\end{cases} \\)?", solution: "Ekvationssystemet har endast en lösning eftersom de två linjerna har olika k-värden.", video: "filmer/Uppgift_004.webm"},
 { id: 1231, versionLabel: "B", question: "Hur många lösningar har ekvationssystemet \\( \\begin{cases}  2y=4x+8 \\\\ y=2x+8 \\end{cases} \\)?", solution: "Ekvationssystemet har inga lösningar eftersom det består av två parallella linjer med olika m-värden."},
 ] },
 { groupId: "Justera antalet lösningar", area: "Ekvationssystem", subArea: "Hur många lösningar?", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 2, calculator: true, versions: [
-{ id: 1232, versionLabel: "A", question: "Bestäm koefficienten \\( a \\) så att ekvationssystemet \\( \\begin{cases}  -1+ay=-2x \\\\ 5x+5y=10 \\end{cases} \\) saknar lösningar.", solution: "Vi behöver bestämma \\( a \\) så att de räta linjerna får samma lutning. Ekvation 1 kan skrivas som \\( ay=-2x+1 \\) och ekvation 2 som \\( y=-x+2 \\). Svar: \\( a=2 \\)."},
+{ id: 1232, versionLabel: "A", question: "Bestäm koefficienten \\( a \\) så att ekvationssystemet \\( \\begin{cases}  -1+ay=-2x \\\\ 5x+5y=10 \\end{cases} \\) saknar lösningar.", solution: "Vi behöver bestämma \\( a \\) så att de räta linjerna får samma lutning. Ekvation 1 kan skrivas som \\( ay=-2x+1 \\) och ekvation 2 som \\( y=-x+2 \\). Svar: \\( a=2 \\).", video: "filmer/Uppgift_005.webm"},
 { id: 1233, versionLabel: "B", question: "Bestäm koefficienten \\( a \\) så att ekvationssystemet \\( \\begin{cases}  2x+y=a \\\\ 4x+2y=10 \\end{cases} \\) har oändligt många lösningar.", solution: "Vi behöver bestämma \\( a \\) så att ekvationerna motsvarar samma linje. Ekvation 2 kan skrivas som \\( 2x+y=5 \\) så svar: \\( a=5 \\)."},
 ] },
 { groupId: "Logaritmer: a^x=b", area: "Logaritmer", subArea: "Logaritmer grund", courses: ["Ma2b", "Ma2c"], difficulty: 1, versions: [

@@ -1216,7 +1216,7 @@ solution: "Svar: 2"
 { id: 830, versionLabel: "C", question: "Givet \\(x+y=7\\) och \\( xy=8,25\\), bestäm värdet at \\(x^2+y^2\\).", solution: "Svar: \\( x^2+y^2=32,5 \\)." },
 ] },
 { groupId: "Konjugat/kvadrering - faktorisera för medelvärde", area: "Konjugat / Kvadrering", subArea: "Faktorisera", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 3, versions: [
-{ id: 831, versionLabel: "A", question: "Vilket av alternativen nedan är medelvärdet av talen \\(4388^2\\) och \\(4390^2\\)? Motivera ditt svar.<br>\\(4389^2\\), \\(4388,5^2\\), \\(4389,5^2\\), \\(4389^2+1\\), \\(4389^2-1\\)", solution: "Svar: \\( 4389^2+1 \\)." },
+{ id: 831, versionLabel: "A", question: "Vilket av alternativen nedan är medelvärdet av talen \\(4388^2\\) och \\(4390^2\\)? Motivera ditt svar.<br>\\(4389^2\\), \\(4388,5^2\\), \\(4389,5^2\\), \\(4389^2+1\\), \\(4389^2-1\\)", solution: "Svar: \\( 4389^2+1 \\).", video: "filmer/Uppgift_011.webm" },
 { id: 832, versionLabel: "B", question: "Vilket av alternativen nedan är medelvärdet av talen \\(16520^2\\) och \\(16522^2\\)? Motivera ditt svar.<br>\\(16521^2\\), \\(16520,5^2\\), \\(16521,5^2\\), \\(16521^2+1\\), \\(16521^2-1\\)", solution: "Svar: \\( 16521^2+1 \\)." },
 ] },
 { groupId: "Bestäm f(a) - nivå 1", area: "Funktioner", subArea: "f(x) algebraiskt", courses: ["Ma1a", "Ma1b", "Ma1c", "Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [

@@ -1204,7 +1204,7 @@ solution: "Svar: 2"
 ] },
 { groupId: "Faktorisera och förenkla med konjugat/kvadrering", area: "Konjugat / Kvadrering", subArea: "Faktorisera", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 3, versions: [
 { id: 822, versionLabel: "A", question: "Förenkla uttrycket: \\( \\frac{2x^2+12x+18}{x+3}. \\)", solution: "\\( 2x+6 \\)", video: "filmer/Uppgift_009.webm" },
-{ id: 823, versionLabel: "B", question: "Förenkla uttrycket: \\( \\frac{x^4-16x^2}{x(x+4)}. \\)", solution: "\\( x^2-4x \\)" },
+{ id: 823, versionLabel: "B", question: "Förenkla uttrycket: \\( \\frac{x^4-16x^2}{x(x+4)}. \\)", solution: "\\( x^2-4x \\)", video: "filmer/Uppgift_010.webm" },
 { id: 824, versionLabel: "C", question: "Förenkla uttrycket: \\( \\frac{4x^2+40x+100}{2x+10}. \\)", solution: "\\( 2x+10 \\)" },
 { id: 825, versionLabel: "D", question: "Förenkla uttrycket: \\( \\frac{x^2+10x+25}{x^2+5x}. \\)", solution: "\\( \\frac{x+5}{x} \\)" },
 { id: 826, versionLabel: "E", question: "Förenkla uttrycket: \\( \\frac{5x^2-45}{5x-15}. \\)", solution: "\\( x+3 \\)" },

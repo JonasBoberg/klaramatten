@@ -108,7 +108,8 @@
         <!-- Header -->
         <div class="text-center mb-12">
             <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 drop-shadow-md">Klara Matten!</h1>
-            <p class="text-slate-400 mt-4 text-lg font-medium">Välj område och nivå för att börja öva</p>
+            <!-- ID tillagt här för att kunna gömma den -->
+            <p id="header-subtitle" class="text-slate-400 mt-4 text-lg font-medium">Välj område och nivå för att börja öva</p>
         </div>
 
         <!-- Vy: Välj Kurs -->
@@ -163,6 +164,16 @@
             function showView(id) {
                 hideAllViews();
                 document.getElementById(id).classList.remove('hidden');
+            }
+
+            // Hjälpfunktion för att visa/gömma undertexten i header
+            function showHeaderSubtitle(show) {
+                const subtitle = document.getElementById('header-subtitle');
+                if (show) {
+                    subtitle.classList.remove('hidden');
+                } else {
+                    subtitle.classList.add('hidden');
+                }
             }
 
             function createButton(text, onClick, colorClass = 'bg-gradient-to-r from-indigo-600 to-violet-600 shadow-indigo-900/50 hover:shadow-indigo-700/60') {
@@ -266,6 +277,7 @@
             // --- VY: KURSER ---
             function renderCourses() {
                 showView('view-courses');
+                showHeaderSubtitle(true); // Visa undertext
                 const view = document.getElementById('view-courses');
                 
                 const courses = [...new Set(taskBank.flatMap(g => g.courses || []))].sort();
@@ -284,6 +296,7 @@
             // --- VY: OMRÅDEN ---
             function renderAreas() {
                 showView('view-areas');
+                showHeaderSubtitle(true); // Visa undertext
                 const view = document.getElementById('view-areas');
                 
                 const areas = [...new Set(taskBank.filter(g => g.courses.includes(state.currentCourse)).map(g => g.area))].sort();
@@ -309,6 +322,7 @@
             // --- VY: DELOMRÅDEN ---
             function renderSubAreas() {
                 showView('view-subareas');
+                showHeaderSubtitle(true); // Visa undertext
                 const view = document.getElementById('view-subareas');
                 
                 const groupsInArea = taskBank.filter(g => g.courses.includes(state.currentCourse) && g.area === state.currentArea);
@@ -337,6 +351,7 @@
             // --- VY: SVÅRIGHETSGRAD ---
             function renderDifficulty() {
                 showView('view-difficulty');
+                showHeaderSubtitle(true); // Visa undertext
                 const view = document.getElementById('view-difficulty');
                 
                 let filteredGroups = taskBank.filter(g => g.courses.includes(state.currentCourse) && g.area === state.currentArea);
@@ -373,6 +388,7 @@
             // --- VY: UPPGIFT ---
             function renderTask() {
                 showView('view-task');
+                showHeaderSubtitle(false); // Göm undertext
                 const view = document.getElementById('view-task');
                 
                 if(state.tasks.length === 0) {

@@ -2188,8 +2188,8 @@ solution: "(1 ; 4,5)"
 ] },
 { groupId: "Funktionsuttryck som blir ekvationssystem", area: "Ekvationssystem", subArea: "Lös algebraiskt", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 2, calculator: true, versions: [
 { id: 1219, versionLabel: "A", question: "Givet \\( f(x)=ax+b \\), bestäm \\(a\\) och \\(b\\) då:<br><ul><li>\\(f(1)=5\\)</li><li>\\(f(2)=4a-7\\)</li></ul>", solution: "Svar: \\(a=4\\) och \\(b=1\\)" },
-{ id: 1220, versionLabel: "B", question: "Givet \\( f(x)=ax+b \\), bestäm \\(a\\) och \\(b\\) då:<br><ul><li>\\(f(3)=8\\)</li><li>\\(f(1)=b+2\\)</li></ul>", solution: "Svar: \\(a=2\\) och \\(b=2\\)" },
-{ id: 1221, versionLabel: "C", question: "Givet \\( f(x)=ax+b \\), bestäm \\(a\\) och \\(b\\) då:<br><ul><li>\\(f(1)=6\\)</li><li>\\(f(3)=5a+2\\)</li></ul>", solution: "Svar: \\(a=2\\) och \\(b=4\\)" },
+{ id: 1220, versionLabel: "B", question: "Givet \\( f(x)=ax+b \\), bestäm \\(a\\) och \\(b\\) då:<br><ul><li>\\(f(2)=16\\)</li><li>\\(f(6)=9a-19\\)</li></ul>", solution: "Svar: \\(a=7\\) och \\(b=2\\)" },
+{ id: 1221, versionLabel: "C", question: "Givet \\( f(x)=ax+b \\), bestäm \\(a\\) och \\(b\\) då:<br><ul><li>\\(f(5)=-7\\)</li><li>\\(f(3)=-b\\)</li></ul>", solution: "Svar: \\(a=-2\\) och \\(b=3\\)" },
 ] },
 { groupId: "Lös systemet med digitalt verktyg", area: "Ekvationssystem", subArea: "Lös algebraiskt", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, calculator: true, versions: [
 { id: 1222, versionLabel: "A", question: "Lös ekvationssystemet med hjälp av digitalt verktyg \\( \\begin{cases} xy=10 \\\\ x-y=3 \\end{cases} \\)", solution: "\\( \\begin{cases} x_1=5 \\\\ y_1=2 \\end{cases} \\) och \\( \\begin{cases} x_2=-2 \\\\ y_2=-5 \\end{cases} \\)", video: "filmer/Uppgift_008.webm" },

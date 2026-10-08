@@ -105,20 +105,20 @@ const taskBank = [
 { id: 73, versionLabel: "B", question: "En triangel har vinklarna U, V och W. Vinkel V och vinkel W är båda 30 % mindre än vinkel U. Bestäm vinkel V.", solution: "Svar: Lös ekvationen \\(x+0,7x+0,7x=180\\). \\(V=52,5^{\\circ} \\)." },
 { id: 74, versionLabel: "C", question: "En triangel har vinklarna A, B och C. Vinkel B är 72 % mindre än vinkel A. Vinkel C är 60 % större än vinkel A. Bestäm triangelns vinklar. (NP 1a, 1b, 1c)", solution: "Svar: Lös ekvationen \\(x+0,28x+1,6x=180\\) så får du \\(A=62,5^{\\circ} \\), \\(B=17,5^{\\circ} \\) och \\(C=100^{\\circ} \\)." }
 ] },
-{ groupId: "bråk -> decimal", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "bråk -> decimal", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 75, versionLabel: "A", question: "Skriv talen i decimalform:<br>a) \\(\\frac{1}{4}\\)<br>b) \\(\\frac{1}{2}\\)<br>c) \\(\\frac{2}{5}\\)", solution: "a) 0,25<br>b) 0,5<br>c) 0,4" },
 { id: 76, versionLabel: "B", question: "Skriv talen i decimalform:<br>a) \\(\\frac{3}{4}\\)<br>b) \\(\\frac{3}{12}\\)<br>c) \\(\\frac{1}{5}\\)", solution: "a) 0,75<br>b) 0,25<br>c) 0,2" },
 { id: 77, versionLabel: "C", question: "Skriv talen i decimalform:<br>a) \\(\\frac{10}{20}\\)<br>b) \\(\\frac{6}{8}\\)<br>c) \\(\\frac{4}{5}\\)", solution: "a) 0,5<br>b) 0,75<br>c) 0,8" },
 { id: 78, versionLabel: "Ex", example: "Viktiga bråk att kunna utantill:<br>\\(\\frac{1}{2}=0,5\\) &nbsp &nbsp &nbsp\\(\\frac{1}{4}=0,25\\) &nbsp &nbsp &nbsp \\(\\frac{1}{5}=0,2\\) &nbsp &nbsp &nbsp \\(\\frac{1}{10}=0,1\\) &nbsp &nbsp &nbsp \\(\\frac{1}{100}=0,01\\)<br><br>Du kan t.ex. skriva \\(\\frac{9}{15}=\\frac{3}{5}=0,6\\)." },
 ] },
-{ groupId: "decimal -> bråk", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "decimal -> bråk", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 79, versionLabel: "A", question: "Skriv talen i enklaste bråkform:<br>a) 0,20<br>b) 1,25<br>c) 0,7", solution: "a) \\(\\frac{1}{5}\\)<br>b) \\(\\frac{5}{4}\\)<br>c) \\(\\frac{7}{10}\\)" },
 { id: 80, versionLabel: "B", question: "Skriv talen i enklaste bråkform:<br>a) 0,4<br>b) 0,25<br>c) 0,75", solution: "a) \\(\\frac{2}{5}\\)<br>b) \\(\\frac{1}{4}\\)<br>c) \\(\\frac{3}{4}\\)" },
 { id: 81, versionLabel: "C", question: "Skriv talen i enklaste bråkform:<br>a) 0,5<br>b) 0,3<br>c) 1,2", solution: "a) \\(\\frac{1}{2}\\)<br>b) \\(\\frac{3}{10}\\)<br>c) \\(\\frac{6}{5}\\)" },
 { id: 82, versionLabel: "D", question: "Skriv talen i enklaste bråkform:<br>a) 0,6<br>b) 1,4<br>c) 1,5", solution: "a) \\(\\frac{3}{5}\\)<br>b) \\(\\frac{7}{5}\\)<br>c) \\(\\frac{3}{2}\\)" },
 { id: 83, versionLabel: "Ex", example: "Viktiga bråk att kunna utantill:<br>\\(\\frac{1}{2}=0,5\\) &nbsp &nbsp &nbsp\\(\\frac{1}{4}=0,25\\) &nbsp &nbsp &nbsp \\(\\frac{1}{5}=0,2\\) &nbsp &nbsp &nbsp \\(\\frac{1}{10}=0,1\\) &nbsp &nbsp &nbsp \\(\\frac{1}{100}=0,01\\)<br><br>Du kan t.ex. skriva \\(0,75=3\\cdot0,25=3\\cdot\\frac{1}{4}=\\frac{3}{4}\\)." },
 ] },
-{ groupId: "förkorta bråk", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "förkorta bråk", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 84, versionLabel: "A", question: "Skriv bråken i enklaste form:<br>a) \\(\\frac{4}{10}\\)<br>b) \\(\\frac{5}{15}\\)", solution: "a) \\(\\frac{2}{5}\\)<br>b) \\(\\frac{1}{3}\\)" },
 { id: 85, versionLabel: "B", question: "Skriv bråken i enklaste form:<br>a) \\(\\frac{12}{16}\\)<br>b) \\(\\frac{15}{20}\\)", solution: "a) \\(\\frac{3}{4}\\)<br>b) \\(\\frac{3}{4}\\)" },
 { id: 86, versionLabel: "C", question: "Skriv bråken i enklaste form:<br>a) \\(\\frac{6}{10}\\)<br>b) \\(\\frac{2}{8}\\)", solution: "a) \\(\\frac{3}{5}\\)<br>b) \\(\\frac{1}{4}\\)" },
@@ -126,39 +126,39 @@ const taskBank = [
 { id: 88, versionLabel: "E", question: "Skriv bråken i enklaste form:<br>a) \\(\\frac{8}{12}\\)<br>b) \\(\\frac{9}{27}\\)<br>c) \\(\\frac{14}{21}\\)", solution: "a) \\(\\frac{2}{3}\\)<br>b) \\(\\frac{1}{3}\\)<br>c) \\(\\frac{2}{3}\\)" },
 { id: 89, versionLabel: "Ex", example: "För att förkorta ett bråk behöver du hitta en gemensam faktor och dividera täljaren och nämnaren med denna faktor:<br>\\(\\frac{12}{30}=\\frac{12/2}{30/2}=\\frac{6/3}{15/3}=\\frac{2}{5}\\)." },
 ] },
-{ groupId: "Vilket bråk är störst? Samma nämnare.", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Vilket bråk är störst? Samma nämnare.", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 90, versionLabel: "A", question: "Vilket bråk är störst, \\(\\frac{4}{9}\\) eller \\(\\frac{5}{9}\\)?", solution: "Svar: \\(\\frac{5}{9}\\)" },
 { id: 91, versionLabel: "B", question: "Vilket bråk är störst, \\(\\frac{3}{10}\\) eller \\(\\frac{4}{10}\\)?", solution: "Svar: \\(\\frac{4}{10}\\)" },
 { id: 92, versionLabel: "C", question: "Vilket bråk är störst, \\(\\frac{7}{3}\\) eller \\(\\frac{8}{3}\\)?", solution: "Svar: \\(\\frac{8}{3}\\)" },
 { id: 93, versionLabel: "D", question: "Vilket bråk är störst, \\(\\frac{1}{12}\\) eller \\(\\frac{2}{12}\\)?", solution: "Svar: \\(\\frac{2}{12}\\)" },
 ] },
-{ groupId: "Vilket bråk är störst? Samma täljare.", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Vilket bråk är störst? Samma täljare.", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 94, versionLabel: "A", question: "Vilket bråk är störst, \\(\\frac{5}{9}\\) eller \\(\\frac{5}{8}\\)?", solution: "Svar: \\(\\frac{5}{8}\\)" },
 { id: 95, versionLabel: "B", question: "Vilket bråk är störst, \\(\\frac{1}{10}\\) eller \\(\\frac{1}{11}\\)?", solution: "Svar: \\(\\frac{1}{10}\\)" },
 { id: 96, versionLabel: "C", question: "Vilket bråk är störst, \\(\\frac{7}{3}\\) eller \\(\\frac{7}{4}\\)?", solution: "Svar: \\(\\frac{7}{3}\\)" },
 { id: 97, versionLabel: "D", question: "Vilket bråk är störst, \\(\\frac{5}{12}\\) eller \\(\\frac{5}{14}\\)?", solution: "Svar: \\(\\frac{5}{12}\\)" },
 ] },
-{ groupId: "Vilket bråk är störst? Runt en halv.", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Vilket bråk är störst? Runt en halv.", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 98, versionLabel: "A", question: "Vilket bråk är störst, \\(\\frac{16}{30}\\) eller \\(\\frac{4}{9}\\)?", solution: "Svar: \\(\\frac{16}{30}\\)" },
 { id: 99, versionLabel: "B", question: "Vilket bråk är störst, \\(\\frac{3}{7}\\) eller \\(\\frac{11}{20}\\)?", solution: "Svar: \\(\\frac{11}{20}\\)" },
 { id: 100, versionLabel: "C", question: "Vilket bråk är störst, \\(\\frac{9}{17}\\) eller \\(\\frac{1}{2}\\)?", solution: "Svar: \\(\\frac{9}{17}\\)" },
 { id: 101, versionLabel: "D", question: "Vilket bråk är störst, \\(\\frac{8}{17}\\) eller \\(\\frac{1}{2}\\)?", solution: "Svar: \\(\\frac{1}{2}\\)" },
 ] },
-{ groupId: "Samband mellan division och multiplikation", area: "Aritmetik", subArea: "De fyra räknesätten", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Samband mellan division och multiplikation", area: "Aritmetik", subArea: "De fyra räknesätten", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 102, versionLabel: "A", question: "Förutsatt att \\(\\frac{102}{5}=20,4\\), beräkna<br>a) \\(20,4\\cdot5\\)<br>b) \\(\\frac{10,2}{20,4}\\)", solution: "a) 102<br>b) 0,5" },
 { id: 103, versionLabel: "B", question: "Förutsatt att \\(\\frac{192}{16}=12\\), beräkna<br>a) \\(\\frac{192}{12}\\)<br>b) \\(12\\cdot160\\)", solution: "a) 16<br>b) 1920" },
 { id: 104, versionLabel: "C", question: "Förutsatt att \\(13\\cdot17=221\\), beräkna<br>a) \\(\\frac{221}{13}\\)<br>b) \\(\\frac{2,21}{17}\\)", solution: "a) 17<br>b) 0,13" },
 { id: 105, versionLabel: "D", question: "Förutsatt att \\(15\\cdot8=120\\), beräkna<br>a) \\(\\frac{120}{15}\\)<br>b) \\(\\frac{1,2}{8}\\)", solution: "a) 8<br>b) 0,15" },
 { id: 106, versionLabel: "Ex", example: "Multiplikation och division är motsatta räknesätt:<br>Så \\(\\frac{40}{8}=5\\) innebär att \\(5\\cdot8=40\\).<br>Och \\(\\frac{52}{4}=13\\) innebär t.ex. att \\(13\\cdot40=520\\)."},
 ] },
-{ groupId: "Multiplikation med stora tal", area: "Aritmetik", subArea: "De fyra räknesätten", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Multiplikation med stora tal", area: "Aritmetik", subArea: "De fyra räknesätten", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 107, versionLabel: "A", question: "Beräkna genom att dela upp det stora talet i tiotal och ental:<br>a) \\(24\\cdot4\\)<br>b) \\(3\\cdot41\\)<br>c) \\(72\\cdot5\\)", solution: "a) 80+16=96<br>b) 120+3=123<br>c) 350+10=360" },
 { id: 108, versionLabel: "B", question: "Beräkna genom att dela upp det stora talet i tiotal och ental:<br>a) \\(36\\cdot3\\)<br>b) \\(5\\cdot42\\)<br>c) \\(64\\cdot6\\)", solution: "a) 90+18=108<br>b) 200+10=210<br>c) 360+24=384" },
 { id: 109, versionLabel: "C", question: "Beräkna genom att dela upp det stora talet i tiotal och ental:<br>a) \\(27\\cdot4\\)<br>b) \\(6\\cdot53\\)<br>c) \\(81\\cdot2\\)", solution: "a) 80+28=108<br>b) 300+18=318<br>c) 160+2=162" },
 { id: 110, versionLabel: "D", question: "Beräkna genom att dela upp det stora talet i tiotal och ental:<br>a) \\(34\\cdot5\\)<br>b) \\(7\\cdot62\\)<br>c) \\(48\\cdot3\\)", solution: "a) 150+20=170<br>b) 420+14=434<br>c) 120+24=144" },
 { id: 111, versionLabel: "Ex", example: "För att beräkna \\(32\\cdot6\\) så kan vi dela upp \\(32\\) till \\(30+2\\) och därefter multiplicera ett tal i taget:<br>\\(32\\cdot6=30\\cdot6+2\\cdot6=180+12=192\\)" },
 ] },
-{ groupId: "Multiplikation med tiopotenser (decimal)", area: "Aritmetik", subArea: "Decimaltal", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Multiplikation med tiopotenser (decimal)", area: "Aritmetik", subArea: "Decimaltal", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 112, versionLabel: "A", question: "Beräkna:<br>a) \\(10\\cdot43,15\\)<br>b) \\(68\\cdot0,1\\)<br>c) \\(200,9\\cdot100\\)", solution: "a) 431,5<br>b) 6,8<br>c) 20090" },
 { id: 113, versionLabel: "B", question: "Beräkna:<br>a) \\(14,01\\cdot10\\)<br>b) \\(1000\\cdot0,56\\)<br>c) \\(29\\cdot0,01\\)", solution: "a) 140,1<br>b) 560<br>c) 0,29" },
 { id: 114, versionLabel: "C", question: "Beräkna:<br>a) \\(0,1\\cdot3,26\\)<br>b) \\(890,7\\cdot0,01\\)<br>c) \\(1000\\cdot2,05\\)", solution: "a) 0,326<br>b) 8,907<br>c) 2050" },
@@ -167,7 +167,7 @@ const taskBank = [
 { id: 117, versionLabel: "F", question: "Beräkna:<br>a) \\(201\\cdot10\\)<br>b) \\(14,5\\cdot100\\)<br>c) \\(127,4\\cdot0,01\\)", solution: "a) 2010<br>b) 1450<br>c) 1,274" },
 { id: 118, versionLabel: "Ex", example: "Mutliplikation:<br>img: 'bilder/Exempel/Multiplicera_med_tiopotenser.jpg'" },
 ] },
-{ groupId: "Division med tiopotenser", area: "Aritmetik", subArea: "Decimaltal", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Division med tiopotenser", area: "Aritmetik", subArea: "Decimaltal", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 119, versionLabel: "A", question: "Beräkna:<br>a) \\(\\frac{431,5}{10}\\)<br>b) \\(\\frac{6,8}{0,1}\\)<br>c) \\(\\frac{20090}{100}\\)", solution: "a) 43,15<br>b) 68<br>c) 200,9" },
 { id: 120, versionLabel: "B", question: "Beräkna:<br>a) \\(\\frac{140,1}{10}\\)<br>b) \\(\\frac{560}{1000}\\)<br>c) \\(\\frac{0,29}{0,01}\\)", solution: "a) 14,01<br>b) 0,56<br>c) 29" },
 { id: 121, versionLabel: "C", question: "Beräkna:<br>a) \\(\\frac{0,326}{0,1}\\)<br>b) \\(\\frac{8,907}{0,01}\\)<br>c) \\(\\frac{2050}{1000}\\)", solution: "a) 3,26<br>b) 890,7<br>c) 2,05" },
@@ -176,31 +176,31 @@ const taskBank = [
 { id: 124, versionLabel: "F", question: "Beräkna:<br>a) \\(\\frac{13}{10}\\)<br>b) \\(\\frac{75,1}{0,1}\\)<br>c) \\(\\frac{0,32}{10}\\)", solution: "a) 1,3<br>b) 751<br>c) 0,032" },
 { id: 125, versionLabel: "Ex", example: "Division:<br>img: 'bilder/Exempel/Dividera_med_tiopotenser.jpg'" },
 ] },
-{ groupId: "Vilket tal ska stå på raden? Addition med decimaltal.", area: "Aritmetik", subArea: "Decimaltal", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Vilket tal ska stå på raden? Addition med decimaltal.", area: "Aritmetik", subArea: "Decimaltal", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 126, versionLabel: "A", question: "Skriv rätt tal på den tomma raden:<br>a) 1,4 + _______ = 1,6<br>b) 1,4 + _______ = 1,68<br>c) 1,04 + _______ = 1,6", solution: "a) 0,2<br>b) 0,28<br>c) 0,56" },
 { id: 127, versionLabel: "B", question: "Skriv rätt tal på den tomma raden:<br>a) 1,5 + _______ = 1,9<br>b) 1,2 + _______ = 1,45<br>c) 2,03 + _______ = 2,5", solution: "a) 0,4<br>b) 0,25<br>c) 0,47" },
 { id: 128, versionLabel: "C", question: "Skriv rätt tal på den tomma raden:<br>a) 1,8 + _______ = 2,1<br>b) 1,6 + _______ = 1,72<br>c) 0,95 +_______  = 1,4", solution: "a) 0,3<br>b) 0,12<br>c) 0,45" },
 { id: 129, versionLabel: "D", question: "Skriv rätt tal på den tomma raden:<br>a) 2,1 + _______ = 2,9<br>b) 0,5 + _______ = 0,75<br>c) 3,04 + _______ = 3,5", solution: "a) 0,8<br>b) 0,25<br>c) 0,46" },
 ] },
-{ groupId: "Vilket tal ska stå på raden? Subtraktion med decimaltal.", area: "Aritmetik", subArea: "Decimaltal", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Vilket tal ska stå på raden? Subtraktion med decimaltal.", area: "Aritmetik", subArea: "Decimaltal", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 130, versionLabel: "A", question: "Skriv rätt tal på den tomma raden:<br>a) 1,6 - _______ = 1,4<br>b) 1,68 - _______ = 1,4<br>c) 1,6 - _______ = 1,04", solution: "a) 0,2<br>b) 0,28<br>c) 0,56" },
 { id: 131, versionLabel: "B", question: "Skriv rätt tal på den tomma raden:<br>a) 1,9 - _______ = 1,5<br>b) 1,45 - _______ = 1,2<br>c) 2,5 - _______ = 2,03", solution: "a) 0,4<br>b) 0,25<br>c) 0,47" },
 { id: 132, versionLabel: "C", question: "Skriv rätt tal på den tomma raden:<br>a) 2,1 - _______ = 1,8<br>b) 1,72 - _______ = 1,6<br>c) 1,4 - _______ = 0,95", solution: "a) 0,3<br>b) 0,12<br>c) 0,45" },
 { id: 133, versionLabel: "D", question: "Skriv rätt tal på den tomma raden:<br>a) 2,9 - _______ = 2,1<br>b) 0,75 - _______ = 0,5<br>c) 3,5 - _______ = 3,04", solution: "a) 0,8<br>b) 0,25<br>c) 0,46" },
 ] },
-{ groupId: "Addition och subtraktion med decimaltal", area: "Aritmetik", subArea: "Decimaltal", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Addition och subtraktion med decimaltal", area: "Aritmetik", subArea: "Decimaltal", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 134, versionLabel: "A", question: "Beräkna:<br>a) \\(12,4+5,9\\)<br>b) \\(6,23-2,1\\)<br>c) \\(5,1+23,09\\)", solution: "a) 18,3<br>b) 4,13<br>c) 28,19" },
 { id: 135, versionLabel: "B", question: "Beräkna:<br>a) \\(7,8+4,25\\)<br>b) \\(15,6-8,09\\)<br>c) \\(0,45+12,7\\)", solution: "a) 12,05<br>b) 7,51<br>c) 13,15" },
 { id: 136, versionLabel: "C", question: "Beräkna:<br>a) \\(9,04+3,8\\)<br>b) \\(20,5-6,75\\)<br>c) \\(14,09+0,6\\)", solution: "a) 12,84<br>b) 13,75<br>c) 14,69" },
 { id: 137, versionLabel: "D", question: "Beräkna:<br>a) \\(4,6+3,7\\)<br>b) \\(9,5-2,25\\)<br>c) \\(1,2+0,85\\)", solution: "a) 8,3<br>b) 7,25<br>c) 2,05" },
 ] },
-{ groupId: "Multiplikation med decimaltal", area: "Aritmetik", subArea: "Decimaltal", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Multiplikation med decimaltal", area: "Aritmetik", subArea: "Decimaltal", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 138, versionLabel: "A", question: "Beräkna:<br>a) \\(2,4\\cdot3\\)<br>b) \\(1,5\\cdot4\\)<br>c) \\(0,6\\cdot7\\)", solution: "a) 7,2<br>b) 6<br>c) 4,2" },
 { id: 139, versionLabel: "B", question: "Beräkna:<br>a) \\(3,2\\cdot5\\)<br>b) \\(2,5\\cdot6\\)<br>c) \\(1,1\\cdot8\\)", solution: "a) 16<br>b) 15<br>c) 8,8" },
 { id: 140, versionLabel: "C", question: "Beräkna:<br>a) \\(4,5\\cdot2\\)<br>b) \\(0,9\\cdot3\\)<br>c) \\(1,4\\cdot5\\)", solution: "a) 9<br>b) 2,7<br>c) 7" },
 { id: 141, versionLabel: "D", question: "Beräkna:<br>a) \\(2,3\\cdot4\\)<br>b) \\(0,8\\cdot5\\)<br>c) \\(1,6\\cdot3\\)", solution: "a) 9,2<br>b) 4<br>c) 4,8" },
 ] },
-{ groupId: "Innehållsdivision med decimaltal", area: "Aritmetik", subArea: "Decimaltal", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Innehållsdivision med decimaltal", area: "Aritmetik", subArea: "Decimaltal", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 142, versionLabel: "A", question: "Beräkna:<br>a) \\(\\frac{1}{0,2}\\)<br>b) \\(\\frac{7,5}{2,5}\\)", solution: "a) 5<br>b) 3" },
 { id: 143, versionLabel: "B", question: "Beräkna:<br>a) \\(\\frac{2}{0,5}\\)<br>b) \\(\\frac{6}{1,5}\\)", solution: "a) 4<br>b) 4" },
 { id: 144, versionLabel: "C", question: "Beräkna:<br>a) \\(\\frac{1}{0,1}\\)<br>b) \\(\\frac{3}{0,1}\\)", solution: "a) 10<br>b) 3" },
@@ -208,26 +208,26 @@ const taskBank = [
 { id: 146, versionLabel: "E", question: "Beräkna:<br>a) \\(\\frac{1}{0,25}\\)<br>b) \\(\\frac{4}{0,5}\\)", solution: "a) 4<br>b) 8" },
 { id: 147, versionLabel: "Ex", example: "Innehållsdivision:<br>img: 'bilder/Exempel/Innehållsdivision.jpg'" },
 ] },
-{ groupId: "Division med decimaltal", area: "Aritmetik", subArea: "Decimaltal", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Division med decimaltal", area: "Aritmetik", subArea: "Decimaltal", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 148, versionLabel: "A", question: "Beräkna:<br>a) \\(\\frac{6,6}{3}\\)<br>b) \\(\\frac{6,4}{2}\\)<br>c) \\(\\frac{12,4}{4}\\)", solution: "a) 2,2<br>b) 3,2<br>c) 3,1" },
 { id: 149, versionLabel: "B", question: "Beräkna:<br>a) \\(\\frac{8,4}{2}\\)<br>b) \\(\\frac{5,5}{5}\\)<br>c) \\(\\frac{12,6}{3}\\)", solution: "a) 4,2<br>b) 1,1<br>c) 4,2" },
 { id: 150, versionLabel: "C", question: "Beräkna:<br>a) \\(\\frac{4,8}{2}\\)<br>b) \\(\\frac{7,5}{3}\\)<br>c) \\(\\frac{18,6}{6}\\)", solution: "a) 2,4<br>b) 2,5<br>c) 3,1" },
 { id: 151, versionLabel: "D", question: "Beräkna:<br>a) \\(\\frac{9,6}{3}\\)<br>b) \\(\\frac{4,4}{4}\\)<br>c) \\(\\frac{16}{5}\\)", solution: "a) 3,2<br>b) 1,1<br>c) 3,2" },
 { id: 152, versionLabel: "Ex", example: "Vid division passar det ibland att dela upp täljaren i termer och dela en i taget:<br>\\(\\frac{15,6}{3}=\\frac{15}{3}+\\frac{0,6}{3}=5+0,2=5,2\\)<br>\\(\\frac{25}{4}=\\frac{24}{4}+\\frac{1}{4}=6+0,25=6,25\\)" },
 ] },
-{ groupId: "Skriv i storleksordning - decimaltal", area: "Aritmetik", subArea: "Decimaltal", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Skriv i storleksordning - decimaltal", area: "Aritmetik", subArea: "Decimaltal", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 153, versionLabel: "A", question: "Skriv talen i storleksordning. Börja med det minsta.<br>4,035 &nbsp &nbsp &nbsp 4,009 &nbsp &nbsp &nbsp 4,1 &nbsp &nbsp &nbsp 4,08", solution: "4,009 -> 4,035 -> 4,08 -> 4,1" },
 { id: 154, versionLabel: "B", question: "Skriv talen i storleksordning. Börja med det minsta.<br>0,2 &nbsp &nbsp &nbsp 0,09 &nbsp &nbsp &nbsp 0,177 &nbsp &nbsp &nbsp 0,21", solution: "0,09 -> 0,177 -> 0,2 -> 0,21" },
 { id: 155, versionLabel: "C", question: "Skriv talen i storleksordning. Börja med det minsta.<br>5,07 &nbsp &nbsp &nbsp 5,7 &nbsp &nbsp &nbsp 5,007 &nbsp &nbsp &nbsp 5,17", solution: "5,007 -> 5,07 -> 5,17 -> 5,7" },
 { id: 156, versionLabel: "D", question: "Skriv talen i storleksordning. Börja med det minsta.<br>2,5 &nbsp &nbsp &nbsp 2,05 &nbsp &nbsp &nbsp 2,505 &nbsp &nbsp &nbsp 2,15", solution: "2,05 -> 2,15 -> 2,5 -> 2,505" },
 ] },
-{ groupId: "Skriv i storleksordning - bråk och decimaltal", area: "Aritmetik", subArea: "Decimaltal", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Skriv i storleksordning - bråk och decimaltal", area: "Aritmetik", subArea: "Decimaltal", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 157, versionLabel: "A", question: "Skriv talen i storleksordning. Börja med det minsta.<br>\\(0,035\\) &nbsp &nbsp &nbsp \\(\\frac{1}{10}\\) &nbsp &nbsp &nbsp \\(0,009\\) &nbsp &nbsp &nbsp \\(0,08\\)", solution: "0,009 -> 0,035 -> 0,08 -> \\(\\frac{1}{10}\\)" },
 { id: 158, versionLabel: "B", question: "Skriv talen i storleksordning. Börja med det minsta.<br>\\(0,2\\) &nbsp &nbsp &nbsp \\(\\frac{1}{10}\\) &nbsp &nbsp &nbsp \\(0,177\\) &nbsp &nbsp &nbsp \\(\\frac{1}{4}\\)", solution: "\\(\\frac{1}{10}\\) -> 0,177 -> 0,2 -> \\(\\frac{1}{4}\\)" },
 { id: 159, versionLabel: "C", question: "Skriv talen i storleksordning. Börja med det minsta.<br>\\(1,07\\) &nbsp &nbsp &nbsp \\(\\frac{17}{10}\\) &nbsp &nbsp &nbsp \\(1,007\\) &nbsp &nbsp &nbsp \\(\\frac{6}{5}\\)", solution: "1,007 -> 1,07 -> \\(\\frac{6}{5}\\) -> \\(\\frac{17}{10}\\)" },
 { id: 160, versionLabel: "D", question: "Skriv talen i storleksordning. Börja med det minsta.<br>\\(0,488\\) &nbsp &nbsp &nbsp \\(\\frac{3}{5}\\) &nbsp &nbsp &nbsp \\(0,51\\) &nbsp &nbsp &nbsp \\(\\frac{1}{2}\\)", solution: "0,488 -> \\(\\frac{1}{2}\\) -> 0,51 -> \\(\\frac{3}{5}\\)" },
 ] },
-{ groupId: "Skriv och förkorta förhållande", area: "Aritmetik", subArea: "Förhållande", courses: ["Högstadium", "Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Skriv och förkorta förhållande", area: "Aritmetik", subArea: "Förhållande", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 161, versionLabel: "A", question: "I en klass finns 10 pojkar och 20 flickor.<br>a) Skriv förhållandet mellan pojkar och flickor.<br>b) Förkorta förhållandet så långt som möjligt.", solution: "a) 10 : 20<br>b) 1 : 2" },
 { id: 162, versionLabel: "B", question: "I en låda finns 15 röda kulor och 25 blå kulor. <br>a) Skriv förhållandet mellan röda och blå kulor.<br>b) Förkorta förhållandet så långt som möjligt.", solution: "a) 15 : 25<br>b) 3 : 5" },
 { id: 163, versionLabel: "C", question: "I en fruktskål finns 18 äpplen och 30 päron.<br>a) Skriv förhållandet mellan äpplen och päron.<br>b) Förkorta förhållandet så långt som möjligt.", solution: "a) 18 : 30<br>b) 3 : 5" },
@@ -2769,12 +2769,4 @@ img: "bilder/Avstånd_mittpunkt/IMG_5002.jpg",
 difficulty: 1,
 solution: "Svar: y-koordinaten är ca 4,36."
 },
-{ groupId: "Derivera enkla polynom", area: "Derivata", subArea: "Derivera polynom", courses: ["Ma3b", "Ma3c"], difficulty: 1, versions: [
-{ id: 1364, versionLabel: "A", question: "Derivera funktionerna nedan:<br>a) \\(f(x)=x^2+5x^3\\)<br>b) \\(g(x)=7x^4-x \\)", solution: "a) \\(f´(x)=2x+15x^2\\)<br>b) \\(g´(x)=28x^3-1\\)" },
-{ id: 1365, versionLabel: "B", question: "Derivera funktionerna nedan:<br>a) \\(f(x)=3x^3-4\\)<br>b) \\(g(x)=x^6-0,3x^8 \\)", solution: "a) \\(f´(x)=9x^2\\)<br>b) \\(g´(x)=6x^5-2,4x^7\\)" },
-] },
-{ groupId: "Derivera enkla polynom och bestäm värde", area: "Derivata", subArea: "Derivera polynom", courses: ["Ma3b", "Ma3c"], difficulty: 1, versions: [
-{ id: 1366, versionLabel: "A", question: "Givet \\(f(x)=4x^3-2\\), bestäm \\(f'(3).\\)", solution: "Svar: 108" },
-{ id: 1367, versionLabel: "B", question: "Givet \\(f(x)=10x^2+x\\), bestäm \\(f'(5).\\)", solution: "Svar: 101" },
-] },
 ];

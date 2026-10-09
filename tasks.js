@@ -1,4 +1,4 @@
-const taskBank = [
+export const taskGroups = [
 { groupId: "Beräkna del utan räknare", area: "Procent", subArea: "Del, andel, hela", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 1, versionLabel: "A", question: "Beräkna:<br>a) 10% av 3000 kr<br>b) 15% av 500 kr", solution: "a) 300 kr<br>b) 75 kr" },
 { id: 2, versionLabel: "B", question: "Beräkna:<br>a) 20% av 3000 kr<br>b) 40% av 200 kr", solution: "a) 600 kr<br>b) 80 kr" },
@@ -1999,24 +1999,10 @@ solution: "a) B<br>b) B"
 { id: 1131, versionLabel: "D", question: "Lös ekvationen: \\( 2x^2=98 \\).", solution: "\\( x_1=7 \\) och \\( x_2=-7 \\)" },
 { id: 1132, versionLabel: "Ex", example: "Ekvationen \\( 3x^2=48 \\) löses på följande sätt:<br>\\(3x^2=48\\)<br>\\(\\frac{3x^2}{3}=\\frac{48}{3}\\)<br>\\(x^2=16\\)<br>\\(\\sqrt{x^2}=\\pm \\sqrt{16}\\)<br>\\(x=\\pm 4\\)" },
 ]  },
-{
-id: 1133,
-area: "Andragradare",
-subArea: "Kvadratrotsmetoden",
-courses: ["Ma2a", "Ma2b", "Ma2c"],
-question: "Lös ekvationen: \\( 9+3x^2=18 \\). Svara exakt.",
-difficulty: 2,
-solution: "\\( x_1=\\sqrt{3} \\) och \\( x_2=-\\sqrt{3} \\)"
-},
-{
-id: 1134,
-area: "Andragradare",
-subArea: "Kvadratrotsmetoden",
-courses: ["Ma2a", "Ma2b", "Ma2c"],
-question: "Lös ekvationen: \\( 5x^2=10 \\). Svara exakt.",
-difficulty: 2,
-solution: "\\( x_1=\\sqrt{2} \\) och \\( x_2=-\\sqrt{2} \\)"
-},
+{ groupId: "Kvadratrotsmetoden - svara exakt", area: "Andragradare", subArea: "Kvadratrotsmetoden", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 2, versions: [
+{ id: 1133, versionLabel: "A", question: "Lös ekvationen: \\( 9+3x^2=18 \\). Svara exakt.", solution: "\\( x_1=\\sqrt{3} \\) och \\( x_2=-\\sqrt{3} \\)" },
+{ id: 1134, versionLabel: "A", question: "Lös ekvationen: \\( 5x^2=10 \\). Svara exakt.", solution: "\\( x_1=\\sqrt{2} \\) och \\( x_2=-\\sqrt{2} \\)" },
+]  },
 { groupId: "Nollproduktsmetoden från två parenteser", area: "Andragradare", subArea: "Nollproduktsmetoden", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 1135, versionLabel: "A", question: "Lös ekvationen: \\( (x+1)(2x-1)=0.\\)", solution: "\\( x_1=-1 \\) och \\( x_2=0,5 \\)", video: "filmer/Uppgift_003.webm"},
 { id: 1136, versionLabel: "B", question: "Lös ekvationen: \\( (2x+10)(x+3)=0.\\)", solution: "\\( x_1=-5 \\) och \\( x_2=-3 \\)" },
@@ -2094,16 +2080,9 @@ img: "bilder/IMG_0202.jpg",
 difficulty: 1,
 solution: "a) a är negativ eftersom linjen är \"ledsen\".<br>b) x=1."
 },
-{
-id: 1171,
-area: "Andragradare",
-subArea: "Nollställe / symmetrilinje",
-courses: ["Ma2a", "Ma2b", "Ma2c"],
-question: "Nedan ser du funktionen \\( f(x)=ax^2+bx+c \\). <br>a) Bestäm konstanten c.<br>b) Bestäm funktionens nollställen.",
-img: "bilder/IMG_0202.jpg",
-difficulty: 1,
-solution: "a) \\(c=4\\).<br>b) \\(x_1=-2\\) och \\(x_2=4\\)."
-},
+{ groupId: "Hitta c och nollställe grafiskt", area: "Andragradare", subArea: "Andragradsfunktioner", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ id: 1171, versionLabel: "A", question: "Nedan ser du funktionen \\( f(x)=ax^2+bx+c \\). <br>a) Bestäm konstanten c.<br>b) Bestäm funktionens nollställen.", img: "bilder/IMG_0202.jpg", solution: "a) \\(c=4\\).<br>b) \\(x_1=-2\\) och \\(x_2=4\\)." },
+] },
 {
 id: 1172,
 area: "Andragradare",

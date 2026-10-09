@@ -2156,7 +2156,7 @@ solution: "(1 ; 4,5)"
 ] },
 { groupId: "Lös systemet algebraiskt utan räknare", area: "Ekvationssystem", subArea: "Lös algebraiskt", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 1210, versionLabel: "A", question: "Lös ekvationssystemet \\( \\begin{cases} 2x+y=7 \\\\ x-y=2 \\end{cases} \\)", solution: "\\( \\begin{cases} x=3 \\\\ y=1 \\end{cases} \\)" },
-{ id: 1211, versionLabel: "B", question: "Lös ekvationssystemet \\( \\begin{cases} 3x+2y=18 \\\\ x+y=8 \\end{cases} \\)", solution: "\\( \\begin{cases} x=2 \\\\ y=6 \\end{cases} \\)" },
+{ id: 1211, versionLabel: "B", question: "Lös ekvationssystemet \\( \\begin{cases} 3x+2y=18 \\\\ x+y=8 \\end{cases} \\)", solution: "\\( \\begin{cases} x=2 \\\\ y=6 \\end{cases} \\)", video: "filmer/Uppgift_015.webm" },
 { id: 1212, versionLabel: "C", question: "Lös ekvationssystemet \\( \\begin{cases} 5x+2y=4 \\\\ x-y=-2 \\end{cases} \\)", solution: "\\( \\begin{cases} x=0 \\\\ y=2 \\end{cases} \\)" },
 { id: 1213, versionLabel: "D", question: "Lös ekvationssystemet \\( \\begin{cases} 2x+3y=14 \\\\ 4x-y=7 \\end{cases} \\)", solution: "\\( \\begin{cases} x=2,5 \\\\ y=3 \\end{cases} \\)" },
 { id: 1214, versionLabel: "E", question: "Lös ekvationssystemet \\( \\begin{cases} 4x-2y=6 \\\\ x+y=4 \\end{cases} \\)", solution: "\\( \\begin{cases} x=2 \\\\ y=2 \\end{cases} \\)" },

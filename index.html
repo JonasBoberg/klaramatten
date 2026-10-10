@@ -108,7 +108,6 @@
         <!-- Header -->
         <div class="text-center mb-12">
             <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 drop-shadow-md">Klara Matten!</h1>
-            <!-- ID tillagt här för att kunna gömma den -->
             <p id="header-subtitle" class="text-slate-400 mt-4 text-lg font-medium">Välj område och nivå för att börja öva</p>
         </div>
 
@@ -126,6 +125,17 @@
 
         <!-- Vy: Uppgift -->
         <div id="view-task" class="view hidden"></div>
+    </div>
+
+    <!-- Modal för Videogenomgångar -->
+    <div id="lesson-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
+        <div class="bg-slate-900 rounded-xl border border-slate-700 p-4 max-w-2xl w-full shadow-2xl relative">
+            <button onclick="closeVideoModal()" class="absolute -top-4 -right-4 bg-slate-800 border border-slate-600 rounded-full w-10 h-10 flex items-center justify-center text-slate-300 hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors duration-200 shadow-lg z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <p class="text-slate-400 text-sm font-bold tracking-wider mb-3">GENOMGÅNG</p>
+            <video id="modal-video" controls class="w-full rounded-lg border border-slate-700"></video>
+        </div>
     </div>
 
     <!-- Länk till din externa uppgiftsbank -->
@@ -151,6 +161,7 @@
                 currentArea: null,
                 currentSubArea: null,
                 currentDifficulty: null,
+                currentLessonVideo: null, // Sparar eventuell genomgångsvideo för området
                 tasks: [],
                 taskTypes: [], 
                 examplesMap: {}, 
@@ -166,7 +177,6 @@
                 document.getElementById(id).classList.remove('hidden');
             }
 
-            // Hjälpfunktion för att visa/gömma undertexten i header
             function showHeaderSubtitle(show) {
                 const subtitle = document.getElementById('header-subtitle');
                 if (show) {
@@ -192,7 +202,6 @@
                 return btn;
             }
 
-            // Hjälpfunktion för att säkert formattera text, hantera <, >, bilder, tabeller och listor
             function formatContent(text) {
                 if (!text) return '';
                 let html = String(text);
@@ -200,7 +209,6 @@
                 const images = [];
                 const tables = [];
 
-                // 1. Extrahera specialblock (bilder och tabeller) till placeholders
                 html = html.replace(/!\[(.*?)\]\((.*?)\)/g, (match, alt, url) => {
                     images.push(`<img src="${url}" alt="${alt}">`);
                     return `[[IMG_${images.length - 1}]]`;
@@ -236,7 +244,6 @@
                     return `[[TABLE_${tables.length - 1}]]`;
                 });
                 
-                // 2. Byt ut tillåtna HTML-taggar mot placeholders innan escaping
                 html = html.replace(/<br\s*\/?>/g, '[[BR]]');
                 html = html.replace(/<ul>/g, '[[UL]]');
                 html = html.replace(/<\/ul>/g, '[[UL_END]]');
@@ -247,10 +254,8 @@
                 html = html.replace(/<i>/g, '[[I]]');
                 html = html.replace(/<\/i>/g, '[[I_END]]');
                 
-                // 3. Escapa < och > för att inte webbläsaren ska tolka dem som HTML-taggar
                 html = html.replace(/</g, '&lt;').replace(/>/g, '&gt;');
                 
-                // 4. Återställ placeholders med Tailwind-styling
                 html = html.replace(/\[\[BR\]\]/g, '<br>');
                 html = html.replace(/\[\[UL\]\]/g, '<ul class="list-disc pl-6 mt-2 space-y-1">');
                 html = html.replace(/\[\[UL_END\]\]/g, '</ul>');
@@ -261,7 +266,6 @@
                 html = html.replace(/\[\[I\]\]/g, '<em>');
                 html = html.replace(/\[\[I_END\]\]/g, '</em>');
                 
-                // 5. Återställ bilder och tabeller
                 html = html.replace(/\[\[IMG_(\d+)\]\]/g, (match, idx) => images[parseInt(idx)]);
                 html = html.replace(/\[\[TABLE_(\d+)\]\]/g, (match, idx) => tables[parseInt(idx)]);
                 
@@ -277,7 +281,7 @@
             // --- VY: KURSER ---
             function renderCourses() {
                 showView('view-courses');
-                showHeaderSubtitle(true); // Visa undertext
+                showHeaderSubtitle(true);
                 const view = document.getElementById('view-courses');
                 
                 const courses = [...new Set(taskBank.flatMap(g => g.courses || []))].sort();
@@ -296,7 +300,7 @@
             // --- VY: OMRÅDEN ---
             function renderAreas() {
                 showView('view-areas');
-                showHeaderSubtitle(true); // Visa undertext
+                showHeaderSubtitle(true);
                 const view = document.getElementById('view-areas');
                 
                 const areas = [...new Set(taskBank.filter(g => g.courses.includes(state.currentCourse)).map(g => g.area))].sort();
@@ -322,7 +326,7 @@
             // --- VY: DELOMRÅDEN ---
             function renderSubAreas() {
                 showView('view-subareas');
-                showHeaderSubtitle(true); // Visa undertext
+                showHeaderSubtitle(true);
                 const view = document.getElementById('view-subareas');
                 
                 const groupsInArea = taskBank.filter(g => g.courses.includes(state.currentCourse) && g.area === state.currentArea);
@@ -351,7 +355,7 @@
             // --- VY: SVÅRIGHETSGRAD ---
             function renderDifficulty() {
                 showView('view-difficulty');
-                showHeaderSubtitle(true); // Visa undertext
+                showHeaderSubtitle(true);
                 const view = document.getElementById('view-difficulty');
                 
                 let filteredGroups = taskBank.filter(g => g.courses.includes(state.currentCourse) && g.area === state.currentArea);
@@ -369,6 +373,19 @@
                 title.className = 'text-xl font-bold mb-5 text-slate-300 tracking-wide';
                 title.innerText = `4. Välj nivå för ${subAreaText}`;
                 view.appendChild(title);
+
+                // Om det finns en genomgångsvideo för området, visa en snygg knapp
+                if (state.currentLessonVideo) {
+                    const lessonContainer = document.createElement('div');
+                    lessonContainer.className = 'mb-6';
+                    lessonContainer.innerHTML = `
+                        <button onclick="openVideoModal('${state.currentLessonVideo}')" class="w-full p-4 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-600 hover:from-sky-500 hover:to-cyan-500 text-white font-bold shadow-lg shadow-sky-900/40 transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            Titta på genomgång
+                        </button>
+                    `;
+                    view.appendChild(lessonContainer);
+                }
                 
                 const container = document.createElement('div');
                 container.className = 'space-y-4';
@@ -388,7 +405,7 @@
             // --- VY: UPPGIFT ---
             function renderTask() {
                 showView('view-task');
-                showHeaderSubtitle(false); // Göm undertext
+                showHeaderSubtitle(false);
                 const view = document.getElementById('view-task');
                 
                 if(state.tasks.length === 0) {
@@ -408,15 +425,14 @@
 
                 const currentExample = state.examplesMap[task.groupId] || null;
                 
-                // Kolla om det finns lösningsgång och/eller video
                 const hasTextExp = !!task.exp;
                 const hasVideo = !!task.video;
 
                 const calcIcon = `<svg class="w-5 h-5 mr-2 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>`;
                 const infoIcon = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
                 const shuffleIcon = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"></path></svg>`;
+                const lessonIcon = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>`;
 
-                // Bygg HTML för uppgiftstyps-prickarna
                 let dotsHtml = '';
                 if (state.taskTypes.length > 1) {
                     dotsHtml = `<div class="flex justify-center items-center gap-2 mb-6 flex-wrap">`;
@@ -438,6 +454,11 @@
                             <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Avsluta
                         </button>
                         <div class="flex items-center gap-3">
+                            ${state.currentLessonVideo ? `
+                                <button onclick="openVideoModal('${state.currentLessonVideo}')" class="flex items-center justify-center text-sky-300 hover:text-sky-200 transition-colors duration-200 font-medium bg-sky-900/30 hover:bg-sky-900/50 px-3 py-2 rounded-lg border border-sky-500/30" title="Titta på genomgång">
+                                    ${lessonIcon}
+                                </button>
+                            ` : ''}
                             ${currentExample ? `
                                 <button id="btn-show-example" class="flex items-center gap-1.5 text-indigo-300 hover:text-indigo-200 font-semibold text-sm tracking-wider transition-colors duration-200 bg-indigo-900/30 hover:bg-indigo-900/50 px-3 py-2 rounded-lg border border-indigo-500/30">
                                     ${infoIcon} Exempel
@@ -545,6 +566,8 @@
             window.prevTask = prevTask;
             window.randomTask = randomTask;
             window.jumpToTaskType = jumpToTaskType;
+            window.openVideoModal = openVideoModal;
+            window.closeVideoModal = closeVideoModal;
 
             function selectCourse(course) {
                 state.currentCourse = course;
@@ -558,6 +581,15 @@
 
             function selectSubArea(subArea) {
                 state.currentSubArea = subArea;
+                
+                // Kolla om det finns en genomångsvideo för detta delområde
+                let groupsInSubArea = taskBank.filter(g => g.courses.includes(state.currentCourse) && g.area === state.currentArea);
+                if(state.currentSubArea !== 'all') {
+                    groupsInSubArea = groupsInSubArea.filter(g => g.subArea === state.currentSubArea);
+                }
+                const lessonGroup = groupsInSubArea.find(g => g.lessonVideo);
+                state.currentLessonVideo = lessonGroup ? lessonGroup.lessonVideo : null;
+
                 renderDifficulty();
             }
 
@@ -627,6 +659,22 @@
                 if (vidBox) {
                     vidBox.classList.remove('hidden');
                 }
+            }
+
+            // --- MODAL-FUNKTIONER ---
+            function openVideoModal(url) {
+                const modal = document.getElementById('lesson-modal');
+                const video = document.getElementById('modal-video');
+                video.src = url;
+                modal.classList.remove('hidden');
+            }
+
+            function closeVideoModal() {
+                const modal = document.getElementById('lesson-modal');
+                const video = document.getElementById('modal-video');
+                video.pause();
+                video.src = ''; // Rensa videon så den inte fortsätter spela i bakgrunden
+                modal.classList.add('hidden');
             }
 
             function nextTask() {

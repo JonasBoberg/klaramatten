@@ -173,10 +173,8 @@
                 currentTaskIndex: 0
             };
 
-            // Hjälpfunktion för att hämta databas beroende på läge
             function getCurrentBank() {
                 if (state.mode === 'lessons') {
-                    // Om vi är i videoläget, filtrera fram bara de objekt som har lessonVideo
                     return taskBank.filter(g => g.lessonVideo);
                 }
                 return taskBank;
@@ -359,15 +357,20 @@
                 view.appendChild(container);
             }
 
-            // --- VY: DELOMRÅDEN ---
+            // --- VY: DELOMRÅDEN (Endast för uppgiftsläget) ---
             function renderSubAreas() {
+                // Om man av någon anledning hamnar här i videoläget, gå tillbaka
+                if (state.mode === 'lessons') {
+                    renderAreas();
+                    return;
+                }
+
                 showView('view-subareas');
                 showHeaderSubtitle(true);
                 showTabs(true);
                 const view = document.getElementById('view-subareas');
-                const currentBank = getCurrentBank();
                 
-                const groupsInArea = currentBank.filter(g => g.courses.includes(state.currentCourse) && g.area === state.currentArea);
+                const groupsInArea = taskBank.filter(g => g.courses.includes(state.currentCourse) && g.area === state.currentArea);
                 const subAreas = [...new Set(groupsInArea.map(g => g.subArea))].sort();
                 
                 view.innerHTML = '';
@@ -399,14 +402,20 @@
                 const currentBank = getCurrentBank();
                 
                 let filteredGroups = currentBank.filter(g => g.courses.includes(state.currentCourse) && g.area === state.currentArea);
-                if(state.currentSubArea !== 'all') {
+                if(state.mode === 'tasks' && state.currentSubArea !== 'all') {
                     filteredGroups = filteredGroups.filter(g => g.subArea === state.currentSubArea);
                 }
                 
-                const subAreaText = state.currentSubArea === 'all' ? state.currentArea : state.currentSubArea;
+                const subAreaText = state.mode === 'lessons' ? state.currentArea : (state.currentSubArea === 'all' ? state.currentArea : state.currentSubArea);
 
                 view.innerHTML = '';
-                view.appendChild(createBackButton(() => renderSubAreas()));
+                
+                // Bestäm vart tillbaka-knappen ska leda
+                if (state.mode === 'lessons') {
+                    view.appendChild(createBackButton(() => renderAreas()));
+                } else {
+                    view.appendChild(createBackButton(() => renderSubAreas()));
+                }
                 
                 const title = document.createElement('h2');
                 title.className = 'text-xl font-bold mb-5 text-slate-300 tracking-wide';
@@ -414,13 +423,12 @@
                 const container = document.createElement('div');
                 container.className = 'space-y-4';
 
-                // --- LEKTIONSLÄGE ---
                 if (state.mode === 'lessons') {
-                    title.innerText = `Videogenomgångar för ${subAreaText}`;
+                    title.innerText = `Videogenomgångar för ${state.currentArea}`;
                     view.appendChild(title);
 
                     if (filteredGroups.length === 0) {
-                        container.innerHTML = '<p class="text-amber-400 bg-amber-900/20 p-4 rounded-lg border border-amber-500/30">Det finns inga videogenomgångar för detta urval.</p>';
+                        container.innerHTML = '<p class="text-amber-400 bg-amber-900/20 p-4 rounded-lg border border-amber-500/30">Det finns inga videogenomgångar för detta område.</p>';
                     } else {
                         filteredGroups.forEach(lesson => {
                             const btn = document.createElement('button');
@@ -435,9 +443,7 @@
                             container.appendChild(btn);
                         });
                     }
-                } 
-                // --- UPPGIFTSLÄGE ---
-                else {
+                } else {
                     title.innerText = `4. Välj nivå för ${subAreaText}`;
                     view.appendChild(title);
 
@@ -460,7 +466,7 @@
             function renderTask() {
                 showView('view-task');
                 showHeaderSubtitle(false);
-                showTabs(false); // Göm flikarna under själva övandet
+                showTabs(false);
                 const view = document.getElementById('view-task');
                 
                 if(state.tasks.length === 0) {
@@ -621,7 +627,6 @@
             function switchMode(mode) {
                 state.mode = mode;
                 
-                // Uppdatera flikarnas styling
                 const tabTasks = document.getElementById('tab-tasks');
                 const tabLessons = document.getElementById('tab-lessons');
                 
@@ -633,7 +638,6 @@
                     tabTasks.className = 'px-6 py-2 rounded-lg font-semibold transition-all duration-300 text-slate-400 hover:text-white';
                 }
                 
-                // Nollställ val och börja om från kursvyn
                 state.currentCourse = null;
                 state.currentArea = null;
                 state.currentSubArea = null;
@@ -647,12 +651,20 @@
 
             function selectArea(area) {
                 state.currentArea = area;
-                renderSubAreas();
+                
+                // Om vi är i videoläget (lessons) hoppar vi över delområden 
+                // och går direkt till videomenyn (renderDifficulty)
+                if (state.mode === 'lessons') {
+                    state.currentSubArea = 'all'; 
+                    renderDifficulty();
+                } else {
+                    renderSubAreas();
+                }
             }
 
             function selectSubArea(subArea) {
                 state.currentSubArea = subArea;
-                renderDifficulty(); // Denna funktion hanterar nu både nivåer och videomenyn beroende på mode
+                renderDifficulty();
             }
 
             function selectDifficulty(diff) {

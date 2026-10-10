@@ -1,4 +1,5 @@
-const taskBank = [
+export const taskGroups = [
+{ groupId: "Genomgång: pq-formeln", area: "Andragradare", courses: ["Ma2a", "Ma2b", "Ma2c"], lessonVideo: "filmer/Uppgift_003.webm" },
 { groupId: "Beräkna del utan räknare", area: "Procent", subArea: "Del, andel, hela", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 1, versionLabel: "A", question: "Beräkna:<br>a) 10% av 3000 kr<br>b) 15% av 500 kr", solution: "a) 300 kr<br>b) 75 kr" },
 { id: 2, versionLabel: "B", question: "Beräkna:<br>a) 20% av 3000 kr<br>b) 40% av 200 kr", solution: "a) 600 kr<br>b) 80 kr" },
@@ -2016,7 +2017,7 @@ solution: "a) B<br>b) B"
 { id: 1142, versionLabel: "C", question: "Lös ekvationen: \\( x^2-5x=0.\\)", solution: "Svar:\\( x_1=0 \\) och \\( x_2=5 \\)" },
 { id: 1143, versionLabel: "D", question: "Lös ekvationen: \\( 3x+6x^2=0.\\)", question: "Lös ekvationen: \\( 3x+6x^2=0 \\)", },
 ]  },
-{ groupId: "pq utan justering", area: "Andragradare", subArea: "pq-formeln", lessonVideo: "filmer/Uppgift_003.webm", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ groupId: "pq utan justering", area: "Andragradare", subArea: "pq-formeln", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 1144, versionLabel: "A", question: "Lös ekvationen: \\( x^2-6x+5=0.\\)", solution: "\\( x_1=1 \\) och \\( x_2=5 \\)" },
 { id: 1145, versionLabel: "B", question: "Lös ekvationen: \\( x^2-2x-15=0.\\)", solution: "\\( x_1=5 \\) och \\( x_2=-3 \\)" },
 { id: 1146, versionLabel: "C", question: "Lös ekvationen: \\( x^2+2x-8=0.\\)", solution: "\\( x_1=2 \\) och \\( x_2=4 \\)" },

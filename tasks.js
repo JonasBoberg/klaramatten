@@ -2016,7 +2016,7 @@ solution: "a) B<br>b) B"
 { id: 1142, versionLabel: "C", question: "Lös ekvationen: \\( x^2-5x=0.\\)", solution: "Svar:\\( x_1=0 \\) och \\( x_2=5 \\)" },
 { id: 1143, versionLabel: "D", question: "Lös ekvationen: \\( 3x+6x^2=0.\\)", question: "Lös ekvationen: \\( 3x+6x^2=0 \\)", },
 ]  },
-{ groupId: "pq utan justering", area: "Andragradare", subArea: "pq-formeln", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ groupId: "pq utan justering", area: "Andragradare", subArea: "pq-formeln", videolesson: "filmer/Uppgift_003.webm", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 1144, versionLabel: "A", question: "Lös ekvationen: \\( x^2-6x+5=0.\\)", solution: "\\( x_1=1 \\) och \\( x_2=5 \\)" },
 { id: 1145, versionLabel: "B", question: "Lös ekvationen: \\( x^2-2x-15=0.\\)", solution: "\\( x_1=5 \\) och \\( x_2=-3 \\)" },
 { id: 1146, versionLabel: "C", question: "Lös ekvationen: \\( x^2+2x-8=0.\\)", solution: "\\( x_1=2 \\) och \\( x_2=4 \\)" },

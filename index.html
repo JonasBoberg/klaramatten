@@ -431,10 +431,10 @@
                     if (filteredGroups.length === 0) {
                         container.innerHTML = '<p class="text-amber-400 bg-amber-900/20 p-4 rounded-lg border border-amber-500/30">Det finns inga videogenomgångar för detta område.</p>';
                     } else {
-                        // Sortera efter area-id (numeriskt)
+                        // Sortera efter areaId (numeriskt)
                         filteredGroups.sort((a, b) => {
-                            const idA = parseInt(a['area-id'] || 0);
-                            const idB = parseInt(b['area-id'] || 0);
+                            const idA = parseInt(a.areaId || 0);
+                            const idB = parseInt(b.areaId || 0);
                             return idA - idB;
                         });
 
@@ -447,7 +447,7 @@
                                 </span>
                                 <span class="flex flex-col text-left">
                                     <span class="text-lg font-bold">${lesson.title}</span>
-                                    ${lesson['sub-title'] ? `<span class="text-sm font-normal text-slate-400">${lesson['sub-title']}</span>` : ''}
+                                    ${lesson.subTitle ? `<span class="text-sm font-normal text-slate-400">${lesson.subTitle}</span>` : ''}
                                 </span>
                             `;
                             btn.onclick = () => openVideoModal(lesson.lessonVideo, lesson.title);
@@ -744,7 +744,7 @@
                 }
             }
 
-            // Uppdaterad Modal-funktion som hanterar både YouTube och MP4
+            // Modal-funktion som hanterar både YouTube och MP4
             function openVideoModal(url, title) {
                 const modal = document.getElementById('lesson-modal');
                 const titleEl = document.getElementById('modal-title');

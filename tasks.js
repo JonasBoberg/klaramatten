@@ -1,5 +1,5 @@
 const taskBank = [
-{ title: "Andragradsekvationer del 1", sub-title: "Kvadratrotsmetoden och nollproduktsmetoden", area: "Andragradare", area-id: "1", courses: ["Ma2a", "Ma2b", "Ma2c"], lessonVideo: "https://youtu.be/rtc92zNBnHc" },
+{ title: "Andragradsekvationer del 1", subTitle: "Kvadratrotsmetoden och nollproduktsmetoden", area: "Andragradare", areaId: "1", courses: ["Ma2a", "Ma2b", "Ma2c"], lessonVideo: "https://youtu.be/rtc92zNBnHc" },
 { groupId: "Beräkna del utan räknare", area: "Procent", subArea: "Del, andel, hela", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 1, versionLabel: "A", question: "Beräkna:<br>a) 10% av 3000 kr<br>b) 15% av 500 kr", solution: "a) 300 kr<br>b) 75 kr" },
 { id: 2, versionLabel: "B", question: "Beräkna:<br>a) 20% av 3000 kr<br>b) 40% av 200 kr", solution: "a) 600 kr<br>b) 80 kr" },

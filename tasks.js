@@ -1,5 +1,6 @@
 const taskBank = [
 { title: "Andragradsekvationer del 1", subTitle: "Kvadratrotsmetoden och nollproduktsmetoden", area: "Andragradare", areaId: "1", courses: ["Ma2a", "Ma2b", "Ma2c"], lessonVideo: "https://youtu.be/rtc92zNBnHc" },
+{ title: "Andragradsekvationer del 2", subTitle: "pq-formeln", area: "Andragradare", areaId: "2", courses: ["Ma2a", "Ma2b", "Ma2c"], lessonVideo: "https://youtu.be/tnCE2UcHi4g" },
 { groupId: "Beräkna del utan räknare", area: "Procent", subArea: "Del, andel, hela", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 1, versionLabel: "A", question: "Beräkna:<br>a) 10% av 3000 kr<br>b) 15% av 500 kr", solution: "a) 300 kr<br>b) 75 kr" },
 { id: 2, versionLabel: "B", question: "Beräkna:<br>a) 20% av 3000 kr<br>b) 40% av 200 kr", solution: "a) 600 kr<br>b) 80 kr" },
@@ -8,7 +9,7 @@ const taskBank = [
 { id: 5, versionLabel: "E", question: "Vad är 20% av 1000kr?", solution: "Svar: 200 kr" },
 { id: 6, versionLabel: "F", question: "Vad är 20% av 150kr?", solution: "Svar: 30 kr" },
 ] },
-{ groupId: "Beräkna andel med räknare", area: "Procent", subArea: "Del, andel, hela", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 1, versions: [
+{groupId: "Beräkna andel med räknare", area: "Procent", subArea: "Del, andel, hela", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 1, versions: [
 { id: 7, listid: 7, versionLabel: "A", question: "I en låda finns 18 röda kulor och 42 blå kulor.<br>Hur stor andel av kulorna är röda? Svara i procentform.", solution: "Totalt antal kulor: 60<br>\\(18/60=0,30\\)<br>Svar: 30%."},
 { id: 8, listid: 8, versionLabel: "B", question: "På ett café säljs 15 muffins och 35 bullar under en dag.<br>Hur stor andel av bakverken är muffins? Svara i procentform.", solution: "Totalt antal bakverk: 50<br>\\(15/50=0,30\\)<br>Svar: 30%."},
 { id: 9, listid: 9, versionLabel: "C", question: "I en klass går 12 elever i fotboll och 18 elever i innebandy.<br>Hur stor andel av eleverna spelar fotboll? Svara i procentform.", solution: "Totalt antal elever: 30<br>\\(12/30=0,40\\)<br>Svar: 40%."},

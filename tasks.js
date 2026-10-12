@@ -1,5 +1,5 @@
 const taskBank = [
-{ title: "Potenslagar del 2", subTitle: "Basbyten i potenser", area: "Andragradare", areaId: "1", courses: ["Ma1b", "Ma1c", "Ma2a"], lessonVideo: "https://youtu.be/QQC6ut4qlnk" },
+{ title: "Potenslagar del 2", subTitle: "Basbyten i potenser", area: "Potenslagar och potensekvationer", areaId: "1", courses: ["Ma1b", "Ma1c", "Ma2a"], lessonVideo: "https://youtu.be/QQC6ut4qlnk" },
 { title: "Andragradsekvationer del 1", subTitle: "Kvadratrotsmetoden och nollproduktsmetoden", area: "Andragradare", areaId: "1", courses: ["Ma2a", "Ma2b", "Ma2c"], lessonVideo: "https://youtu.be/rtc92zNBnHc" },
 { title: "Andragradsekvationer del 2", subTitle: "pq-formeln", area: "Andragradare", areaId: "2", courses: ["Ma2a", "Ma2b", "Ma2c"], lessonVideo: "https://youtu.be/tnCE2UcHi4g" },
 { title: "Andragradsekvationer del 3", subTitle: "Diskriminant, dubbelrötter och reella lösningar", area: "Andragradare", areaId: "3", courses: ["Ma2a", "Ma2b", "Ma2c"], lessonVideo: "https://youtu.be/XRtQoZy8Das" },

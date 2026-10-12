@@ -583,7 +583,7 @@ const taskBank = [
 {id: 422, versionLabel: "C", question: "Nathalie köper 2 fotbollar och 3 handbollar och betalar 445 kr. Vad kostar en handboll om den är 10 kr billigare än en fotboll? Lös uppgiften med hjälp av en ekvation.", solution: "En handboll kostar 85 kr." },
 ] },
 { groupId: "Lös linjära ekvationer med parenteser", area: "Algebra", subArea: "Lösa linjära ekvationer", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 2, versions: [
-{ id: 423, versionLabel: "A", question: "Lös ekvationerna:<br>a) \\( 5(1-2x)=-4x-1 \\)<br>b) \\(17=(x+1)+2(x-4) \\)", solution: "a) \\(x=1\\)<br>b) \\(x=8\\)", exp: "img: 'bilder/Losningsbilder/Uppgift_001.pdf'"},
+{ id: 423, versionLabel: "A", question: "Lös ekvationerna:<br>a) \\( 5(1-2x)=-4x-1 \\)<br>b) \\(17=(x+1)+2(x-4) \\)", solution: "a) \\(x=1\\)<br>b) \\(x=8\\)", exp: "img: 'bilder/Losningsbilder/Uppgift_001.jpg'"},
 { id: 424, versionLabel: "B", question: "Lös ekvationerna:<br>a) \\(18+3x-(4-5x)=x\\)<br>b) \\(3(x-1)+5x=1\\)", solution: "a) \\(x=-2\\)<br>b) \\(x=0,5\\)"},
 { id: 425, versionLabel: "C", question: "Lös ekvationen: \\( 32=2(x+4) \\)", solution: "\\( x=12 \\)"},
 { id: 426, versionLabel: "D", question: "Lös ekvationen: \\( -30=6x-(2x+10) \\)", solution: "\\( x=-5 \\)"},

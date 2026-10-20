@@ -2065,7 +2065,7 @@ solution: "a) B<br>b) B"
 {
 id: 1174,
 area: "Andragradare",
-subArea: "Nollställe / symmetrilinje",
+subArea: "Andragradsfunktioner",
 courses: ["Ma2a", "Ma2b", "Ma2c"],
 question: "Nedan ser du funktionen \\( f(x)=ax^2+bx+c \\). <br>a) Är koefficienten a positiv eller negativ?<br>b) Bestäm funktionens symmetrilinje.",
 img: "bilder/IMG_0201.jpg",
@@ -2075,7 +2075,7 @@ solution: "a) \\(a\\) är positiv eftersom linjen är \"glad\".<br>b) \\(x=6\\).
 {
 id: 1175,
 area: "Andragradare",
-subArea: "Nollställe / symmetrilinje",
+subArea: "Andragradsfunktioner",
 courses: ["Ma2a", "Ma2b", "Ma2c"],
 question: "Nedan ser du funktionen \\( f(x)=ax^2+bx+c \\). <br>a) Bestäm konstanten c.<br>b) Bestäm funktionens nollställen.",
 img: "bilder/IMG_0201.jpg",
@@ -2085,7 +2085,7 @@ solution: "a) \\(c=5\\).<br>b) \\(x_1=2\\) och \\(x_2=10\\)."
 {
 id: 1176,
 area: "Andragradare",
-subArea: "Nollställe / symmetrilinje",
+subArea: "Andragradsfunktioner",
 courses: ["Ma2a", "Ma2b", "Ma2c"],
 question: "Nedan ser du funktionen \\( g(x)=ax^2+bx+c \\). <br>a) Är koefficienten a positiv eller negativ?<br>b) Bestäm funktionens symmetrilinje.",
 img: "bilder/IMG_0202.jpg",
@@ -2098,59 +2098,59 @@ solution: "a) a är negativ eftersom linjen är \"ledsen\".<br>b) x=1."
 {
 id: 1178,
 area: "Andragradare",
-subArea: "Extrempunkt",
+subArea: "Andragradsfunktioner",
 courses: ["Ma2a", "Ma2b", "Ma2c"],
 question: "Nedan ser du funktionen \\( f(x)=ax^2+bx+c \\). Bestäm koordinaterna för funktionens extrempunkt.",
 img: "bilder/IMG_0202.jpg",
 difficulty: 1,
 solution: "(1 ; 4,5)"
 },
-{ groupId: "Bestäm andra nollstället med f(x)", area: "Andragradare", subArea: "Nollställe / symmetrilinje", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ groupId: "Bestäm andra nollstället med f(x)", area: "Andragradare", subArea: "Andragradsfunktioner", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 1179, versionLabel: "A", question: "För andragradsfunktionen \\( f(x) \\) gäller följande:<br><ul><li>Symmetrilinjen är \\( x=10 \\)</li><li>\\( f(1)=0 \\)</li></ul>Bestäm funktionens nollställen.", solution: "\\( x_1=1 \\) och \\( x_2=19 \\)." },
 { id: 1180, versionLabel: "B", question: "För andragradsfunktionen \\( f(x) \\) gäller följande:<br><ul><li>Symmetrilinjen är \\( x=2 \\)</li><li>\\( f(3)=0 \\)</li></ul>Bestäm funktionens nollställen.", solution: "\\( x_1=1 \\) och \\( x_2=3 \\)." },
 { id: 1181, versionLabel: "C", question: "För andragradsfunktionen \\( f(x) \\) gäller följande:<br><ul><li>Symmetrilinjen är \\( x=7 \\)</li><li>\\( f(4)=0 \\)</li></ul>Bestäm funktionens nollställen.", solution: "\\( x_1=4 \\) och \\( x_2=10 \\)." },
 { id: 1182, versionLabel: "D", question: "För andragradsfunktionen \\( f(x) \\) gäller följande:<br><ul><li>Symmetrilinjen är \\( x=-3 \\)</li><li>\\( f(-5)=0 \\)</li></ul>Bestäm funktionens nollställen.", solution: "\\( x_1=-5 \\) och \\( x_2=-1 \\)." }
 ] },
-{ groupId: "Bestäm a utifrån sym.linje", area: "Andragradare", subArea: "Nollställe / symmetrilinje", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ groupId: "Bestäm a utifrån sym.linje", area: "Andragradare", subArea: "Andragradsfunktioner", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 1183, versionLabel: "A", question: "Andragradsfunktionen \\( f(x)=(x+a)(x-8) \\) har symmetrilinjen \\( x=10 \\). Bestäm \\( a \\).", solution: "\\( a=-12 \\)." },
 { id: 1184, versionLabel: "B", question: "Andragradsfunktionen \\( f(x)=2(x+1)(x+b) \\) har symmetrilinjen \\( x=2 \\). Bestäm \\( b \\).", solution: "\\( b=5 \\)." },
 { id: 1185, versionLabel: "C", question: "Andragradsfunktionen \\( f(x)=(x+a)(x-6) \\) har symmetrilinjen \\( x=1 \\). Bestäm \\( a \\).", solution: "\\( a=4 \\)." },
 { id: 1186, versionLabel: "D", question: "Andragradsfunktionen \\( f(x)=3(x-2)(x+b) \\) har symmetrilinjen \\( x=-1 \\). Bestäm \\( b \\).", solution: "\\( b=-4 \\)." },
 ] },
-{ groupId: "Ange funktion utifrån symmetrilinje", area: "Andragradare", subArea: "Nollställe / symmetrilinje", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ groupId: "Ange funktion utifrån symmetrilinje", area: "Andragradare", subArea: "Andragradsfunktioner", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 1187, versionLabel: "A", question: "Ange en andragradsfunktion med symmetrilinjen \\( x=15,5 \\).", solution: "T.ex. \\( f(x)=(x-15)(x-16) \\) eller \\( f(x)=(x-14)(x-17).\\)" },
 { id: 1188, versionLabel: "B", question: "Ange en andragradsfunktion med symmetrilinjen \\( x=-12 \\).", solution: "T.ex. \\( f(x)=(x+13)(x+15) \\) eller \\( f(x)=(x+12)^2\\)" },
 { id: 1189, versionLabel: "C", question: "Ange en andragradsfunktion med symmetrilinjen \\( x=4,5 \\).", solution: "T.ex. \\( f(x)=(x-4)(x-5) \\) eller \\( f(x)=(x-3)(x-6).\\)" },
 { id: 1190, versionLabel: "D", question: "Ange en andragradsfunktion med symmetrilinjen \\( x=-7,5 \\).", solution: "T.ex. \\( f(x)=(x+7)(x+8) \\) eller \\( f(x)=(x+7,5)^2\\)" },
 ] },
-{ groupId: "Ange funktion utifrån nollställen (f(x))", area: "Andragradare", subArea: "Nollställe / symmetrilinje", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ groupId: "Ange funktion utifrån nollställen (f(x))", area: "Andragradare", subArea: "Andragradsfunktioner", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 1191, versionLabel: "A", question: "För andragradsfunktionen \\(f(x)\\) gäller att \\(f(1)=0\\) och \\(f(3)=0\\).<br>Ge ett förslag på funktionsuttrycket till \\(f(x)\\).", solution: "T.ex. \\( f(x)=(x-1)(x-3) \\)." },
 { id: 1192, versionLabel: "B", question: "För andragradsfunktionen \\(f(x)\\) gäller att \\(f(3)=0\\) och \\(f(121)=0\\).<br>Ge ett förslag på funktionsuttrycket till \\(f(x)\\).", solution: "T.ex. \\( f(x)=(x-3)(x-121) \\)." },
 { id: 1193, versionLabel: "C", question: "För andragradsfunktionen \\(f(x)\\) gäller att \\(f(-5)=0\\) och \\(f(1)=0\\).<br>Ge ett förslag på funktionsuttrycket till \\(f(x)\\).", solution: "T.ex. \\( f(x)=(x+5)(x-1) \\)." },
 ] },
-{ groupId: "Bestäm nollställen algebraiskt", area: "Andragradare", subArea: "Nollställe / symmetrilinje", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ groupId: "Bestäm nollställen algebraiskt", area: "Andragradare", subArea: "Andragradsfunktioner", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 1194, versionLabel: "A", question: "Funktionen \\( f(x)=3x^2-30x+27 \\) är given. Bestäm funktionens nollställen.", solution: "\\( x_1=1 \\) och \\( x_2=9 \\)" },
 { id: 1195, versionLabel: "B", question: "Funktionen \\( f(x)=0,5x^2-4x+7,5 \\) är given. Hitta funktionens nollställen.", solution: "\\( x_1=3 \\) och \\( x_2=5 \\)" },
 ] },
-{ groupId: "Bestäm symmetrilinje algebraiskt", area: "Andragradare", subArea: "Nollställe / symmetrilinje", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ groupId: "Bestäm symmetrilinje algebraiskt", area: "Andragradare", subArea: "Andragradsfunktioner", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 1196, versionLabel: "A", question: "Vilken symmetrilinje har funktionen \\( f(x)= \\frac{x^2}{2}+13x+84 \\)?", solution: "Symmetrilinjen är \\( x=-13\\)" },
 { id: 1197, versionLabel: "B", question: "Funktionen \\( f(x)= \\frac{-x^2}{2}-2x+6 \\) är given. Bestäm funktionens symmetrilinje.", solution: "Symmetrilinjen är \\( x=-2\\)" },
 ] },
-{ groupId: "Avgör max eller min algebraiskt", area: "Andragradare", subArea: "Extrempunkt", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ groupId: "Avgör max eller min algebraiskt", area: "Andragradare", subArea: "Andragradsfunktioner", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 1198, versionLabel: "A", question: "Funktionen \\( f(x)=0.4x^2-x+1 \\) är given. Har funktionen en maximipunkt eller en minimipunkt? Motivera ditt svar.", solution: "Eftersom koefficienten framför \\(x^2\\)-termen är positiv så har funktionen en minimipunkt." },
 { id: 1199, versionLabel: "B", question: "Funktionen \\( f(x)=6x^2+2x-15 \\) är given. Har funktionen en maximipunkt eller en minimipunkt? Motivera ditt svar.", solution: "Eftersom koefficienten framför \\(x^2\\)-termen är positiv så har funktionen en minimipunkt." },
 { id: 1200, versionLabel: "C", question: "Funktionen \\( f(x)=-2x^2+3x+4 \\) är given. Har funktionen en maximipunkt eller en minimipunkt? Motivera ditt svar.", solution: "Eftersom koefficienten framför \\(x^2\\)-termen är negativ så har funktionen en maximipunkt." },
 { id: 1201, versionLabel: "D", question: "Funktionen \\( f(x)=10x^2-x+10,5 \\) är given. Har funktionen en maximipunkt eller minimipunkt? Motivera ditt svar.", solution: "Funktionen har en minimipunkt eftersom \\( x^2 \\)-termen är positiv." },
 ] },
-{ groupId: "Avgör skärning med y-axel", area: "Andragradare", subArea: "Extrempunkt", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ groupId: "Avgör skärning med y-axel", area: "Andragradare", subArea: "Andragradsfunktioner", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 1202, versionLabel: "A", question: "Funktionen \\( f(x)=x^2+12x+8 \\) är given. I vilken punkt skär parabeln y-axeln?", solution: "Svar: (0, 8)"},
 { id: 1203, versionLabel: "B", question: "Funktionen \\( g(x)=x^2+x-3 \\) är given. I vilken punkt skär parabeln y-axeln?", solution: "Svar: (0, -3)"},
 ] },
-{ groupId: "Bestäm största/minsta värde", area: "Andragradare", subArea: "Extrempunkt", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ groupId: "Bestäm största/minsta värde", area: "Andragradare", subArea: "Andragradsfunktioner", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 1204, versionLabel: "A", question: "Funktionen \\( f(x)=10x^2+30x+20 \\) är given. Bestäm funktionens minsta värde.", solution: "Funktionens minsta värde får vi genom att beräkna \\( f(-1,5) \\) (eftersom symmetrilinjen är x = -1,5). <br>Svar: funktionens minsta värde är -2,5."},
 { id: 1205, versionLabel: "B", question: "Funktionen \\( f(x)= \\frac{-x^2}{2}+4x+10 \\) är given. Bestäm funktionens största värde.", solution: "Funktionens största värde får vi genom att beräkna f(4) (eftersom symmetrilinjen är x = 4).<br> Svar: funktionens största värde är 18."},
 ] },
-{ groupId: "Bestäm extrempunkt algebraiskt", area: "Andragradare", subArea: "Extrempunkt", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 2, calculator: true, versions: [
+{ groupId: "Bestäm extrempunkt algebraiskt", area: "Andragradare", subArea: "Andragradsfunktioner", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 2, calculator: true, versions: [
 { id: 1206, versionLabel: "A", question: "Bestäm funktionens extrempunkt: \\( f(x)= 0,4x^2-3,2x+6 \\) och avgör om det är en maximipunkt eller en minimipunkt.", solution: "Svar: Funktionen har minimipunkten (4; -0,4)." },
 { id: 1207, versionLabel: "B", question: "Bestäm funktionens extrempunkt: \\( f(x)= -0,1x^2+0,6x-0,5 \\) och avgör om det är en maximipunkt eller en minimipunkt.", solution: "Svar: Funktionen har maximipunkten (3; 0,4)." },
 { id: 1208, versionLabel: "C", question: "Bestäm funktionens extrempunkt: \\( f(x)= 2x^2+28x+90 \\) och avgör om det är en maximipunkt eller en minimipunkt.", solution: "Svar: Funktionen har minimipunkten (-7, -8)." },

@@ -108,7 +108,7 @@ const taskBank = [
 { id: 71, versionLabel: "A", question: "Oskar vinner x kr i en tävling. Ahmed vinner 40 % mer än Oskar. Stina vinner 20 % mindre än Oskar. Hur många procent större är Ahmeds vinst jämfört med Stinas?", solution: "\\(\\frac{0,6x}{0,8x}=0,75\\). Svar: 75%." },
 ] },
 { groupId: "vinkelsumma med ff", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
-{ id: 72, versionLabel: "A", question: "En triangel har vinklarna U, V och W. Vinkel V är 20 % mindre än vinkel U och vinkel W är 40 % större än vinkel W. Bestäm vinkel W.", solution: "Svar: Lös ekvationen \\(x+1,4x+0,8x=180\\). \\(W=78,75^{\\circ} \\)." },
+{ id: 72, versionLabel: "A", question: "En triangel har vinklarna U, V och W. Vinkel V är 20 % mindre än vinkel U och vinkel W är 40 % större än vinkel U. Bestäm vinkel W.", solution: "Svar: Lös ekvationen \\(x+1,4x+0,8x=180\\). \\(W=78,75^{\\circ} \\)." },
 { id: 73, versionLabel: "B", question: "En triangel har vinklarna U, V och W. Vinkel V och vinkel W är båda 30 % mindre än vinkel U. Bestäm vinkel V.", solution: "Svar: Lös ekvationen \\(x+0,7x+0,7x=180\\). \\(V=52,5^{\\circ} \\)." },
 { id: 74, versionLabel: "C", question: "En triangel har vinklarna A, B och C. Vinkel B är 72 % mindre än vinkel A. Vinkel C är 60 % större än vinkel A. Bestäm triangelns vinklar. (NP 1a, 1b, 1c)", solution: "Svar: Lös ekvationen \\(x+0,28x+1,6x=180\\) så får du \\(A=62,5^{\\circ} \\), \\(B=17,5^{\\circ} \\) och \\(C=100^{\\circ} \\)." }
 ] },

@@ -170,9 +170,6 @@
         }
 
         function initializeApp() {
-            // Tröskelvärde: efter så här många uppgifter av samma typ visas "byt typ"-länken
-            const TYPE_THRESHOLD = 3;
-
             let state = {
                 mode: 'tasks',
                 currentCourse: null,
@@ -182,26 +179,8 @@
                 tasks: [],
                 taskTypes: [], 
                 examplesMap: {}, 
-                currentTaskIndex: 0,
-                // Spår vilka uppgifts-ID:n eleven har sett (session-baserat)
-                seenTaskIds: new Set(),
-                // Spår antal sedda uppgifter per uppgiftstyp
-                groupSeenCount: {}
+                currentTaskIndex: 0
             };
-
-            // Hjälpfunktion: registrera att en uppgift har visats
-            function recordTaskSeen(task) {
-                if (task && task.id !== undefined && !state.seenTaskIds.has(task.id)) {
-                    state.seenTaskIds.add(task.id);
-                    state.groupSeenCount[task.groupId] = (state.groupSeenCount[task.groupId] || 0) + 1;
-                }
-            }
-
-            // Hjälpfunktion: nollställ sessionsräknaren när eleven byter nivå/område
-            function resetSessionTracking() {
-                state.seenTaskIds = new Set();
-                state.groupSeenCount = {};
-            }
 
             function getCurrentBank() {
                 if (state.mode === 'lessons') {
@@ -528,13 +507,7 @@
                 const taskNum = state.currentTaskIndex + 1;
                 const totalTasks = state.tasks.length;
                 const isFirstTask = state.currentTaskIndex === 0;
-
-                // Registrera att eleven har sett denna uppgift (för typ-räknaren)
-                recordTaskSeen(task);
-                
-                // Räkna hur många uppgifter av denna typ eleven har sett
-                const typeSeenCount = state.groupSeenCount[task.groupId] || 0;
-                const showTypeSwitchLink = typeSeenCount >= TYPE_THRESHOLD && state.taskTypes.length > 1;
+                const hasMultipleTypes = state.taskTypes.length > 1;
 
                 const currentExample = state.examplesMap[task.groupId] || null;
                 const hasTextExp = !!task.exp;
@@ -562,8 +535,13 @@
                         </div>
                     </div>
                     
-                    <div class="text-center mb-5">
-                        <p class="text-sm text-slate-500 font-medium">${task.groupId}</p>
+                    <div class="flex justify-between items-center mb-5 gap-4">
+                        <p class="text-sm text-slate-500 font-medium truncate">${task.groupId}</p>
+                        ${hasMultipleTypes ? `
+                            <button onclick="switchToNextType()" class="text-sm text-slate-400 hover:text-indigo-300 transition-colors duration-200 font-medium shrink-0">
+                                byt uppgiftstyp &rarr;
+                            </button>
+                        ` : ''}
                     </div>
 
                     ${currentExample ? `
@@ -629,14 +607,6 @@
                             Nästa &rarr;
                         </button>
                     </div>
-                    
-                    ${showTypeSwitchLink ? `
-                        <div class="text-center mt-5">
-                            <button onclick="switchToNextType()" class="text-sm text-slate-400 hover:text-indigo-300 transition-colors duration-200 font-medium">
-                                eller byt uppgiftstyp &rarr;
-                            </button>
-                        </div>
-                    ` : ''}
                 `;
 
                 document.getElementById('btn-leave-task').onclick = renderDifficulty;
@@ -688,7 +658,6 @@
                 state.currentCourse = null;
                 state.currentArea = null;
                 state.currentSubArea = null;
-                resetSessionTracking();
                 renderCourses();
             }
 
@@ -715,7 +684,6 @@
 
             function selectDifficulty(diff) {
                 state.currentDifficulty = diff;
-                resetSessionTracking();
                 
                 let filteredGroups = taskBank.filter(g => 
                     g.courses.includes(state.currentCourse) && 
@@ -826,7 +794,7 @@
                             <div class="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/30">
                                 <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                             </div>
-                            <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300 mb-3">Snyggt jobbat!</h2>
+                            <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300 mb-3">Snygt jobbat!</h2>
                             <p class="mb-8 text-slate-400">Du har gjort alla uppgifter i detta område.</p>
                             <button onclick="renderDifficulty()" class="w-full max-w-xs p-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 text-white font-bold shadow-lg shadow-indigo-900/40 transition-all duration-300 hover:scale-[1.02]">
                                 Välj ny nivå / område
@@ -855,7 +823,7 @@
                 renderTask();
             }
 
-            // Ny funktion: hoppar till första uppgiften av nästa uppgiftstyp
+            // Hoppar till första uppgiften av nästa uppgiftstyp
             function switchToNextType() {
                 if (state.taskTypes.length <= 1) return;
                 

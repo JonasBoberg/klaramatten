@@ -380,13 +380,15 @@
                     renderAreas();
                     return;
                 }
-
+            
                 showView('view-subareas');
                 showHeaderSubtitle(true);
                 showTabs(true);
                 const view = document.getElementById('view-subareas');
                 
-                const groupsInArea = taskBank.filter(g => g.courses.includes(state.currentCourse) && g.area === state.currentArea);
+                // FIX: Använd getCurrentBank() istället för taskBank så att videogenomgångar filtreras bort
+                const currentBank = getCurrentBank();
+                const groupsInArea = currentBank.filter(g => g.courses.includes(state.currentCourse) && g.area === state.currentArea);
                 const subAreas = [...new Set(groupsInArea.map(g => g.subArea))].sort();
                 
                 view.innerHTML = '';
@@ -405,7 +407,7 @@
                 subAreas.forEach(sub => {
                     container.appendChild(createButton(sub, () => selectSubArea(sub), 'bg-gradient-to-r from-purple-600 to-fuchsia-600 shadow-purple-900/40 hover:shadow-fuchsia-700/60'));
                 });
-
+            
                 view.appendChild(container);
             }
 

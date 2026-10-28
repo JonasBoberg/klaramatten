@@ -140,7 +140,7 @@
         <div id="view-task" class="view hidden"></div>
     </div>
 
-    <!-- Modal för Videogenomgångar -->
+    <!-- Gemensam modal för videospelaren -->
     <div id="lesson-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
         <div class="bg-slate-900 rounded-xl border border-slate-700 p-4 max-w-3xl w-full shadow-2xl relative">
             <button onclick="closeVideoModal()" class="absolute -top-4 -right-4 bg-slate-800 border border-slate-600 rounded-full w-10 h-10 flex items-center justify-center text-slate-300 hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors duration-200 shadow-lg z-10">
@@ -374,7 +374,9 @@
                 const currentBank = getCurrentBank();
                 const courses = [...new Set(currentBank.flatMap(g => g.courses || []))].sort();
                 
-                view.innerHTML = '<h2 class="text-xl font-bold mb-5 text-slate-300 tracking-wide">Välj kurs för att öva</h2>';
+                view.innerHTML = state.mode === 'lessons'
+                    ? ''
+                    : '<h2 class="text-xl font-bold mb-5 text-slate-300 tracking-wide">Välj kurs för att öva</h2>';
                 const container = document.createElement('div');
                 container.className = 'space-y-4';
                 
@@ -388,27 +390,29 @@
 
                 view.appendChild(container);
 
-                const lessonCodeBox = document.createElement('div');
-                lessonCodeBox.className = 'bg-slate-900/60 p-5 rounded-xl border border-indigo-500/30 mt-8 shadow-lg';
-                lessonCodeBox.innerHTML = `
-                    <form id="lesson-code-form">
-                        <label for="lesson-code-input" class="block text-lg font-bold text-slate-200 mb-3">Har du en lektionskod?</label>
-                        <div class="flex flex-col sm:flex-row gap-3">
-                            <input id="lesson-code-input" type="text" maxlength="24" autocomplete="off" required
-                                placeholder="Skriv lektionskoden"
-                                class="flex-1 min-w-0 px-4 py-3 rounded-lg bg-slate-950 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-400">
-                            <button type="submit" class="px-5 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold shadow-lg hover:from-indigo-500 hover:to-violet-500 transition">
-                                Gå till lektion
-                            </button>
-                        </div>
-                        <p id="lesson-code-error" class="hidden mt-3 text-sm text-red-300" role="alert"></p>
-                    </form>
-                `;
-                lessonCodeBox.querySelector('#lesson-code-form').onsubmit = event => {
-                    event.preventDefault();
-                    joinLesson(lessonCodeBox.querySelector('#lesson-code-input').value);
-                };
-                view.appendChild(lessonCodeBox);
+                if (state.mode !== 'lessons') {
+                    const lessonCodeBox = document.createElement('div');
+                    lessonCodeBox.className = 'bg-slate-900/60 p-5 rounded-xl border border-indigo-500/30 mt-8 shadow-lg';
+                    lessonCodeBox.innerHTML = `
+                        <form id="lesson-code-form">
+                            <label for="lesson-code-input" class="block text-lg font-bold text-slate-200 mb-3">Har du en lektionskod?</label>
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <input id="lesson-code-input" type="text" maxlength="24" autocomplete="off" required
+                                    placeholder="Skriv lektionskoden"
+                                    class="flex-1 min-w-0 px-4 py-3 rounded-lg bg-slate-950 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-400">
+                                <button type="submit" class="px-5 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold shadow-lg hover:from-indigo-500 hover:to-violet-500 transition">
+                                    Gå till lektion
+                                </button>
+                            </div>
+                            <p id="lesson-code-error" class="hidden mt-3 text-sm text-red-300" role="alert"></p>
+                        </form>
+                    `;
+                    lessonCodeBox.querySelector('#lesson-code-form').onsubmit = event => {
+                        event.preventDefault();
+                        joinLesson(lessonCodeBox.querySelector('#lesson-code-input').value);
+                    };
+                    view.appendChild(lessonCodeBox);
+                }
             }
 
             // --- VY: OMRÅDEN ---
@@ -625,15 +629,9 @@
 
                     ${hasVideo ? `
                         <div class="mb-4">
-                            <button id="btn-video-sol" onclick="showVideoSolution()" class="w-full p-3 rounded-lg bg-indigo-900/40 hover:bg-indigo-900/60 text-indigo-300 font-medium transition text-sm border border-indigo-500/30">
+                            <button onclick="showVideoSolution()" class="w-full p-3 rounded-lg bg-indigo-900/40 hover:bg-indigo-900/60 text-indigo-300 font-medium transition text-sm border border-indigo-500/30">
                                 Visa videolösning
                             </button>
-                            <div id="solution-video-box" class="hidden mt-4">
-                                <video controls class="w-full rounded-lg border border-slate-700 shadow-lg">
-                                    <source src="${task.video}" type="video/mp4">
-                                    Din webbläsare stöder inte videouppspelning.
-                                </video>
-                            </div>
                         </div>
                     ` : ''}
 
@@ -743,11 +741,11 @@
                     return;
                 }
 
-                const taskIds = Array.isArray(lesson.taskIds) ? lesson.taskIds : [];
+                const taskLectionIds = Array.isArray(lesson.taskLectionIds) ? lesson.taskLectionIds : [];
                 const videoIds = Array.isArray(lesson.videoIds) ? lesson.videoIds : [];
-                const taskById = new Map(taskBank.flatMap(group => (group.versions || [])
-                    .filter(version => version.id !== undefined && version.versionLabel !== 'Ex')
-                    .map(version => [String(version.id), {
+                const taskByLectionId = new Map(taskBank.flatMap(group => (group.versions || [])
+                    .filter(version => version.lectionid !== undefined && version.versionLabel !== 'Ex')
+                    .map(version => [String(version.lectionid), {
                         ...version,
                         groupId: group.groupId,
                         calculator: group.calculator || false,
@@ -758,18 +756,18 @@
                 const videoById = new Map(taskBank
                     .filter(group => group.videoId && group.lessonVideo)
                     .map(group => [String(group.videoId), group]));
-                const missingTaskIds = taskIds.filter(id => !taskById.has(String(id)));
+                const missingTaskLectionIds = taskLectionIds.filter(id => !taskByLectionId.has(String(id)));
                 const missingVideoIds = videoIds.filter(id => !videoById.has(String(id)));
 
-                if (missingTaskIds.length || missingVideoIds.length || (!taskIds.length && !videoIds.length)) {
-                    error.innerText = 'Lektionen är felkonfigurerad. Kontrollera uppgifts-id:n och video-id:n i tasks.js.';
+                if (missingTaskLectionIds.length || missingVideoIds.length || (!taskLectionIds.length && !videoIds.length)) {
+                    error.innerText = 'Lektionen är felkonfigurerad. Kontrollera uppgifternas lectionid och video-id:n i tasks.js.';
                     error.classList.remove('hidden');
                     return;
                 }
 
                 state.activeLesson = lesson;
                 state.lessonVideos = videoIds.map(id => videoById.get(String(id)));
-                state.lessonTasks = taskIds.map(id => taskById.get(String(id)));
+                state.lessonTasks = taskLectionIds.map(id => taskByLectionId.get(String(id)));
                 state.tasks = [];
                 state.examplesMap = {};
                 state.taskTypes = [];
@@ -938,12 +936,9 @@
             }
 
             function showVideoSolution() {
-                const vidBtn = document.getElementById('btn-video-sol');
-                const vidBox = document.getElementById('solution-video-box');
-                if (vidBtn) vidBtn.classList.add('hidden');
-                if (vidBox) {
-                    vidBox.classList.remove('hidden');
-                }
+                const task = state.tasks[state.currentTaskIndex];
+                const title = task.id ? `Videolösning – uppgift ${task.id}` : 'Videolösning';
+                openVideoModal(task.video, title);
             }
 
             function openVideoModal(url, title) {
@@ -952,23 +947,28 @@
                 const container = document.getElementById('modal-video-container');
                 
                 titleEl.innerText = title || 'GENOMGÅNG';
-                
-                let embedHtml = '';
-                if (url.includes('youtu.be') || url.includes('youtube.com')) {
-                    let videoId = '';
-                    if (url.includes('youtu.be/')) {
-                        videoId = url.split('youtu.be/')[1].split(/[?&]/)[0];
-                    } else if (url.includes('watch?v=')) {
-                        videoId = url.split('watch?v=')[1].split(/[&]/)[0];
-                    } else if (url.includes('embed/')) {
-                        videoId = url.split('embed/')[1].split(/[?&]/)[0];
+
+                const videoUrl = new URL(url, window.location.href);
+                const host = videoUrl.hostname.toLowerCase().replace(/^www\./, '');
+                let videoId = '';
+                if (host === 'youtu.be') {
+                    videoId = videoUrl.pathname.split('/').filter(Boolean)[0] || '';
+                } else if (host === 'youtube.com' || host === 'm.youtube.com') {
+                    if (videoUrl.pathname === '/watch') {
+                        videoId = videoUrl.searchParams.get('v') || '';
+                    } else {
+                        const videoMatch = videoUrl.pathname.match(/^\/(?:embed|shorts)\/([^/]+)/);
+                        videoId = videoMatch ? videoMatch[1] : '';
                     }
-                    embedHtml = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-                } else {
-                    embedHtml = `<video controls class="w-full h-full"><source src="${url}" type="video/mp4">Din webbläsare stöder inte videouppspelning.</video>`;
                 }
-                
-                container.innerHTML = embedHtml;
+
+                if (!/^[\w-]+$/.test(videoId)) {
+                    container.innerText = 'Videolänken är ogiltig eller stöds inte. Använd en YouTube-länk.';
+                    modal.classList.remove('hidden');
+                    return;
+                }
+
+                container.innerHTML = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
                 modal.classList.remove('hidden');
             }
 

@@ -182,7 +182,8 @@
                 examplesMap: {}, 
                 currentTaskIndex: 0,
                 activeLesson: null,
-                lessonVideos: []
+                lessonVideos: [],
+                lessonTasks: []
             };
 
             function getCurrentBank() {
@@ -560,27 +561,12 @@
                 const view = document.getElementById('view-task');
                 
                 if(state.tasks.length === 0) {
-                    view.innerHTML = '';
                     if (state.activeLesson) {
-                        const header = document.createElement('div');
-                        header.className = 'flex justify-between items-center mb-6';
-                        const title = document.createElement('h2');
-                        title.className = 'text-xl font-bold text-slate-200';
-                        title.innerText = state.activeLesson.title;
-                        const leaveButton = document.createElement('button');
-                        leaveButton.className = 'text-slate-300 hover:text-white bg-slate-800 px-4 py-2 rounded-lg border border-slate-700';
-                        leaveButton.innerText = 'Avsluta lektion';
-                        leaveButton.onclick = exitLesson;
-                        header.append(title, leaveButton);
-                        view.appendChild(header);
-
-                        const videos = document.createElement('div');
-                        videos.className = 'bg-slate-900/60 p-5 rounded-xl border border-slate-700/50';
-                        renderLessonVideos(videos);
-                        view.appendChild(videos);
+                        renderLessonMenu();
                         return;
                     }
 
+                    view.innerHTML = '';
                     view.appendChild(createBackButton(() => renderDifficulty()));
                     const errorMsg = document.createElement('p');
                     errorMsg.className = 'text-center text-red-400 mt-10 bg-red-900/20 p-4 rounded-lg border border-red-500/30';
@@ -606,7 +592,7 @@
                 view.innerHTML = `
                     <div class="flex justify-between items-center mb-6">
                         <button id="btn-leave-task" class="flex items-center gap-2 text-slate-300 hover:text-white transition-colors duration-200 group font-medium bg-slate-800/50 hover:bg-slate-800 px-4 py-2 rounded-lg border border-slate-700">
-                            <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> Avsluta
+                            <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> ${state.activeLesson ? 'Tillbaka till lektionen' : 'Avsluta'}
                         </button>
                         <div class="flex items-center gap-3">
                             ${currentExample ? `
@@ -700,16 +686,9 @@
                     lessonTitle.className = 'text-sm font-bold uppercase tracking-wider text-indigo-300 mb-4';
                     lessonTitle.innerText = state.activeLesson.title;
                     view.insertBefore(lessonTitle, view.firstChild);
-
-                    if (state.lessonVideos.length) {
-                        const videos = document.createElement('div');
-                        videos.className = 'bg-slate-900/60 p-5 rounded-xl border border-slate-700/50 mb-5';
-                        renderLessonVideos(videos);
-                        view.insertBefore(videos, view.children[2]);
-                    }
                 }
 
-                document.getElementById('btn-leave-task').onclick = state.activeLesson ? exitLesson : renderDifficulty;
+                document.getElementById('btn-leave-task').onclick = state.activeLesson ? renderLessonMenu : renderDifficulty;
                 
                 if (currentExample && document.getElementById('btn-show-example')) {
                     document.getElementById('btn-show-example').onclick = () => {
@@ -784,6 +763,7 @@
                         ...version,
                         groupId: group.groupId,
                         calculator: group.calculator || false,
+                        difficulty: group.difficulty,
                         area: group.area,
                         subArea: group.subArea
                     }])));
@@ -801,11 +781,68 @@
 
                 state.activeLesson = lesson;
                 state.lessonVideos = videoIds.map(id => videoById.get(String(id)));
-                state.tasks = taskIds.map(id => taskById.get(String(id)));
+                state.lessonTasks = taskIds.map(id => taskById.get(String(id)));
+                state.tasks = [];
                 state.examplesMap = {};
                 state.taskTypes = [];
                 state.currentTaskIndex = 0;
                 state.mode = 'lesson';
+
+                renderLessonMenu();
+            }
+
+            function renderLessonMenu() {
+                showView('view-task');
+                showHeaderSubtitle(false);
+                showTabs(false);
+                const view = document.getElementById('view-task');
+                view.innerHTML = '';
+
+                const header = document.createElement('div');
+                header.className = 'flex justify-between items-center mb-6 gap-4';
+                const title = document.createElement('h2');
+                title.className = 'text-xl font-bold text-slate-200';
+                title.innerText = state.activeLesson.title;
+                const leaveButton = document.createElement('button');
+                leaveButton.className = 'text-slate-300 hover:text-white bg-slate-800 px-4 py-2 rounded-lg border border-slate-700 shrink-0';
+                leaveButton.innerText = 'Avsluta lektion';
+                leaveButton.onclick = exitLesson;
+                header.append(title, leaveButton);
+                view.appendChild(header);
+
+                const options = document.createElement('div');
+                options.className = 'space-y-4';
+
+                if (state.lessonVideos.length) {
+                    options.appendChild(createButton('Titta på genomgångar', renderLessonVideosView, 'bg-gradient-to-r from-sky-600 to-cyan-600 shadow-sky-900/40 hover:shadow-cyan-700/60'));
+                }
+
+                const availableDifficulties = [...new Set(state.lessonTasks.map(task => task.difficulty).filter(Boolean))].sort((a, b) => a - b);
+                availableDifficulties.forEach(diff => {
+                    options.appendChild(createButton(`Lös uppgifter på nivå ${diff}`, () => startLessonLevel(diff), 'bg-gradient-to-r from-fuchsia-600 to-pink-600 shadow-fuchsia-900/40 hover:shadow-pink-700/60'));
+                });
+                view.appendChild(options);
+            }
+
+            function renderLessonVideosView() {
+                showView('view-task');
+                showHeaderSubtitle(false);
+                showTabs(false);
+                const view = document.getElementById('view-task');
+                view.innerHTML = '';
+                view.appendChild(createBackButton(renderLessonMenu));
+
+                const videos = document.createElement('div');
+                videos.className = 'bg-slate-900/60 p-5 rounded-xl border border-slate-700/50';
+                renderLessonVideos(videos);
+                view.appendChild(videos);
+            }
+
+            function startLessonLevel(difficulty) {
+                state.tasks = state.lessonTasks.filter(task => task.difficulty === difficulty);
+                state.examplesMap = {};
+                state.taskTypes = [];
+                state.currentTaskIndex = 0;
 
                 state.tasks.forEach((task, index) => {
                     const group = taskBank.find(item => item.groupId === task.groupId);
@@ -823,6 +860,7 @@
             function exitLesson() {
                 state.activeLesson = null;
                 state.lessonVideos = [];
+                state.lessonTasks = [];
                 state.tasks = [];
                 state.taskTypes = [];
                 state.examplesMap = {};
@@ -966,11 +1004,11 @@
                             <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300 mb-3">${state.activeLesson ? 'Lektion klar!' : 'Snyggt jobbat!'}</h2>
                             <p class="mb-8 text-slate-400">${state.activeLesson ? 'Du har gjort alla uppgifter i lektionen.' : 'Du har gjort alla uppgifter i detta område.'}</p>
                             <button id="btn-finish-task" class="w-full max-w-xs p-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 text-white font-bold shadow-lg shadow-indigo-900/40 transition-all duration-300 hover:scale-[1.02]">
-                                ${state.activeLesson ? 'Avsluta lektion' : 'Välj ny nivå / område'}
+                                ${state.activeLesson ? 'Tillbaka till lektionen' : 'Välj ny nivå / område'}
                             </button>
                         </div>
                     `;
-                    document.getElementById('btn-finish-task').onclick = state.activeLesson ? exitLesson : renderDifficulty;
+                    document.getElementById('btn-finish-task').onclick = state.activeLesson ? renderLessonMenu : renderDifficulty;
                 }
             }
 

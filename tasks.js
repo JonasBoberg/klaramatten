@@ -1112,7 +1112,7 @@ solution: "Svar: 2"
 { groupId: "Fyll i raden - konjugat", area: "Konjugat / Kvadrering", subArea: "Förenkla uttryck", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 788, versionLabel: "A", question: "Vad ska stå i parentesen?<br>\\( (2x+5)(\\)_______\\()=4x^2-25 \\)", solution: "Svar: \\(2x-5\\)" },
 { id: 789, versionLabel: "B", question: "Vad ska stå i parentesen?<br>\\( (x-12)(\\)_______\\()=x^2-144 \\)", solution: "Svar: \\(x+12\\)" },
-{ id: 790, versionLabel: "C", question: "Vad ska stå i parentesen?<br>\\( (\\)_______\\()(3a+1)=9a^2-1 \\)", solution: "Svar: \\(3a-1\)" },
+{ id: 790, versionLabel: "C", question: "Vad ska stå i parentesen?<br>\\( (\\)_______\\()(3a+1)=9a^2-1 \\)", solution: "Svar: \\(3a-1\\)" },
 ] },
 { groupId: "Kvadrering från f(x) - medel", area: "Konjugat / Kvadrering", subArea: "Förenkla uttryck", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 2, versions: [
 { id: 791, versionLabel: "A", question: "Givet \\( f(x)=x^2+4x \\), skriv ett förenklat uttryck för \\(f(a+3).\\)", solution: "Svar: \\( a^2+10a+21 \\)" },

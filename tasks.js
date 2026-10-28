@@ -39,7 +39,7 @@ const taskBank = [
 { id: 23, versionLabel: "D", question: "I klass 8B går det 40 elever. 30% spelar fotboll och 20% spelar innebandy. Resten spelar ingen av dessa sporter. Hur många elever spelar ingen av dessa sporter?", solution: "Svar: 20 st (50% av 40)" },
 { id: 24, versionLabel: "E", question: "I ett bibliotek finns det 90 böcker på ett bord. 20% är deckare och 50% är faktaböcker. Resten är romaner. Hur många romaner finns det på bordet?", solution: "Svar: 27 st (30% av 90)" },
 ] },
-{ groupId: "Procentuell förändring 1", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 1, versions: [
+{ groupId: "Beräkna procentuella förändringen", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 1, versions: [
 { id: 25, versionLabel: "A", question: "En jacka kostade först 800 kr men säljs nu för 680 kr. Med hur många procent har priset minskat?", solution: "Svar: Det har minskat med 15%." },
 { id: 26, versionLabel: "B", question: "En mobil kostade först 4000 kr men kostar nu 4800 kr. Med hur många procent har priset ökat?", solution: "Svar: Det har ökat med 20%." },
 { id: 27, versionLabel: "C", question: "En tröja kostade först 440 kr men säljs nu för 360 kr. Med hur många procent har priset minskat? Svara med en decimal.", solution: "Svar: Det har minskat med 18,2%." },
@@ -105,31 +105,31 @@ const taskBank = [
 { id: 71, versionLabel: "B", question: "Din nya TV förväntas minska i värde med 14% per år. Med hur många procent har TV:n minskat i värde efter 5 år? Svara i procent med en decimal.", solution: "Svar: \\( 0,86^5 = 0,470427\\). Värdet har minskat med 53,0%." },
 { id: 72, versionLabel: "C", question: "Du sätter in pengar på ett sparkonto med 4% ränta. Med hur många procent har värdet av pengarna ökat efter 3 år? Svara i procent med en decimal.", solution: "Svar: Pengarnas värde har ökat med 12,5%.", exp: "Förändringsfaktorn för ett år är \\(1,04\\). Tre år i rad blir detta: \\( 1,04^3 = 1,124864\\) vilket motsvarar en ökning med ca 12,5%." },
 ] },
-{ groupId: "förändringsfaktor NP 1", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
+{ groupId: "Förändringsfaktor NP 1", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
 { id: 73, versionLabel: "A", question: "En aktie har från början värdet 200 kr. Första veckan ökar värdet med 10% och andra veckan minskar värdet med 10%. Aktiens värde fortsätter att förändras i samma mönster. (NP Ma1abc).<br>a) Hur mycket är aktien värd efter två veckor?<br>b) Hur mycket är aktien värd efter 100 veckor?", solution: "a) 198 kr<br>b) 121 kr" },
 ] },
-{ groupId: "förändringsfaktor NP 2", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
+{ groupId: "Förändringsfaktor NP 2", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
 { id: 74, versionLabel: "A", question: "Oskar vinner x kr i en tävling. Ahmed vinner 40 % mer än Oskar. Stina vinner 20 % mindre än Oskar. Hur många procent större är Ahmeds vinst jämfört med Stinas?", solution: "\\(\\frac{0,6x}{0,8x}=0,75\\). Svar: 75%." },
 ] },
-{ groupId: "vinkelsumma med ff", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
+{ groupId: "Vinkelsumma med ff", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
 { id: 75, versionLabel: "A", question: "En triangel har vinklarna U, V och W. Vinkel V är 20 % mindre än vinkel U och vinkel W är 40 % större än vinkel U. Bestäm vinkel W.", solution: "Svar: Lös ekvationen \\(x+1,4x+0,8x=180\\). \\(W=78,75^{\\circ} \\)." },
 { id: 76, versionLabel: "B", question: "En triangel har vinklarna U, V och W. Vinkel V och vinkel W är båda 30 % mindre än vinkel U. Bestäm vinkel V.", solution: "Svar: Lös ekvationen \\(x+0,7x+0,7x=180\\). \\(V=52,5^{\\circ} \\)." },
 { id: 77, versionLabel: "C", question: "En triangel har vinklarna A, B och C. Vinkel B är 72 % mindre än vinkel A. Vinkel C är 60 % större än vinkel A. Bestäm triangelns vinklar. (NP 1a, 1b, 1c)", solution: "Svar: Lös ekvationen \\(x+0,28x+1,6x=180\\) så får du \\(A=62,5^{\\circ} \\), \\(B=17,5^{\\circ} \\) och \\(C=100^{\\circ} \\)." }
 ] },
-{ groupId: "bråk -> decimal", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Från bråkform till decimalform", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 78, versionLabel: "A", question: "Skriv talen i decimalform:<br>a) \\(\\frac{1}{4}\\)<br>b) \\(\\frac{1}{2}\\)<br>c) \\(\\frac{2}{5}\\)", solution: "a) 0,25<br>b) 0,5<br>c) 0,4" },
 { id: 79, versionLabel: "B", question: "Skriv talen i decimalform:<br>a) \\(\\frac{3}{4}\\)<br>b) \\(\\frac{3}{12}\\)<br>c) \\(\\frac{1}{5}\\)", solution: "a) 0,75<br>b) 0,25<br>c) 0,2" },
 { id: 80, versionLabel: "C", question: "Skriv talen i decimalform:<br>a) \\(\\frac{10}{20}\\)<br>b) \\(\\frac{6}{8}\\)<br>c) \\(\\frac{4}{5}\\)", solution: "a) 0,5<br>b) 0,75<br>c) 0,8" },
 { id: 81, versionLabel: "Ex", example: "Viktiga bråk att kunna utantill:<br>\\(\\frac{1}{2}=0,5\\) &nbsp &nbsp &nbsp\\(\\frac{1}{4}=0,25\\) &nbsp &nbsp &nbsp \\(\\frac{1}{5}=0,2\\) &nbsp &nbsp &nbsp \\(\\frac{1}{10}=0,1\\) &nbsp &nbsp &nbsp \\(\\frac{1}{100}=0,01\\)<br><br>Du kan t.ex. skriva \\(\\frac{9}{15}=\\frac{3}{5}=0,6\\)." },
 ] },
-{ groupId: "decimal -> bråk", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Från decimalform till bråkform", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 82, versionLabel: "A", question: "Skriv talen i enklaste bråkform:<br>a) 0,20<br>b) 1,25<br>c) 0,7", solution: "a) \\(\\frac{1}{5}\\)<br>b) \\(\\frac{5}{4}\\)<br>c) \\(\\frac{7}{10}\\)" },
 { id: 83, versionLabel: "B", question: "Skriv talen i enklaste bråkform:<br>a) 0,4<br>b) 0,25<br>c) 0,75", solution: "a) \\(\\frac{2}{5}\\)<br>b) \\(\\frac{1}{4}\\)<br>c) \\(\\frac{3}{4}\\)" },
 { id: 84, versionLabel: "C", question: "Skriv talen i enklaste bråkform:<br>a) 0,5<br>b) 0,3<br>c) 1,2", solution: "a) \\(\\frac{1}{2}\\)<br>b) \\(\\frac{3}{10}\\)<br>c) \\(\\frac{6}{5}\\)" },
 { id: 85, versionLabel: "D", question: "Skriv talen i enklaste bråkform:<br>a) 0,6<br>b) 1,4<br>c) 1,5", solution: "a) \\(\\frac{3}{5}\\)<br>b) \\(\\frac{7}{5}\\)<br>c) \\(\\frac{3}{2}\\)" },
 { id: 86, versionLabel: "Ex", example: "Viktiga bråk att kunna utantill:<br>\\(\\frac{1}{2}=0,5\\) &nbsp &nbsp &nbsp\\(\\frac{1}{4}=0,25\\) &nbsp &nbsp &nbsp \\(\\frac{1}{5}=0,2\\) &nbsp &nbsp &nbsp \\(\\frac{1}{10}=0,1\\) &nbsp &nbsp &nbsp \\(\\frac{1}{100}=0,01\\)<br><br>Du kan t.ex. skriva \\(0,75=3\\cdot0,25=3\\cdot\\frac{1}{4}=\\frac{3}{4}\\)." },
 ] },
-{ groupId: "förkorta bråk", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Förkorta bråk", area: "Aritmetik", subArea: "Bråk/decimal/procent", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 87, versionLabel: "A", question: "Skriv bråken i enklaste form:<br>a) \\(\\frac{4}{10}\\)<br>b) \\(\\frac{5}{15}\\)", solution: "a) \\(\\frac{2}{5}\\)<br>b) \\(\\frac{1}{3}\\)" },
 { id: 88, versionLabel: "B", question: "Skriv bråken i enklaste form:<br>a) \\(\\frac{12}{16}\\)<br>b) \\(\\frac{15}{20}\\)", solution: "a) \\(\\frac{3}{4}\\)<br>b) \\(\\frac{3}{4}\\)" },
 { id: 89, versionLabel: "C", question: "Skriv bråken i enklaste form:<br>a) \\(\\frac{6}{10}\\)<br>b) \\(\\frac{2}{8}\\)", solution: "a) \\(\\frac{3}{5}\\)<br>b) \\(\\frac{1}{4}\\)" },
@@ -247,7 +247,7 @@ const taskBank = [
 { id: 169, versionLabel: "F", question: "På en parkering finns 28 cyklar och 42 sparkcyklar. <br>a) Skriv förhållandet mellan antalet cyklar och sparkcyklar.<br>b) Förkorta förhållandet så långt som möjligt.", solution: "a) 28 : 42<br>b) 2 : 3" },
 { id: 170, versionLabel: "Ex", example: "Förhållande mellan elever:<br>I en klass finns det 12 pojkar och 18 flickor. Förhållandet mellan pojkar och flickor är då 12:18.<br>Detta kan förkortas till 2:3. Det betyder att det finns 2 pojkar för varje 3 flickor." },
 ] },
-{ groupId: "add/sub bråk med olika nämnare - enkla förlängningar", area: "Aritmetik", subArea: "Räkna med bråk", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: false, difficulty: 1, versions: [
+{ groupId: "Addition och subtraktion: bråk med olika nämnare - enkla förlängningar", area: "Aritmetik", subArea: "Räkna med bråk", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: false, difficulty: 1, versions: [
 { id: 171, versionLabel: "A", question: "Beräkna: \\( \\frac{3}{100} + \\frac{2}{50} \\) och svara i enklaste bråkform.", solution: "Svar: \\( \\frac{7}{100} \\)", exp: "Förläng det högra bråket med 2:<br>\\(\\frac{3}{100}+\\frac{2\\cdot2}{50\\cdot2}=\\frac{3}{100}+\\frac{4}{100}=\\frac{7}{100}\\)" },
 { id: 172, versionLabel: "B", question: "Beräkna: \\( \\frac{5}{2} - \\frac{4}{10} \\) och svara i enklaste bråkform.", solution: "Svar: \\( \\frac{21}{10} \\)", exp: "Förläng det vänstra bråket med 5:<br>\\(\\frac{5\\cdot5}{5\\cdot2}-\\frac{4}{10}=\\frac{25}{10}-\\frac{4}{10}=\\frac{21}{10}\\)" },
 { id: 173, versionLabel: "C", question: "Beräkna: \\( \\frac{1}{4} + \\frac{1}{8} \\) och svara i enklaste bråkform.", solution: "Svar: \\( \\frac{3}{8} \\)", exp: "Förläng det vänstra bråket med 2:<br>\\(\\frac{1\\cdot2}{4\\cdot2}+\\frac{1}{8}=\\frac{2}{8}+\\frac{1}{8}=\\frac{3}{8}\\)" },
@@ -258,19 +258,19 @@ const taskBank = [
 { id: 178, versionLabel: "H", question: "Beräkna: \\( \\frac{4}{7} + \\frac{3}{14} \\) och svara i enklaste bråkform.", solution: "Svar: \\( \\frac{11}{14} \\)", exp: "Förläng det vänstra bråket med 2:<br>\\(\\frac{4\\cdot2}{7\\cdot2}+\\frac{3}{14}=\\frac{8}{14}+\\frac{3}{14}=\\frac{11}{14}\\)" },
 { id: 179, versionLabel: "I", question: "Vad blir \\( \\frac{11}{15} - \\frac{2}{5} \\)? Svara i enklaste bråkform.", solution: "Svar: \\( \\frac{1}{3} \\)", exp: "Förläng det högra bråket med 3:<br>\\(\\frac{11}{15}-\\frac{2\\cdot3}{5\\cdot3}=\\frac{11}{15}-\\frac{6}{15}=\\frac{5}{15}=\\frac{1}{3}\\)" },
 ] },
-{ groupId: "add/sub bråk med olika nämnare - halvenkla förlängningar", area: "Aritmetik", subArea: "Räkna med bråk", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: false, difficulty: 1, versions: [
+{ groupId: "Addition och subtraktion: bråk med olika nämnare - halvenkla förlängningar", area: "Aritmetik", subArea: "Räkna med bråk", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: false, difficulty: 1, versions: [
 { id: 180, versionLabel: "A", question: "Vad blir \\( \\frac{1}{2} + \\frac{2}{3} \\)? Svara i enklaste bråkform.", solution: "Svar: \\( \\frac{7}{6} \\)" },
 { id: 181, versionLabel: "B", question: "Vad blir \\( \\frac{5}{3} - \\frac{5}{4} \\)? Svara i enklaste bråkform.", solution: "Svar: \\( \\frac{5}{12} \\)" },
 { id: 182, versionLabel: "C", question: "Vad blir \\( \\frac{4}{5} + \\frac{1}{2} \\)? Svara i enklaste bråkform.", solution: "Svar: \\( \\frac{13}{10} \\)" },
 ] },
-{ groupId: "add/sub bråk med olika nämnare - svåra förlängningar", area: "Aritmetik", subArea: "Räkna med bråk", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: false, difficulty: 1, versions: [
+{ groupId: "Addition och subtraktion: bråk med olika nämnare - svåra förlängningar", area: "Aritmetik", subArea: "Räkna med bråk", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: false, difficulty: 1, versions: [
 { id: 183, versionLabel: "A", question: "Vad blir \\( \\frac{5}{6} - \\frac{1}{9} \\)? Svara i enklaste bråkform.", solution: "Svar: \\( \\frac{13}{18} \\)" },
 { id: 184, versionLabel: "B", question: "Vad blir \\( \\frac{1}{12} + \\frac{5}{18} \\)? Svara i enklaste bråkform.", solution: "Svar: \\( \\frac{13}{36} \\)" },
 { id: 185, versionLabel: "C", question: "Beräkna \\(\\frac{7}{9} + \\frac{5}{12} \\). Svara i enklaste bråkform.", solution: "Svar: \\( \\frac{43}{36} \\)" },
 { id: 186, versionLabel: "D", question: "Beräkna \\(\\frac{13}{20} - \\frac{1}{8} \\). Svara i enklaste bråkform.", solution: "Svar: \\( \\frac{21}{40} \\)" },
 { id: 187, versionLabel: "Ex", example: "För att beräkna \\( \\frac{3}{5} - \\frac{1}{4} \\) behöver vi göra om bråken så att de får samma nämnare:<br> \\( \\frac{3}{5}-\\frac{1}{4}=\\) \\( \\frac{3\\cdot4}{5\\cdot4}-\\frac{1\\cdot5}{4\\cdot5}=\\) \\( \\frac{12}{20}-\\frac{5}{20}=\\)\\( \\frac{7}{20}.\\)" },
 ] },
-{ groupId: "add/sub bråk med olika nämnare - många deluppgifter", area: "Aritmetik", subArea: "Räkna med bråk", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Addition och subtraktion: bråk med olika nämnare - många deluppgifter", area: "Aritmetik", subArea: "Räkna med bråk", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 188, versionLabel: "A", question: "Beräkna uttrycken nedan och svara i enklaste bråkform:<br>a) \\( \\frac{1}{3} + \\frac{1}{2} \\)<br>b) \\( \\frac{5}{6} - \\frac{3}{4} \\)<br>c) \\( \\frac{1}{8} + \\frac{3}{5} \\)", solution: "a) \\(\\frac{5}{6}\\)<br>b) \\(\\frac{1}{12}\\)<br>c) \\(\\frac{29}{40}\\)<br>" },
 { id: 189, versionLabel: "B", question: "Beräkna uttrycken nedan och svara i enklaste bråkform:<br>a) \\( \\frac{1}{2} - \\frac{1}{5} \\)<br>b) \\( \\frac{4}{5} + \\frac{2}{3} \\)<br>c) \\( \\frac{1}{4} + \\frac{1}{6} \\)", solution: "a) \\(\\frac{3}{10}\\)<br>b) \\(\\frac{22}{15}\\)<br>c) \\(\\frac{5}{12}\\)<br>" },
 { id: 190, versionLabel: "C", question: "Beräkna uttrycken nedan och svara i enklaste bråkform:<br>a) \\( \\frac{5}{4} - \\frac{1}{3} \\)<br>b) \\( \\frac{2}{9} + \\frac{1}{2} \\)<br>c) \\( \\frac{1}{2} - \\frac{1}{10} \\)", solution: "a) \\(\\frac{11}{12}\\)<br>b) \\(\\frac{13}{18}\\)<br>c) \\(\\frac{2}{5}\\)<br>" },
@@ -880,69 +880,22 @@ const taskBank = [
 { id: 644, versionLabel: "G", question: "Lös ut variabeln \\( y \\) ur uttrycket \\( \\frac{y}{4}+3=10x \\).", solution: "Svar: \\( y=40x-12 \\)" },
 { id: 645, versionLabel: "H", question: "Lös ut variabeln \\( x \\) ur uttrycket \\( 9x-3=6y \\).", solution: "Svar: \\( x=\\frac{2y+1}{3} \\)" },
 ] },
-{ groupId: "Använd formel, ej text", area: "Algebra", subArea: "Formler", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: false, difficulty: 1, versions: [
+{ groupId: "Sätt in värden i formel (utan text)", area: "Algebra", subArea: "Formler", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: false, difficulty: 1, versions: [
 { id: 646, versionLabel: "A", question: "Utgå från formeln \\( \\frac{a-b}{2}=5c \\). Beräkna värdet av \\( b \\) om \\( a=10 \\) och \\( c=100.\\)", solution: "Svar: \\( b=-990 \\)" },
 { id: 647, versionLabel: "B", question: "Utgå från formeln \\( \\frac{15+2a}{b}=b+c \\). Beräkna värdet av \\( a \\) om \\( b=5 \\) och \\( c=2.\\)", solution: "Svar: \\( a=10 \\)" },
+{ id: 648, versionLabel: "C", question: "Utgå från formeln \\( 2r_1+t^2=\\frac{5r_2}{2} \\). Beräkna värdet av \\( r_1 \\) om \\( t=3 \\) och \\( r_2=4 \\).", solution: "Svar: \\( r_1=0,5 \\)" },
 ] },
-{
-id: 648,
-area: "Algebra",
-subArea: "Formler",
-courses: ["Ma1a", "Ma1b", "Ma1c"],
-question: "Utgå från formeln \\( 2r_1+t^2=\\frac{5r_2}{2} \\). Beräkna värdet av \\( r_1 \\) om \\( t=3 \\) och \\( r_2=4 \\).",
-difficulty: 1,
-solution: "Svar: \\( r_1=0,5 \\)"
-},
-{
-id: 649,
-area: "Algebra",
-subArea: "Formler",
-courses: ["Ma1a", "Ma1b", "Ma1c"],
-question: "En formel för att approximera en persons maxpuls är \\(P=220-0,7\\cdot a\\), där \\(P\\) är maxpulsen och \\(a\\) är personens ålder.<br>Vilken maxpuls har en person som är 40 år enligt denna formel?",
-calculator: true,
-difficulty: 1,
-solution: "Svar: 192 (bpm) "
-},
-{
-id: 650,
-area: "Algebra",
-subArea: "Formler",
-courses: ["Ma1a", "Ma1b", "Ma1c"],
-question: "En formel för att approximera en persons maxpuls är \\(P=220-0,7\\cdot a\\), där \\(P\\) är maxpulsen och \\(a\\) är personens ålder.<br>En löpare har maxpulsen 203 bpm. Hur gammal är löparen enligt formeln?",
-calculator: true,
-difficulty: 1,
-solution: "Svar: 24 år"
-},
-{
-id: 651,
-area: "Algebra",
-subArea: "Formler",
-courses: ["Ma1a", "Ma1b", "Ma1c"],
-question: "Trycket i en gas kan beskrivas med formeln \\(p=\\frac{120}{V} \\) där \\(p\\) är trycket i pascal och \\(V\\) är volymen i liter.<br>a) Vad är trycket när volymen är 10 liter?<br>b) Vilken volym ger trycket 15 pascal?",
-calculator: true,
-difficulty: 1,
-solution: "Svar: a) 12 pascal<br>b) 8 liter"
-},
-{
-id: 652,
-area: "Algebra",
-subArea: "Formler",
-courses: ["Ma1a", "Ma1b", "Ma1c"],
-question: "Afrikas högsta berg Kilimanjaro har en höjd på 5 892 meter över havet. Johan vandrar mot toppen. När han tar en paus och kokar tevatten konstaterar han att vattnet kokar vid 85 °C. Han vet att vattnets koktemperatur sjunker ju högre upp han kommer. Sambandet mellan koktemperatur och höjd över havet kan beskrivas med formeln \\( t=100-\\frac{h}{100} \\) där \\(t\\) är vattnets koktemperatur i grader Celsius och \\( h \\) är höjden över havet mätt i meter.<br>a) Vid vilken temperatur kokar vatten på Kilimanjaros topp?<br>b) På vilken höjd över havet befinner sig Johan när han kokar sitt tevatten?",
-calculator: true,
-difficulty: 1,
-solution: "a)\\(40,9^{\\circ}C \\)<br>b) 1500m"
-},
-{
-id: 653,
-area: "Algebra",
-subArea: "Formler",
-courses: ["Ma1a", "Ma1b", "Ma1c"],
-question: "En bils bränsleförbrukning kan approximeras med formeln \\(F=0,05v+0,2\\) där \\(F\\) är förbrukningen i liter per mil och \\(v\\) är hastigheten i km/h.<br>a) Hur stor är bränsleförbrukningen vid hastigheten 90 km/h?<br>b) Vid vilken hastighet är bränsleförbrukningen 3,7 liter per mil?",
-calculator: true,
-difficulty: 1,
-solution: "Svar: a) 4,7 liter/min<br>b) 70 km/h"
-},
+{ groupId: "Sätt in värden i formel, textuppgift", area: "Algebra", subArea: "Formler", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 1, versions: [
+{ id: 649, versionLabel: "A", question: "En formel för att approximera en persons maxpuls är \\(P=220-0,7\\cdot a\\), där \\(P\\) är maxpulsen och \\(a\\) är personens ålder.<br>Vilken maxpuls har en person som är 40 år enligt denna formel?", solution: "Svar: 192 (bpm)" },
+] },
+{ groupId: "Sätt in värden i formel och lös ekvation, textuppgift", area: "Algebra", subArea: "Formler", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 1, versions: [
+{ id: 650, versionLabel: "A", question: "En formel för att approximera en persons maxpuls är \\(P=220-0,7\\cdot a\\), där \\(P\\) är maxpulsen och \\(a\\) är personens ålder.<br>En löpare har maxpulsen 203 bpm. Hur gammal är löparen enligt formeln?", solution: "Svar: 24 år" },
+] },
+{ groupId: "Sätt in värden i formel, två deluppgifter, textuppgift", area: "Algebra", subArea: "Formler", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 1, versions: [
+{ id: 651, versionLabel: "A", question: "Trycket i en gas kan beskrivas med formeln \\(p=\\frac{120}{V} \\) där \\(p\\) är trycket i pascal och \\(V\\) är volymen i liter.<br>a) Vad är trycket när volymen är 10 liter?<br>b) Vilken volym ger trycket 15 pascal?", solution: "Svar: a) 12 pascal<br>b) 8 liter"},
+{ id: 652, versionLabel: "B", question: "Afrikas högsta berg Kilimanjaro har en höjd på 5 892 meter över havet. Johan vandrar mot toppen. När han tar en paus och kokar tevatten konstaterar han att vattnet kokar vid 85 °C. Han vet att vattnets koktemperatur sjunker ju högre upp han kommer. Sambandet mellan koktemperatur och höjd över havet kan beskrivas med formeln \\( t=100-\\frac{h}{100} \\) där \\(t\\) är vattnets koktemperatur i grader Celsius och \\( h \\) är höjden över havet mätt i meter.<br>a) Vid vilken temperatur kokar vatten på Kilimanjaros topp?<br>b) På vilken höjd över havet befinner sig Johan när han kokar sitt tevatten?", solution: "a)\\(40,9^{\\circ}C \\)<br>b) 1500m"},
+{ id: 653, versionLabel: "C", question: "En bils bränsleförbrukning kan approximeras med formeln \\(F=0,05v+0,2\\) där \\(F\\) är förbrukningen i liter per mil och \\(v\\) är hastigheten i km/h.<br>a) Hur stor är bränsleförbrukningen vid hastigheten 90 km/h?<br>b) Vid vilken hastighet är bränsleförbrukningen 3,7 liter per mil?", solution: "Svar: a) 4,7 liter/min<br>b) 70 km/h"},
+] },
 {
 id: 654,
 area: "Algebra",
@@ -1161,7 +1114,7 @@ solution: "Svar: 2"
 { id: 789, versionLabel: "B", question: "Vad ska stå i parentesen?<br>\\( (x-12)(\\)_______\\()=x^2-144 \\)", solution: "Svar: \\(x+12\\)" },
 { id: 790, versionLabel: "C", question: "Vad ska stå i parentesen?<br>\\( (\\)_______\\()(3a+1)=9a^2-1 \\)", solution: "Svar: \\(3a-1\)" },
 ] },
-{ groupId: "Kvadrering från f(x)", area: "Konjugat / Kvadrering", subArea: "Förenkla uttryck", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 2, versions: [
+{ groupId: "Kvadrering från f(x) - medel", area: "Konjugat / Kvadrering", subArea: "Förenkla uttryck", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 2, versions: [
 { id: 791, versionLabel: "A", question: "Givet \\( f(x)=x^2+4x \\), skriv ett förenklat uttryck för \\(f(a+3).\\)", solution: "Svar: \\( a^2+10a+21 \\)" },
 { id: 792, versionLabel: "B", question: "Givet \\( g(x)=x+3x^2 \\), skriv ett förenklat uttryck för \\(g(a+1).\\)", solution: "Svar: \\( 3a^2+7a+4 \\)" },
 ] },
@@ -1175,7 +1128,7 @@ solution: "Svar: 2"
 { id: 797, versionLabel: "C", question: "Beräkna \\( 29^2 \\) med hjälp av kvadreringsregeln.", solution: "\\( 29^2 = (30-1)^2 \\)<br>\\(=900-60+1=841\\)" },
 { id: 798, versionLabel: "D", question: "Beräkna \\( 51^2 \\) med hjälp av kvadreringsregeln.", solution: "\\( 51^2 = (50+1)^2 \\)<br>\\(=2500+100+1=2601\\)" },
 ] },
-{ groupId: "Faktorisera kvadreringsreglerna 1", area: "Konjugat / Kvadrering", subArea: "Faktorisera", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ groupId: "Faktorisera kvadreringsreglerna", area: "Konjugat / Kvadrering", subArea: "Faktorisera", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 799, versionLabel: "A", question: "Faktorisera uttrycket: \\( x^2+6x+9 \\).", solution: "\\( (x+3)^2 \\)", video: "filmer/Uppgift_002.webm"},
 { id: 800, versionLabel: "B", question: "Faktorisera uttrycket: \\( x^2-6x+9 \\).", solution: "\\( (x-3)^2 \\)" },
 { id: 801, versionLabel: "C", question: "Faktorisera uttrycket: \\( x^2-10x+25 \\).", solution: "\\( (x-5)^2 \\)" },
@@ -1183,7 +1136,7 @@ solution: "Svar: 2"
 { id: 803, versionLabel: "E", question: "Faktorisera uttrycket: \\( x^2+14x+49 \\).", solution: "\\( (x+7)^2 \\)" },
 { id: 804, versionLabel: "F", question: "Faktorisera uttrycket: \\( x^2-12x+36 \\).", solution: "\\( (x-6)^2 \\)" },
 ] },
-{ groupId: "Faktorisera konjugatregeln 1", area: "Konjugat / Kvadrering", subArea: "Faktorisera", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
+{ groupId: "Faktorisera konjugatregeln", area: "Konjugat / Kvadrering", subArea: "Faktorisera", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 805, versionLabel: "A", question: "Faktorisera uttrycket: \\( x^2-16. \\)", solution: "\\( (x-4)(x+4) \\)" },
 { id: 806, versionLabel: "B", question: "Faktorisera uttrycket: \\( x^2-25. \\)", solution: "\\( (x-5)(x+5) \\)" },
 { id: 807, versionLabel: "C", question: "Faktorisera uttrycket: \\( a^2-9b^2. \\)", solution: "\\( (a-3b)(a+3b) \\)" },
@@ -1626,7 +1579,7 @@ solution: "Svar: Det behöver kosta 64kr i månaden."
 { id: 1029, versionLabel: "F", question: "I en låda finns 7 blå pennor och 5 röda pennor. Du tar en penna utan att titta. Vad är sannolikheten att pennan är blå? Svara i enklaste bråkform.", solution: "Svar: \\( \\frac{7}{12} \\)." },
 { id: 1030, versionLabel: "G", question: "I en låda har du 4 svarta strumpor, 6 gråa strumpor och 2 blå strumpor. Du plockar upp en strumpa utan att titta. Vad är sannolikheten att det är en grå strumpa? Svara i enklaste bråkform.", solution: "Svar: \\( \\frac{1}{2} \\)." },
 ] },
-{ groupId: "Bestäm frekvens (grund)", area: "Sannolikhet", subArea: "Grundläggande sannolikhet", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
+{ groupId: "Bestäm frekvens", area: "Sannolikhet", subArea: "Grundläggande sannolikhet", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 1031, versionLabel: "A", question: "Du slår en tärning 600 gånger. Hur många gånger kan du förväntas få en 1a eller 2a?", solution: "\\( \\frac{1}{3} \\cdot 600 = 200 \\). Svar: 200 gånger." },
 { id: 1032, versionLabel: "B", question: "På ett lyckohjul finns det 18 lika stora fält som du kan hamna på. Tre av dessa är vinstfält. Du spelar 40 gånger. Hur många gånger förväntas du vinna?", solution: "\\( \\frac{3}{18} \\cdot 40 = \\frac{1}{6} \\cdot 40 ≈ 7 \\). Svar: 7 gånger.", },
 { id: 1033, versionLabel: "C", question: "I en påse finns 20 kulor. Fem av kulorna är röda. Du drar en kula och lägger tillbaka den, totalt 80 gånger. Hur många gånger kan du förväntas dra en röd kula?", solution: "\\( \\frac{5}{20} \\cdot 80 = \\frac{1}{4} \\cdot 80 = 20 \\). Svar: 20 gånger." },
@@ -1643,26 +1596,18 @@ solution: "Svar: Det behöver kosta 64kr i månaden."
 { id: 1040, versionLabel: "D", question: "Du kastar en sexsidig tärning två gånger. Vad är sannolikheten att få en sexa båda gångerna? Svara i enklaste bråkform.", solution: "Svar: \\( \\frac{1}{36} \\)." },
 { id: 1041, versionLabel: "E", question: "I din frysbox finns 8 chokladglassar och 4 vaniljglassar. Du plockar upp en glass till dig och en till din kompis (slumpmässigt). Vad är sannolikheten att båda är choklad? Svara i procentform med en decimal.", solution: "Svar: 42,4%." },
 { id: 1042, versionLabel: "F", question: "Du singlar slant två gånger i rad. Vad är sannolikheten att du får klave båda gångerna? Svara i enklaste bråkform.", solution: "Svar: \\( \\frac{1}{4} \\)." },
+{ id: 1043, versionLabel: "G", question: "En kortlek innehåller 52 kort. Du drar ett kort och lägger det åt sidan utan att lägga tillbaka det. Därefter drar du ett kort till. Vad är sannolikheten att båda korten är ess? Svara i enklaste bråkform.", solution: "Svar: \\( \\frac{1}{221} \\)." },
 ] },
 { groupId: "Flera steg - en specifik gren", area: "Sannolikhet", subArea: "Sannolikhet i flera steg", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, calculator: true, versions: [
-{ id: 1043, versionLabel: "A", question: "Du har en godispåse med 10 fruktnappar och 5 colanappar. Du tar en godis, äter upp den och tar sedan en till. Vad är sannolikheten att den första godisen är en fruktnapp och den andra är en colanapp? Svara i enklaste bråkform.", solution: "Svar: \\( \\frac{5}{21} \\)." },
-{ id: 1044, versionLabel: "B", question: "Du hittar en godispåse med 5 chokladbitar och 3 lakritsbitar. Du tar en godis, tittar på den och lägger ned den innan du därefter tar en till. Vad är sannolikheten att den första godisen var en lakrits och den andra en choklad? Svara i procentform med en decimal.", solution: "Svar: 37,5%." },
+{ id: 1044, versionLabel: "A", question: "Du har en godispåse med 10 fruktnappar och 5 colanappar. Du tar en godis, äter upp den och tar sedan en till. Vad är sannolikheten att den första godisen är en fruktnapp och den andra är en colanapp? Svara i enklaste bråkform.", solution: "Svar: \\( \\frac{5}{21} \\)." },
+{ id: 1045, versionLabel: "B", question: "Du hittar en godispåse med 5 chokladbitar och 3 lakritsbitar. Du tar en godis, tittar på den och lägger ned den innan du därefter tar en till. Vad är sannolikheten att den första godisen var en lakrits och den andra en choklad? Svara i procentform med en decimal.", solution: "Svar: 37,5%." },
 ] },
 { groupId: "Flera steg - två grenar", area: "Sannolikhet", subArea: "Sannolikhet i flera steg", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 2, calculator: true, versions: [
-{ id: 1045, versionLabel: "A", question: "I en godispåse finns 12 hallonbåtar och 4 lakritsbåtar. Du plockar upp två bitar slumpmässigt med återläggning. Vad är sannolikheten att godisbitarna har olika smak? Rita ett träddiagram och svara i procentform.", solution: "Svar: 37,5%." },
-{ id: 1046, versionLabel: "B", question: "I en godispåse finns 12 hallonbåtar och 4 lakritsbåtar. Du plockar upp två bitar slumpmässigt utan återläggning. Vad är sannolikheten att godisbitarna har olika smak? Rita ett träddiagram och svara i procentform.", solution: "Svar: 40%." },
-{ id: 1047, versionLabel: "C", question: "I en burk finns 5 gröna och 5 gula kulor. Du drar två kulor utan återläggning. Vad är sannolikheten att kulorna har olika färg? Svara i enklaste bråkform.", solution: "Svar: \\(\\frac{5}{9}\\)" },
-{ id: 1048, versionLabel: "D", question: "I en påse finns 15 röda kulor och 10 gröna kulor. Du drar två kulor utan att titta. Vad är sannolikheten att kulorna har olika färg? Rita ett träddiagram och svara i procentform.", solution: "Svar: 50%." },
+{ id: 1046, versionLabel: "A", question: "I en godispåse finns 12 hallonbåtar och 4 lakritsbåtar. Du plockar upp två bitar slumpmässigt med återläggning. Vad är sannolikheten att godisbitarna har olika smak? Rita ett träddiagram och svara i procentform.", solution: "Svar: 37,5%." },
+{ id: 1047, versionLabel: "B", question: "I en godispåse finns 12 hallonbåtar och 4 lakritsbåtar. Du plockar upp två bitar slumpmässigt utan återläggning. Vad är sannolikheten att godisbitarna har olika smak? Rita ett träddiagram och svara i procentform.", solution: "Svar: 40%." },
+{ id: 1048, versionLabel: "C", question: "I en burk finns 5 gröna och 5 gula kulor. Du drar två kulor utan återläggning. Vad är sannolikheten att kulorna har olika färg? Svara i enklaste bråkform.", solution: "Svar: \\(\\frac{5}{9}\\)" },
+{ id: 1049, versionLabel: "D", question: "I en påse finns 15 röda kulor och 10 gröna kulor. Du drar två kulor utan att titta. Vad är sannolikheten att kulorna har olika färg? Rita ett träddiagram och svara i procentform.", solution: "Svar: 50%." },
 ] },
-{
-id: 1049,
-area: "Sannolikhet",
-subArea: "Sannolikhet i flera steg",
-courses: ["Ma1a", "Ma1b", "Ma1c"],
-question: "En kortlek innehåller 52 kort. Du drar ett kort och lägger det åt sidan utan att lägga tillbaka det. Därefter drar du ett kort till. Vad är sannolikheten att båda korten är ess? Svara i enklaste bråkform.",
-difficulty: 1,
-solution: "Svar: \\( \\frac{1}{221} \\)."
-},
 {
 id: 1050,
 area: "Sannolikhet",

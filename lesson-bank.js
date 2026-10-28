@@ -5,12 +5,11 @@ const lessonBank = [
         code: "ANDRA1",
         title: "Andragradsekvationer – lektion 1",
         taskIds: [1, 2, 3],
-        videoIds: ["Andragradsekvationer del 1"]
+        videoIds: ["andragradsekvationer-del-1"]
     },
     {
         code: "3nov",
         title: "Repetition",
-        taskIds: [4, 10],
-        videoIds: ["Andragradsekvationer del 2"]
+        taskIds: [790, 779, 1225, 1201, 1209, 1164, 1250,],
     }
 ];

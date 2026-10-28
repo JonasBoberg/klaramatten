@@ -11,5 +11,10 @@ const lessonBank = [
         code: "3nov",
         title: "Repetition",
         taskIds: [790, 779, 1225, 1201, 1209, 1164, 1250, 824, 832],
-    }
+    },
+    {
+        code: "2nov",
+        title: "Potensekvationer och förändringsfaktor",
+        taskIds: [741, 744, 745, 747, 750, 753, 758, 759, 764, 765, 766],
+    },
 ];

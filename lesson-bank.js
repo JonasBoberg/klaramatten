@@ -6,11 +6,5 @@ const lessonBank = [
         title: "Andragradsekvationer – lektion 1",
         taskIds: [1137, 1144],
         videoIds: ["Andragradsekvationer del 1"]
-    },
-    {
-        code: "3nov",
-        title: "Repetition",
-        taskIds: [1140, 1146, 1172, 1180],
-        videoIds: ["Andragradsekvationer del 2"]
-    },
+    }
 ];

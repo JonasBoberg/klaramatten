@@ -579,7 +579,6 @@
                 const taskNum = state.currentTaskIndex + 1;
                 const totalTasks = state.tasks.length;
                 const isFirstTask = state.currentTaskIndex === 0;
-                const hasMultipleTypes = state.taskTypes.length > 1;
 
                 const currentExample = state.examplesMap[task.groupId] || null;
                 const hasTextExp = !!task.exp;
@@ -587,7 +586,6 @@
 
                 const calcIcon = `<svg class="w-5 h-5 mr-2 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>`;
                 const infoIcon = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
-                const shuffleIcon = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"></path></svg>`;
 
                 view.innerHTML = `
                     <div class="flex justify-between items-center mb-6">
@@ -600,20 +598,12 @@
                                     ${infoIcon} Exempel
                                 </button>
                             ` : ''}
-                            <button onclick="randomTask()" class="flex items-center justify-center text-slate-300 hover:text-white transition-colors duration-200 font-medium bg-slate-800/50 hover:bg-slate-800 px-3 py-2 rounded-lg border border-slate-700" title="Slumpa uppgift">
-                                ${shuffleIcon}
-                            </button>
                             <span class="font-bold text-sm text-slate-400 tracking-wider bg-slate-800/50 px-3 py-2 rounded-lg border border-slate-700">${taskNum} / ${totalTasks}</span>
                         </div>
                     </div>
                     
                     <div class="flex justify-between items-center mb-5 gap-4">
                         <p class="text-sm text-slate-500 font-medium truncate">${task.groupId}</p>
-                        ${hasMultipleTypes ? `
-                            <button onclick="switchToNextType()" class="text-sm text-slate-400 hover:text-indigo-300 transition-colors duration-200 font-medium shrink-0">
-                                Byt uppgiftstyp &rarr;
-                            </button>
-                        ` : ''}
                     </div>
 
                     ${currentExample ? `
@@ -714,8 +704,6 @@
             window.showVideoSolution = showVideoSolution;
             window.nextTask = nextTask;
             window.prevTask = prevTask;
-            window.randomTask = randomTask;
-            window.switchToNextType = switchToNextType;
             window.switchMode = switchMode;
             window.openVideoModal = openVideoModal;
             window.closeVideoModal = closeVideoModal;
@@ -839,6 +827,7 @@
             }
 
             function startLessonLevel(difficulty) {
+                state.currentDifficulty = difficulty;
                 state.tasks = state.lessonTasks.filter(task => task.difficulty === difficulty);
                 state.examplesMap = {};
                 state.taskTypes = [];
@@ -990,18 +979,29 @@
                 modal.classList.add('hidden');
             }
 
+            function getCompletionTitle() {
+                if (state.activeLesson && Number.isInteger(state.currentDifficulty)) {
+                    return `Nivå ${state.currentDifficulty} klar!`;
+                }
+                if (state.activeLesson) {
+                    return 'Lektion klar!';
+                }
+                return 'Snyggt jobbat!';
+            }
+
             function nextTask() {
                 if(state.currentTaskIndex < state.tasks.length - 1) {
                     state.currentTaskIndex++;
                     renderTask();
                 } else {
                     const view = document.getElementById('view-task');
+                    const completionTitle = getCompletionTitle();
                     view.innerHTML = `
                         <div class="text-center mt-10 bg-slate-900/60 p-10 rounded-xl border border-emerald-500/30 shadow-xl flex flex-col items-center backdrop-blur-sm">
                             <div class="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/30">
                                 <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                             </div>
-                            <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300 mb-3">${state.activeLesson ? 'Lektion klar!' : 'Snyggt jobbat!'}</h2>
+                            <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300 mb-3">${completionTitle}</h2>
                             <p class="mb-8 text-slate-400">${state.activeLesson ? 'Du har gjort alla uppgifter i lektionen.' : 'Du har gjort alla uppgifter i detta område.'}</p>
                             <button id="btn-finish-task" class="w-full max-w-xs p-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 text-white font-bold shadow-lg shadow-indigo-900/40 transition-all duration-300 hover:scale-[1.02]">
                                 ${state.activeLesson ? 'Tillbaka till lektionen' : 'Välj ny nivå / område'}
@@ -1017,30 +1017,6 @@
                     state.currentTaskIndex--;
                     renderTask();
                 }
-            }
-
-            function randomTask() {
-                if(state.tasks.length <= 1) return;
-
-                let newIndex;
-                do {
-                    newIndex = Math.floor(Math.random() * state.tasks.length);
-                } while (newIndex === state.currentTaskIndex);
-
-                state.currentTaskIndex = newIndex;
-                renderTask();
-            }
-
-            // Hoppar till första uppgiften av nästa uppgiftstyp
-            function switchToNextType() {
-                if (state.taskTypes.length <= 1) return;
-                
-                const currentType = state.tasks[state.currentTaskIndex].groupId;
-                const currentTypeIdx = state.taskTypes.findIndex(t => t.id === currentType);
-                // Hoppa till nästa typ (wrap runt om vi är vid sista typen)
-                const nextTypeIdx = (currentTypeIdx + 1) % state.taskTypes.length;
-                state.currentTaskIndex = state.taskTypes[nextTypeIdx].startIndex;
-                renderTask();
             }
 
             renderCourses();

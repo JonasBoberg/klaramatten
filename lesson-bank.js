@@ -4,7 +4,7 @@ const lessonBank = [
     {
         code: "ANDRA1",
         title: "Andragradsekvationer – lektion 1",
-        taskIds: [1137, 1144],
+        taskIds: [1, 2, 3],
         videoIds: ["Andragradsekvationer del 1"]
     }
 ];

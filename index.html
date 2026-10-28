@@ -602,12 +602,18 @@
                                     ${infoIcon} Exempel
                                 </button>
                             ` : ''}
+                            ${!state.activeLesson ? `
+                                <button onclick="randomTask()" aria-label="Slumpa uppgift" title="Slumpa uppgift" class="flex items-center justify-center bg-slate-800/50 hover:bg-slate-800 px-3 py-2 rounded-lg border border-slate-700 text-slate-400 hover:text-white transition-colors disabled:opacity-40 disabled:cursor-not-allowed" ${totalTasks < 2 ? 'disabled' : ''}>
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 7h2c5 0 7 10 12 10h4m-4-4 4 4-4 4M3 17h2c2 0 3-2 4-4m4-6c1-2 2-4 4-4h4m-4-4 4 4-4 4"></path></svg>
+                                </button>
+                            ` : ''}
                             <span class="font-bold text-sm text-slate-400 tracking-wider bg-slate-800/50 px-3 py-2 rounded-lg border border-slate-700">${taskNum} / ${totalTasks}</span>
                         </div>
                     </div>
                     
-                    <div class="flex justify-between items-center mb-5 gap-4">
+                    <div class="flex justify-between items-center mb-5 gap-3">
                         <p class="text-sm text-slate-500 font-medium truncate">${task.groupId}</p>
+                        ${!state.activeLesson && state.taskTypes.length > 1 ? '<button onclick="nextTaskType()" class="ml-auto text-right text-sm text-slate-500 hover:text-slate-300 transition-colors whitespace-nowrap">Nästa uppgiftstyp &rarr;</button>' : ''}
                     </div>
 
                     ${currentExample ? `
@@ -702,6 +708,8 @@
             window.showVideoSolution = showVideoSolution;
             window.nextTask = nextTask;
             window.prevTask = prevTask;
+            window.randomTask = randomTask;
+            window.nextTaskType = nextTaskType;
             window.switchMode = switchMode;
             window.openVideoModal = openVideoModal;
             window.closeVideoModal = closeVideoModal;
@@ -1010,6 +1018,27 @@
                     `;
                     document.getElementById('btn-finish-task').onclick = state.activeLesson ? renderLessonMenu : renderDifficulty;
                 }
+            }
+
+            function randomTask() {
+                if (state.activeLesson || state.tasks.length < 2) return;
+
+                const availableIndexes = state.tasks
+                    .map((_, index) => index)
+                    .filter(index => index !== state.currentTaskIndex);
+                state.currentTaskIndex = availableIndexes[Math.floor(Math.random() * availableIndexes.length)];
+                renderTask();
+            }
+
+            function nextTaskType() {
+                if (state.activeLesson || state.taskTypes.length < 2) return;
+
+                const currentTypeIndex = state.taskTypes.findIndex(type => type.id === state.tasks[state.currentTaskIndex].groupId);
+                if (currentTypeIndex === -1) return;
+
+                const nextType = state.taskTypes[(currentTypeIndex + 1) % state.taskTypes.length];
+                state.currentTaskIndex = nextType.startIndex;
+                renderTask();
             }
 
             function prevTask() {

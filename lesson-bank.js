@@ -1,0 +1,10 @@
+// Lägg till lektioner här. taskIds är uppgifternas id:n i versionslistorna i tasks.js.
+// videoIds är videoId-värdena på genomgångarna i tasks.js.
+const lessonBank = [
+    {
+        code: "ANDRA1",
+        title: "Andragradsekvationer – lektion 1",
+        taskIds: [1137, 1144],
+        videoIds: ["andragradsekvationer-del-1"]
+    }
+];

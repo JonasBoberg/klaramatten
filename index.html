@@ -155,6 +155,7 @@
 
     <!-- Länk till din externa uppgiftsbank -->
     <script src="tasks.js"></script>
+    <script src="lesson-bank.js"></script>
 
     <!-- Huvudlogik -->
     <script>
@@ -179,7 +180,9 @@
                 tasks: [],
                 taskTypes: [], 
                 examplesMap: {}, 
-                currentTaskIndex: 0
+                currentTaskIndex: 0,
+                activeLesson: null,
+                lessonVideos: []
             };
 
             function getCurrentBank() {
@@ -321,6 +324,45 @@
                 }
             }
 
+            function renderLessonVideos(container) {
+                if (!state.lessonVideos.length) return;
+
+                const heading = document.createElement('h2');
+                heading.className = 'text-lg font-bold text-slate-300 mb-3';
+                heading.innerText = 'Genomgångar i lektionen';
+                container.appendChild(heading);
+
+                const buttons = document.createElement('div');
+                buttons.className = 'space-y-3';
+                state.lessonVideos.forEach(video => {
+                    const button = document.createElement('button');
+                    button.type = 'button';
+                    button.className = 'w-full text-left p-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold shadow-lg transition-all duration-300 flex items-center gap-4 border border-slate-700';
+
+                    const icon = document.createElement('span');
+                    icon.className = 'flex items-center justify-center w-10 h-10 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30 shrink-0';
+                    icon.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
+
+                    const text = document.createElement('span');
+                    text.className = 'flex flex-col text-left';
+                    const title = document.createElement('span');
+                    title.className = 'text-lg font-bold';
+                    title.innerText = video.title;
+                    text.appendChild(title);
+                    if (video.subTitle) {
+                        const subtitle = document.createElement('span');
+                        subtitle.className = 'text-sm font-normal text-slate-400';
+                        subtitle.innerText = video.subTitle;
+                        text.appendChild(subtitle);
+                    }
+
+                    button.append(icon, text);
+                    button.onclick = () => openVideoModal(video.lessonVideo, video.title);
+                    buttons.appendChild(button);
+                });
+                container.appendChild(buttons);
+            }
+
             // --- VY: KURSER ---
             function renderCourses() {
                 showView('view-courses');
@@ -331,7 +373,7 @@
                 const currentBank = getCurrentBank();
                 const courses = [...new Set(currentBank.flatMap(g => g.courses || []))].sort();
                 
-                view.innerHTML = '<h2 class="text-xl font-bold mb-5 text-slate-300 tracking-wide">1. Välj din kurs</h2>';
+                view.innerHTML = '<h2 class="text-xl font-bold mb-5 text-slate-300 tracking-wide">Välj kurs för att öva</h2>';
                 const container = document.createElement('div');
                 container.className = 'space-y-4';
                 
@@ -344,6 +386,28 @@
                 }
 
                 view.appendChild(container);
+
+                const lessonCodeBox = document.createElement('div');
+                lessonCodeBox.className = 'bg-slate-900/60 p-5 rounded-xl border border-indigo-500/30 mt-8 shadow-lg';
+                lessonCodeBox.innerHTML = `
+                    <form id="lesson-code-form">
+                        <label for="lesson-code-input" class="block text-lg font-bold text-slate-200 mb-3">Har du en lektionskod?</label>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <input id="lesson-code-input" type="text" maxlength="24" autocomplete="off" required
+                                placeholder="Skriv lektionskoden"
+                                class="flex-1 min-w-0 px-4 py-3 rounded-lg bg-slate-950 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-400">
+                            <button type="submit" class="px-5 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold shadow-lg hover:from-indigo-500 hover:to-violet-500 transition">
+                                Gå till lektion
+                            </button>
+                        </div>
+                        <p id="lesson-code-error" class="hidden mt-3 text-sm text-red-300" role="alert"></p>
+                    </form>
+                `;
+                lessonCodeBox.querySelector('#lesson-code-form').onsubmit = event => {
+                    event.preventDefault();
+                    joinLesson(lessonCodeBox.querySelector('#lesson-code-input').value);
+                };
+                view.appendChild(lessonCodeBox);
             }
 
             // --- VY: OMRÅDEN ---
@@ -497,6 +561,26 @@
                 
                 if(state.tasks.length === 0) {
                     view.innerHTML = '';
+                    if (state.activeLesson) {
+                        const header = document.createElement('div');
+                        header.className = 'flex justify-between items-center mb-6';
+                        const title = document.createElement('h2');
+                        title.className = 'text-xl font-bold text-slate-200';
+                        title.innerText = state.activeLesson.title;
+                        const leaveButton = document.createElement('button');
+                        leaveButton.className = 'text-slate-300 hover:text-white bg-slate-800 px-4 py-2 rounded-lg border border-slate-700';
+                        leaveButton.innerText = 'Avsluta lektion';
+                        leaveButton.onclick = exitLesson;
+                        header.append(title, leaveButton);
+                        view.appendChild(header);
+
+                        const videos = document.createElement('div');
+                        videos.className = 'bg-slate-900/60 p-5 rounded-xl border border-slate-700/50';
+                        renderLessonVideos(videos);
+                        view.appendChild(videos);
+                        return;
+                    }
+
                     view.appendChild(createBackButton(() => renderDifficulty()));
                     const errorMsg = document.createElement('p');
                     errorMsg.className = 'text-center text-red-400 mt-10 bg-red-900/20 p-4 rounded-lg border border-red-500/30';
@@ -611,7 +695,21 @@
                     </div>
                 `;
 
-                document.getElementById('btn-leave-task').onclick = renderDifficulty;
+                if (state.activeLesson) {
+                    const lessonTitle = document.createElement('p');
+                    lessonTitle.className = 'text-sm font-bold uppercase tracking-wider text-indigo-300 mb-4';
+                    lessonTitle.innerText = state.activeLesson.title;
+                    view.insertBefore(lessonTitle, view.firstChild);
+
+                    if (state.lessonVideos.length) {
+                        const videos = document.createElement('div');
+                        videos.className = 'bg-slate-900/60 p-5 rounded-xl border border-slate-700/50 mb-5';
+                        renderLessonVideos(videos);
+                        view.insertBefore(videos, view.children[2]);
+                    }
+                }
+
+                document.getElementById('btn-leave-task').onclick = state.activeLesson ? exitLesson : renderDifficulty;
                 
                 if (currentExample && document.getElementById('btn-show-example')) {
                     document.getElementById('btn-show-example').onclick = () => {
@@ -642,6 +740,7 @@
             window.switchMode = switchMode;
             window.openVideoModal = openVideoModal;
             window.closeVideoModal = closeVideoModal;
+            window.joinLesson = joinLesson;
 
             function switchMode(mode) {
                 state.mode = mode;
@@ -661,6 +760,74 @@
                 state.currentArea = null;
                 state.currentSubArea = null;
                 renderCourses();
+            }
+
+            function joinLesson(code) {
+                const error = document.getElementById('lesson-code-error');
+                const normalizedCode = String(code || '').trim().toUpperCase();
+                const lessons = typeof lessonBank !== 'undefined' && Array.isArray(lessonBank) ? lessonBank : [];
+                const lesson = lessons.find(item => String(item.code || '').trim().toUpperCase() === normalizedCode);
+
+                if (!lesson) {
+                    error.innerText = lessons.length
+                        ? 'Lektionskoden känns inte igen. Kontrollera koden och försök igen.'
+                        : 'Lektionsbanken kunde inte läsas in. Kontrollera att lesson-bank.js finns i samma mapp som index.html.';
+                    error.classList.remove('hidden');
+                    return;
+                }
+
+                const taskIds = Array.isArray(lesson.taskIds) ? lesson.taskIds : [];
+                const videoIds = Array.isArray(lesson.videoIds) ? lesson.videoIds : [];
+                const taskById = new Map(taskBank.flatMap(group => (group.versions || [])
+                    .filter(version => version.id !== undefined && version.versionLabel !== 'Ex')
+                    .map(version => [String(version.id), {
+                        ...version,
+                        groupId: group.groupId,
+                        calculator: group.calculator || false,
+                        area: group.area,
+                        subArea: group.subArea
+                    }])));
+                const videoById = new Map(taskBank
+                    .filter(group => group.videoId && group.lessonVideo)
+                    .map(group => [String(group.videoId), group]));
+                const missingTaskIds = taskIds.filter(id => !taskById.has(String(id)));
+                const missingVideoIds = videoIds.filter(id => !videoById.has(String(id)));
+
+                if (missingTaskIds.length || missingVideoIds.length || (!taskIds.length && !videoIds.length)) {
+                    error.innerText = 'Lektionen är felkonfigurerad. Kontrollera uppgifts-id:n och video-id:n i tasks.js.';
+                    error.classList.remove('hidden');
+                    return;
+                }
+
+                state.activeLesson = lesson;
+                state.lessonVideos = videoIds.map(id => videoById.get(String(id)));
+                state.tasks = taskIds.map(id => taskById.get(String(id)));
+                state.examplesMap = {};
+                state.taskTypes = [];
+                state.currentTaskIndex = 0;
+                state.mode = 'lesson';
+
+                state.tasks.forEach((task, index) => {
+                    const group = taskBank.find(item => item.groupId === task.groupId);
+                    const example = (group.versions || []).find(version => version.versionLabel === 'Ex' && version.example);
+                    if (example) state.examplesMap[task.groupId] = example.example;
+
+                    if (!state.taskTypes.some(type => type.id === task.groupId)) {
+                        state.taskTypes.push({ id: task.groupId, startIndex: index });
+                    }
+                });
+
+                renderTask();
+            }
+
+            function exitLesson() {
+                state.activeLesson = null;
+                state.lessonVideos = [];
+                state.tasks = [];
+                state.taskTypes = [];
+                state.examplesMap = {};
+                state.currentTaskIndex = 0;
+                switchMode('tasks');
             }
 
             function selectCourse(course) {
@@ -796,13 +963,14 @@
                             <div class="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/30">
                                 <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                             </div>
-                            <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300 mb-3">Snyggt jobbat!</h2>
-                            <p class="mb-8 text-slate-400">Du har gjort alla uppgifter i detta område.</p>
-                            <button onclick="renderDifficulty()" class="w-full max-w-xs p-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 text-white font-bold shadow-lg shadow-indigo-900/40 transition-all duration-300 hover:scale-[1.02]">
-                                Välj ny nivå / område
+                            <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300 mb-3">${state.activeLesson ? 'Lektion klar!' : 'Snyggt jobbat!'}</h2>
+                            <p class="mb-8 text-slate-400">${state.activeLesson ? 'Du har gjort alla uppgifter i lektionen.' : 'Du har gjort alla uppgifter i detta område.'}</p>
+                            <button id="btn-finish-task" class="w-full max-w-xs p-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 text-white font-bold shadow-lg shadow-indigo-900/40 transition-all duration-300 hover:scale-[1.02]">
+                                ${state.activeLesson ? 'Avsluta lektion' : 'Välj ny nivå / område'}
                             </button>
                         </div>
                     `;
+                    document.getElementById('btn-finish-task').onclick = state.activeLesson ? exitLesson : renderDifficulty;
                 }
             }
 

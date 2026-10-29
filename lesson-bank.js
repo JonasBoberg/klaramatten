@@ -10,7 +10,7 @@ const lessonBank = [
     {
         code: "3nov",
         title: "Repetition",
-        taskLectionIds: [791, 780, 1226, 1202, 1210, 1165, 1251, 825, 833],
+        taskLectionIds: [791, 780, 1226, 1202, 1210, 1165, 1246, 825, 833],
     },
     {
         code: "2nov",

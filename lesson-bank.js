@@ -2,15 +2,9 @@
 // videoIds är videoId-värdena på genomgångarna i tasks.js.
 const lessonBank = [
     {
-        code: "ANDRA1",
-        title: "Andragradsekvationer – lektion 1",
-        taskLectionIds: [1, 2, 3],
-        videoIds: ["andragradsekvationer-del-1"]
-    },
-    {
         code: "3nov",
         title: "Repetition",
-        taskLectionIds: [791, 780, 1226, 1202, 1210, 1165, 1246, 825, 833],
+        taskLectionIds: [737, 768, 1058, 1062, 1128, 1132, 1157, 760, 785, 798, 949, 945, 968],
     },
     {
         code: "2nov",

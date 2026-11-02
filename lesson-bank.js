@@ -4,7 +4,7 @@ const lessonBank = [
     {
         code: "3nov",
         title: "Repetition",
-        taskLectionIds: [737, 768, 1058, 1062, 1128, 1132, 1157, 760, 785, 798, 949, 945, 968],
+        taskLectionIds: [737, 768, 1058, 1062, 1248, 1132, 1157, 760, 785, 798, 949, 945, 968],
     },
     {
         code: "2nov",

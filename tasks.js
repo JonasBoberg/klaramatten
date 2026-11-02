@@ -2098,8 +2098,8 @@ solution: "a) a är negativ eftersom linjen är \"ledsen\".<br>b) x=1."
 { id: 1217, lectionid: 1127, versionLabel: "B", question: "Punkten \\(A\\) ligger på linjen \\(f(x)=2-2x\\). Bestäm största möjliga area för en rektangel som ligger på korrdinataxlarna med ett hörn i punkten \\(A\\) (som på bilden).", img: "bilder/IMG_8002.svg", solution: "\\(A=\\frac{1}{2}=0.5\\) a.e."},
 ] },
 { groupId: "Lös systemet grafiskt", area: "Ekvationssystem", subArea: "Lös grafiskt", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
-{ id: 1218, lectionid: 1248, versionLabel: "A", question: "Lös ekvationssystemet nedan.", solution: "\\( \\begin{cases} x=-3 \\\\ y=3 \\end{cases} \\)", img: "bilder/Ekvationssystem/IMG_0503.jpg" },
-{ id: 1219, lectionid: 1249, versionLabel: "B", question: "Lös ekvationssystemet nedan.", solution: "\\( \\begin{cases} x=3 \\\\ y=0 \\end{cases} \\)", img: "bilder/Ekvationssystem/IMG_0504.jpg" },
+{ id: 1218, lectionid: 1248, versionLabel: "A", question: "Lös ekvationssystemet nedan.", solution: "\\( \\begin{cases} x=-3 \\\\ y=3 \\end{cases} \\)", img: "bilder/Ekvationssystem/IMG_0503.svg" },
+{ id: 1219, lectionid: 1249, versionLabel: "B", question: "Lös ekvationssystemet nedan.", solution: "\\( \\begin{cases} x=3 \\\\ y=0 \\end{cases} \\)", img: "bilder/Ekvationssystem/IMG_0504.svg" },
 { id: 1220, lectionid: 1128, versionLabel: "C", question: "Lös ekvationssystemet nedan.", solution: "\\( \\begin{cases} x=2 \\\\ y=3 \\end{cases} \\)", img: "bilder/Ekvationssystem/IMG_0500.jpg" },
 { id: 1221, lectionid: 1129, versionLabel: "D", question: "Lös ekvationssystemet \\( \\begin{cases} y=1,5x-1 \\\\ y=-2x+6 \\end{cases} \\)", solution: "\\( \\begin{cases} x=2 \\\\ y=2 \\end{cases} \\)", img: "bilder/Ekvationssystem/IMG_0501.jpg" },
 { id: 1222, lectionid: 1130, versionLabel: "E", question: "Lös ekvationssystemet \\( \\begin{cases} y=x+3 \\\\ y=-2x-9 \\end{cases} \\)", solution: "\\( \\begin{cases} x=-4 \\\\ y=-4 \\end{cases} \\)", img: "bilder/Ekvationssystem/IMG_0502.jpg"},

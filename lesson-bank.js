@@ -7,8 +7,8 @@ const lessonBank = [
         taskLectionIds: [737, 768, 1058, 1062, 1248, 1132, 1157, 760, 785, 798, 949, 945, 968],
     },
     {
-        code: "2nov",
-        title: "Potensekvationer och förändringsfaktor",
-        taskLectionIds: [741, 744, 745, 747, 750, 753, 758, 759, 764, 765, 766],
+        code: "4nov",
+        title: "Förändringsfaktor och algebra (repetition)",
+        taskLectionIds: [29, 39, 54, 62, 668, 1252, 1254, 66, 412, 426, 517, 548],
     },
 ];

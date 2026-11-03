@@ -745,8 +745,8 @@ const taskBank = [
 { id: 544, lectionid: 515, versionLabel: "D", question: "Förenkla uttrycket \\( a^2+a(4+3a)+2a \\) så långt som möjligt.", solution: "Svar: \\( 4a^2+6a \\)" },
 ] },
 { groupId: "Parentesmultiplikation 1", area: "Algebra", subArea: "Förenkla uttryck", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: false, difficulty: 1, versions: [
-{ id: 545, lectionid: 516, versionLabel: "A", question: "Förenkla uttrycket \\((a-2)(a-10)\\) så långt som möjligt", solution: "Svar: \\(a^2-12a+20\\)" },
-{ id: 546, lectionid: 517, versionLabel: "B", question: "Förenkla uttrycket \\((x+4)(x-5)\\) så långt som möjligt.", solution: "Svar: \\(x^2-x-20\\)", exp: "bilder/Losningsbilder/Uppgift_517.png"},
+{ id: 545, lectionid: 516, versionLabel: "A", question: "Förenkla uttrycket \\((a-2)(a-10)\\) så långt som möjligt", solution: "Svar: \\(a^2-12a+20\\)", exp: "img: 'bilder/Losningsbilder/Uppgift_516.png'"},
+{ id: 546, lectionid: 517, versionLabel: "B", question: "Förenkla uttrycket \\((x+4)(x-5)\\) så långt som möjligt.", solution: "Svar: \\(x^2-x-20\\)", exp: "img: 'bilder/Losningsbilder/Uppgift_517.png'"},
 { id: 547, lectionid: 518, versionLabel: "C", question: "Utveckla med hjälp av parentesmultiplikation: \\( (x+3y)(y+6) \\)", solution: "Svar: \\(xy+6x+3y^2+18\\)" },
 { id: 548, lectionid: 519, versionLabel: "D", question: "Utveckla med hjälp av parentesmultiplikation: \\( (x - 4)(3x + 2) \\)", solution: "Svar: \\(3x^2 - 10x - 8 \\)" },
 { id: 549, lectionid: 520, versionLabel: "E", question: "Förenkla uttrycken så långt som möjligt:<br>a) \\( (2x + 3)(x + 5) \\)<br>b) \\((a-2)(a+10)\\)", solution: "a) \\(2x^2 + 13x + 15 \\)<br>b) \\(a^2+8a-20\\)" },

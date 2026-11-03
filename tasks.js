@@ -754,7 +754,7 @@ const taskBank = [
 { id: 551, lectionid: 522, versionLabel: "G", question: "Förenkla: \\( (x + 5)(2x - 3) \\)", solution: "Svar: \\(2x^2 + 7x - 15 \\)" },
 { id: 552, lectionid: 523, versionLabel: "H", question: "Förenkla uttrycket \\( (3x - 1)(2x + 2) \\)", solution: "Svar: \\(6x^2 + 4x - 2 \\)" },
 { id: 553, lectionid: 524, versionLabel: "I", question: "Förenkla uttrycket \\( (2x-5y)(2x-y) \\)", solution: "Svar: \\(4x^2-12xy+5y^2 \\)" },
-{ id: 554, versionLabel: "Ex", example: "\\( (x+4)(3x-7)=x\\cdot 3x+x\\cdot(-7)+4\\cdot3x+4\\cdot(-7)=3x^2-7x+12x-28=3x^2+5x-28 \\)" },
+{ id: 554, versionLabel: "Ex", example: "\\( (x+4)(3x-7)=\\) <br>\\(=x\\cdot 3x+x\\cdot(-7)+4\\cdot3x+4\\cdot(-7)= \\) <br> \\(=3x^2-7x+12x-28= \\) <br> \\(=3x^2+5x-28 \\)" },
 ] },
 { groupId: "Parentesmultiplikation - rektangel", area: "Algebra", subArea: "Förenkla uttryck", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 555, lectionid: 525, versionLabel: "A", question: "Skriv ett förenklat uttryck för rektangelns:<br>a) omkrets<br>b) area", img: "bilder/Uttryck_med_parenteser/IMG_5001.jpg", solution: "a) \\(6x+2\\)<br>b) \\(2x^2-2\\)" },

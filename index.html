@@ -21,6 +21,12 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     }
+                    if (state.pendingProgressSaves.has(String(task.lectionid))) {
+                        const saving = document.createElement('p');
+                        saving.className = 'mt-2 text-center text-xs text-indigo-300';
+                        saving.innerText = 'Sparar…';
+                        taskCard.appendChild(saving);
+                    }
                 }
             }
         }
@@ -183,7 +189,12 @@
                 currentTaskIndex: 0,
                 activeLesson: null,
                 lessonVideos: [],
-                lessonTasks: []
+                lessonTasks: [],
+                learnerId: null,
+                lessonProgress: {},
+                lessonProgressError: null,
+                pendingProgressSaves: new Set(),
+                lessonSession: 0
             };
 
             function getCurrentBank() {
@@ -400,16 +411,32 @@
                                 <input id="lesson-code-input" type="text" maxlength="24" autocomplete="off" required
                                     placeholder="Skriv lektionskoden"
                                     class="flex-1 min-w-0 px-4 py-3 rounded-lg bg-slate-950 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-400">
+                            </div>
+                            <label for="lesson-profile-action" class="block text-sm font-semibold text-slate-300 mt-4 mb-2">Första gången eller återbesök?</label>
+                            <select id="lesson-profile-action" class="w-full px-4 py-3 rounded-lg bg-slate-950 border border-slate-700 text-white focus:outline-none focus:border-indigo-400">
+                                <option value="create">Skapa nytt elev-ID</option>
+                                <option value="resume">Fortsätt med befintligt elev-ID</option>
+                            </select>
+                            <label for="lesson-student-id" class="block text-sm font-semibold text-slate-300 mt-4 mb-2">Ditt elev-ID</label>
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <input id="lesson-student-id" type="text" maxlength="24" minlength="4" pattern="[A-Za-z0-9]{4,24}" autocomplete="off" required
+                                    placeholder="4–24 bokstäver eller siffror"
+                                    class="flex-1 min-w-0 px-4 py-3 rounded-lg bg-slate-950 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-400">
                                 <button type="submit" class="px-5 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-bold shadow-lg hover:from-indigo-500 hover:to-violet-500 transition">
-                                    Gå till lektion
+                                    Fortsätt
                                 </button>
                             </div>
+                            <p class="mt-2 text-xs text-slate-400">Skapa ett ID första gången. Vid återbesök väljer du att fortsätta och anger samma ID. Framsteg sparas automatiskt online.</p>
                             <p id="lesson-code-error" class="hidden mt-3 text-sm text-red-300" role="alert"></p>
                         </form>
                     `;
                     lessonCodeBox.querySelector('#lesson-code-form').onsubmit = event => {
                         event.preventDefault();
-                        joinLesson(lessonCodeBox.querySelector('#lesson-code-input').value);
+                        joinLesson(
+                            lessonCodeBox.querySelector('#lesson-code-input').value,
+                            lessonCodeBox.querySelector('#lesson-student-id').value,
+                            lessonCodeBox.querySelector('#lesson-profile-action').value
+                        );
                     };
                     view.appendChild(lessonCodeBox);
                 }
@@ -594,7 +621,7 @@
                 view.innerHTML = `
                     <div class="flex justify-between items-center mb-6">
                         <button id="btn-leave-task" class="flex items-center gap-2 text-slate-300 hover:text-white transition-colors duration-200 group font-medium bg-slate-800/50 hover:bg-slate-800 px-4 py-2 rounded-lg border border-slate-700">
-                            <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> ${state.activeLesson ? 'Tillbaka till lektionen' : 'Avsluta'}
+                            <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> ${state.activeLesson ? 'Till uppgiftsöversikten' : 'Avsluta'}
                         </button>
                         <div class="flex items-center gap-3">
                             ${currentExample ? `
@@ -682,7 +709,7 @@
                     view.insertBefore(lessonTitle, view.firstChild);
                 }
 
-                document.getElementById('btn-leave-task').onclick = state.activeLesson ? renderLessonMenu : renderDifficulty;
+                document.getElementById('btn-leave-task').onclick = state.activeLesson ? renderLessonLevelOverview : renderDifficulty;
                 
                 if (currentExample && document.getElementById('btn-show-example')) {
                     document.getElementById('btn-show-example').onclick = () => {
@@ -735,8 +762,9 @@
                 renderCourses();
             }
 
-            function joinLesson(code) {
+            async function joinLesson(code, requestedStudentId = '', profileAction = 'create') {
                 const error = document.getElementById('lesson-code-error');
+                error.classList.add('hidden');
                 const normalizedCode = String(code || '').trim().toUpperCase();
                 const lessons = typeof lessonBank !== 'undefined' && Array.isArray(lessonBank) ? lessonBank : [];
                 const lesson = lessons.find(item => String(item.code || '').trim().toUpperCase() === normalizedCode);
@@ -745,6 +773,18 @@
                     error.innerText = lessons.length
                         ? 'Lektionskoden känns inte igen. Kontrollera koden och försök igen.'
                         : 'Lektionsbanken kunde inte läsas in. Kontrollera att lesson-bank.js finns i samma mapp som index.html.';
+                    error.classList.remove('hidden');
+                    return;
+                }
+
+                let learnerId = String(requestedStudentId || '').trim().toUpperCase();
+                if (learnerId && !/^[A-Z0-9]{4,24}$/.test(learnerId)) {
+                    error.innerText = 'Elev-ID ska vara 4–24 tecken och bara innehålla bokstäver eller siffror.';
+                    error.classList.remove('hidden');
+                    return;
+                }
+                if (!learnerId) {
+                    error.innerText = 'Ange ett eget elev-ID på 4–24 bokstäver eller siffror.';
                     error.classList.remove('hidden');
                     return;
                 }
@@ -773,6 +813,31 @@
                     return;
                 }
 
+                const form = error.closest('form');
+                const submitButton = form.querySelector('button[type="submit"]');
+                submitButton.disabled = true;
+                submitButton.innerText = 'Ansluter…';
+                try {
+                    const profile = await requestLessonApi({
+                        action: profileAction === 'resume' ? 'resume-profile' : 'create-profile',
+                        lessonCode: normalizedCode,
+                        learnerId
+                    });
+                    if (!profile || !profile.progress || typeof profile.progress !== 'object') {
+                        throw new Error('Servern returnerade ett ogiltigt svar.');
+                    }
+                    state.lessonProgress = Object.fromEntries(
+                        Object.entries(profile.progress).filter(([, status]) => ['green', 'yellow', 'red'].includes(status))
+                    );
+                } catch (requestError) {
+                    error.innerText = requestError.message || 'Kunde inte ansluta till lektionsdatabasen. Försök igen.';
+                    error.classList.remove('hidden');
+                    return;
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.innerText = 'Fortsätt';
+                }
+
                 state.activeLesson = lesson;
                 state.lessonVideos = videoIds.map(id => videoById.get(String(id)));
                 state.lessonTasks = taskLectionIds.map(id => taskByLectionId.get(String(id)));
@@ -781,6 +846,10 @@
                 state.taskTypes = [];
                 state.currentTaskIndex = 0;
                 state.mode = 'lesson';
+                state.learnerId = learnerId;
+                state.lessonProgressError = null;
+                state.pendingProgressSaves.clear();
+                state.lessonSession++;
 
                 renderLessonMenu();
             }
@@ -803,6 +872,11 @@
                 leaveButton.onclick = exitLesson;
                 header.append(title, leaveButton);
                 view.appendChild(header);
+
+                const studentInfo = document.createElement('p');
+                studentInfo.className = 'mb-6 rounded-lg border border-indigo-500/30 bg-indigo-900/20 px-4 py-3 text-sm text-indigo-200';
+                studentInfo.innerHTML = `Ditt elev-ID: <strong class="select-all font-mono tracking-wider">${state.learnerId}</strong><span class="block mt-1 text-xs text-slate-400">Använd samma lektionskod och elev-ID för att fortsätta på en annan dator.</span>`;
+                view.appendChild(studentInfo);
 
                 const options = document.createElement('div');
                 options.className = 'space-y-4';
@@ -849,7 +923,169 @@
                     }
                 });
 
-                renderTask();
+                renderLessonLevelOverview();
+            }
+
+            function renderLessonLevelOverview() {
+                showView('view-task');
+                showHeaderSubtitle(false);
+                showTabs(false);
+                const view = document.getElementById('view-task');
+                view.innerHTML = '';
+
+                const header = document.createElement('div');
+                header.className = 'flex justify-between items-center mb-5 gap-4';
+                const title = document.createElement('h2');
+                title.className = 'text-xl font-bold text-slate-200';
+                title.innerText = `Nivå ${state.currentDifficulty} – uppgiftsöversikt`;
+                const backButton = document.createElement('button');
+                backButton.className = 'text-slate-300 hover:text-white bg-slate-800 px-4 py-2 rounded-lg border border-slate-700 shrink-0';
+                backButton.innerText = 'Till lektionen';
+                backButton.onclick = renderLessonMenu;
+                header.append(title, backButton);
+                view.appendChild(header);
+
+                const identity = document.createElement('p');
+                identity.className = 'mb-4 text-sm text-slate-400';
+                identity.innerText = `${state.activeLesson.title} · Elev-ID: ${state.learnerId}`;
+                view.appendChild(identity);
+
+                if (state.lessonProgressError) {
+                    const progressError = document.createElement('p');
+                    progressError.className = 'mb-4 rounded-lg border border-red-500/40 bg-red-900/30 p-3 text-sm text-red-200';
+                    progressError.setAttribute('role', 'alert');
+                    progressError.innerText = state.lessonProgressError;
+                    view.appendChild(progressError);
+                }
+
+                const counts = { green: 0, yellow: 0, red: 0 };
+                state.tasks.forEach(task => {
+                    const status = state.lessonProgress[String(task.lectionid)];
+                    if (status && counts[status] !== undefined) counts[status]++;
+                });
+                const summary = document.createElement('p');
+                summary.className = 'mb-5 text-sm text-slate-300';
+                summary.innerText = `Grön: ${counts.green} · Gul: ${counts.yellow} · Röd: ${counts.red}`;
+                view.appendChild(summary);
+
+                const grid = document.createElement('div');
+                grid.className = 'grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3';
+                const statusOptions = [
+                    { value: 'green', label: 'Kan', classes: 'bg-emerald-500 text-white border-emerald-400' },
+                    { value: 'yellow', label: 'Delvis', classes: 'bg-amber-400 text-slate-950 border-amber-300' },
+                    { value: 'red', label: 'Träna', classes: 'bg-red-500 text-white border-red-400' }
+                ];
+                const tileStatusClasses = {
+                    green: 'border-emerald-500 bg-emerald-900/50',
+                    yellow: 'border-amber-400 bg-amber-900/40',
+                    red: 'border-red-500 bg-red-900/50'
+                };
+                state.tasks.forEach((task, index) => {
+                    const taskCard = document.createElement('div');
+                    taskCard.className = 'rounded-xl border border-slate-700 bg-slate-900/70 p-2';
+
+                    const taskStatus = state.lessonProgress[String(task.lectionid)];
+                    const openButton = document.createElement('button');
+                    openButton.type = 'button';
+                    openButton.className = `flex aspect-square w-full flex-col items-center justify-center rounded-lg border text-white transition hover:border-indigo-400 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 ${tileStatusClasses[taskStatus] || 'border-slate-600 bg-slate-800'}`;
+                    openButton.setAttribute('aria-label', `Öppna uppgift ${index + 1}`);
+                    const number = document.createElement('span');
+                    number.className = 'text-xs text-slate-400';
+                    number.innerText = 'Uppgift';
+                    const taskNumber = document.createElement('strong');
+                    taskNumber.className = 'text-2xl';
+                    taskNumber.innerText = String(index + 1);
+                    openButton.append(number, taskNumber);
+                    openButton.onclick = () => {
+                        state.currentTaskIndex = index;
+                        renderTask();
+                    };
+                    taskCard.appendChild(openButton);
+
+                    const statusButtons = document.createElement('div');
+                    statusButtons.className = 'mt-2 grid grid-cols-3 gap-1';
+                    statusOptions.forEach(option => {
+                        const isSelected = taskStatus === option.value;
+                        const statusButton = document.createElement('button');
+                        statusButton.type = 'button';
+                        statusButton.className = `rounded-md border px-1 py-1 text-xs font-semibold transition ${isSelected ? option.classes : 'border-slate-700 bg-slate-800 text-slate-400 hover:text-white'}`;
+                        statusButton.innerText = option.label;
+                        statusButton.setAttribute('aria-label', `${option.label} – uppgift ${index + 1}`);
+                        statusButton.setAttribute('aria-pressed', String(isSelected));
+                        statusButton.disabled = state.pendingProgressSaves.has(String(task.lectionid));
+                        statusButton.classList.toggle('opacity-50', statusButton.disabled);
+                        statusButton.onclick = () => setLessonTaskStatus(task, option.value);
+                        statusButtons.appendChild(statusButton);
+                    });
+                    taskCard.appendChild(statusButtons);
+                    grid.appendChild(taskCard);
+                });
+                view.appendChild(grid);
+            }
+
+            async function setLessonTaskStatus(task, status) {
+                const taskKey = String(task.lectionid);
+                if (state.pendingProgressSaves.has(taskKey)) return;
+                const session = state.lessonSession;
+                const lessonCode = state.activeLesson.code;
+                const learnerId = state.learnerId;
+                const currentStatus = state.lessonProgress[taskKey];
+                const nextStatus = currentStatus === status ? null : status;
+                state.pendingProgressSaves.add(taskKey);
+                state.lessonProgressError = null;
+                if (nextStatus) {
+                    state.lessonProgress[taskKey] = nextStatus;
+                } else {
+                    delete state.lessonProgress[taskKey];
+                }
+                renderLessonLevelOverview();
+
+                try {
+                    await requestLessonApi({
+                        action: 'set-status',
+                        lessonCode,
+                        learnerId,
+                        taskLectionId: taskKey,
+                        status: nextStatus
+                    });
+                } catch (requestError) {
+                    if (state.lessonSession !== session) return;
+                    if (currentStatus) {
+                        state.lessonProgress[taskKey] = currentStatus;
+                    } else {
+                        delete state.lessonProgress[taskKey];
+                    }
+                    state.lessonProgressError = requestError.message || 'Kunde inte spara markeringen. Kontrollera anslutningen och försök igen.';
+                } finally {
+                    if (state.lessonSession === session) {
+                        state.pendingProgressSaves.delete(taskKey);
+                        renderLessonLevelOverview();
+                    }
+                }
+            }
+
+            async function requestLessonApi(payload) {
+                let response;
+                try {
+                    response = await fetch('/api/progress', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                } catch (networkError) {
+                    throw new Error('Kunde inte nå lektionsdatabasen. Kontrollera internetanslutningen och försök igen.');
+                }
+
+                let result;
+                try {
+                    result = await response.json();
+                } catch (parseError) {
+                    throw new Error('Servern returnerade ett ogiltigt svar. Försök igen senare.');
+                }
+                if (!response.ok) {
+                    throw new Error(result.error || 'Kunde inte spara eller läsa elevens framsteg.');
+                }
+                return result;
             }
 
             function exitLesson() {
@@ -860,6 +1096,11 @@
                 state.taskTypes = [];
                 state.examplesMap = {};
                 state.currentTaskIndex = 0;
+                state.learnerId = null;
+                state.lessonProgress = {};
+                state.lessonProgressError = null;
+                state.pendingProgressSaves.clear();
+                state.lessonSession++;
                 switchMode('tasks');
             }
 
@@ -1012,11 +1253,11 @@
                             <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300 mb-3">${completionTitle}</h2>
                             <p class="mb-8 text-slate-400">${state.activeLesson ? 'Du har gjort alla uppgifter i lektionen.' : 'Du har gjort alla uppgifter i detta område.'}</p>
                             <button id="btn-finish-task" class="w-full max-w-xs p-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 text-white font-bold shadow-lg shadow-indigo-900/40 transition-all duration-300 hover:scale-[1.02]">
-                                ${state.activeLesson ? 'Tillbaka till lektionen' : 'Välj ny nivå / område'}
+                                ${state.activeLesson ? 'Till uppgiftsöversikten' : 'Välj ny nivå / område'}
                             </button>
                         </div>
                     `;
-                    document.getElementById('btn-finish-task').onclick = state.activeLesson ? renderLessonMenu : renderDifficulty;
+                    document.getElementById('btn-finish-task').onclick = state.activeLesson ? renderLessonLevelOverview : renderDifficulty;
                 }
             }
 

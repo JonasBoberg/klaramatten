@@ -12,3 +12,8 @@ const lessonBank = [
         taskLectionIds: [29, 39, 54, 62, 668, 1252, 1254, 66, 412, 426, 517, 548],
     },
 ];
+
+if (typeof module !== 'undefined') {
+    module.exports = lessonBank;
+}
+

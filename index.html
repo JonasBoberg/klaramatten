@@ -21,12 +21,6 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     }
-                    if (state.pendingProgressSaves.has(String(task.lectionid))) {
-                        const saving = document.createElement('p');
-                        saving.className = 'mt-2 text-center text-xs text-indigo-300';
-                        saving.innerText = 'Sparar…';
-                        taskCard.appendChild(saving);
-                    }
                 }
             }
         }
@@ -1018,6 +1012,12 @@
                         statusButtons.appendChild(statusButton);
                     });
                     taskCard.appendChild(statusButtons);
+                    if (state.pendingProgressSaves.has(String(task.lectionid))) {
+                        const saving = document.createElement('p');
+                        saving.className = 'mt-2 text-center text-xs text-indigo-300';
+                        saving.innerText = 'Sparar…';
+                        taskCard.appendChild(saving);
+                    }
                     grid.appendChild(taskCard);
                 });
                 view.appendChild(grid);

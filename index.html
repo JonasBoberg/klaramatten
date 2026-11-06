@@ -965,9 +965,9 @@
                 const grid = document.createElement('div');
                 grid.className = 'grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3';
                 const statusOptions = [
-                    { value: 'green', label: 'Kan', classes: 'bg-emerald-500 text-white border-emerald-400' },
-                    { value: 'yellow', label: 'Delvis', classes: 'bg-amber-400 text-slate-950 border-amber-300' },
-                    { value: 'red', label: 'Träna', classes: 'bg-red-500 text-white border-red-400' }
+                    { value: 'green', label: 'Kan', classes: 'border-emerald-400 bg-emerald-500' },
+                    { value: 'yellow', label: 'Delvis', classes: 'border-amber-300 bg-amber-400' },
+                    { value: 'red', label: 'Träna', classes: 'border-red-400 bg-red-500' }
                 ];
                 const tileStatusClasses = {
                     green: 'border-emerald-500 bg-emerald-900/50',
@@ -1002,9 +1002,9 @@
                         const isSelected = taskStatus === option.value;
                         const statusButton = document.createElement('button');
                         statusButton.type = 'button';
-                        statusButton.className = `rounded-md border px-1 py-1 text-xs font-semibold transition ${isSelected ? option.classes : 'border-slate-700 bg-slate-800 text-slate-400 hover:text-white'}`;
-                        statusButton.innerText = option.label;
+                        statusButton.className = `aspect-square w-full rounded-md border transition focus:outline-none focus:ring-2 focus:ring-white ${option.classes} ${isSelected ? 'opacity-100 ring-2 ring-white' : 'opacity-40 hover:opacity-100'}`;
                         statusButton.setAttribute('aria-label', `${option.label} – uppgift ${index + 1}`);
+                        statusButton.title = option.label;
                         statusButton.setAttribute('aria-pressed', String(isSelected));
                         statusButton.disabled = state.pendingProgressSaves.has(String(task.lectionid));
                         statusButton.classList.toggle('opacity-50', statusButton.disabled);

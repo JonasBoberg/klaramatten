@@ -182,6 +182,7 @@
                 examplesMap: {}, 
                 currentTaskIndex: 0,
                 activeLesson: null,
+                lessonTaskOpen: false,
                 lessonVideos: [],
                 lessonTasks: [],
                 learnerId: null,
@@ -600,6 +601,7 @@
                     return;
                 }
 
+                state.lessonTaskOpen = !!state.activeLesson;
                 const task = state.tasks[state.currentTaskIndex];
                 const taskNum = state.currentTaskIndex + 1;
                 const totalTasks = state.tasks.length;
@@ -632,10 +634,12 @@
                         </div>
                     </div>
                     
-                    <div class="flex justify-between items-center mb-5 gap-3">
-                        <p class="text-sm text-slate-500 font-medium truncate">${task.groupId}</p>
-                        ${!state.activeLesson && state.taskTypes.length > 1 ? '<button onclick="nextTaskType()" class="ml-auto text-right text-sm text-slate-500 hover:text-slate-300 transition-colors whitespace-nowrap">Nästa uppgiftstyp &rarr;</button>' : ''}
-                    </div>
+                    ${!state.activeLesson ? `
+                        <div class="flex justify-between items-center mb-5 gap-3">
+                            <p class="text-sm text-slate-500 font-medium truncate">${task.groupId}</p>
+                            ${state.taskTypes.length > 1 ? '<button onclick="nextTaskType()" class="ml-auto text-right text-sm text-slate-500 hover:text-slate-300 transition-colors whitespace-nowrap">Nästa uppgiftstyp &rarr;</button>' : ''}
+                        </div>
+                    ` : '<div id="lesson-task-status" class="mb-5"></div>'}
 
                     ${currentExample ? `
                         <div id="example-box" class="hidden bg-indigo-900/20 p-5 rounded-xl border border-indigo-500/40 mb-4 shadow-lg shadow-indigo-900/20 backdrop-blur-sm">
@@ -701,6 +705,7 @@
                     lessonTitle.className = 'text-sm font-bold uppercase tracking-wider text-indigo-300 mb-4';
                     lessonTitle.innerText = state.activeLesson.title;
                     view.insertBefore(lessonTitle, view.firstChild);
+                    renderLessonTaskStatus(task);
                 }
 
                 document.getElementById('btn-leave-task').onclick = state.activeLesson ? renderLessonLevelOverview : renderDifficulty;
@@ -849,6 +854,7 @@
             }
 
             function renderLessonMenu() {
+                state.lessonTaskOpen = false;
                 showView('view-task');
                 showHeaderSubtitle(false);
                 showTabs(false);
@@ -921,6 +927,7 @@
             }
 
             function renderLessonLevelOverview() {
+                state.lessonTaskOpen = false;
                 showView('view-task');
                 showHeaderSubtitle(false);
                 showTabs(false);
@@ -981,15 +988,18 @@
                     const taskStatus = state.lessonProgress[String(task.lectionid)];
                     const openButton = document.createElement('button');
                     openButton.type = 'button';
-                    openButton.className = `flex aspect-square w-full flex-col items-center justify-center rounded-lg border text-white transition hover:border-indigo-400 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 ${tileStatusClasses[taskStatus] || 'border-slate-600 bg-slate-800'}`;
-                    openButton.setAttribute('aria-label', `Öppna uppgift ${index + 1}`);
+                    openButton.className = `flex aspect-square w-full flex-col items-center justify-center rounded-lg border px-1 py-2 text-white transition hover:border-indigo-400 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 ${tileStatusClasses[taskStatus] || 'border-slate-600 bg-slate-800'}`;
+                    openButton.setAttribute('aria-label', `Öppna uppgift ${index + 1} – ${task.area}`);
                     const number = document.createElement('span');
                     number.className = 'text-xs text-slate-400';
                     number.innerText = 'Uppgift';
                     const taskNumber = document.createElement('strong');
                     taskNumber.className = 'text-2xl';
                     taskNumber.innerText = String(index + 1);
-                    openButton.append(number, taskNumber);
+                    const area = document.createElement('span');
+                    area.className = 'mt-1 max-h-[2.25em] w-full overflow-hidden px-1 text-center text-[9px] leading-tight text-slate-300';
+                    area.innerText = task.area || '';
+                    openButton.append(number, taskNumber, area);
                     openButton.onclick = () => {
                         state.currentTaskIndex = index;
                         renderTask();
@@ -1023,6 +1033,55 @@
                 view.appendChild(grid);
             }
 
+            function renderLessonTaskStatus(task) {
+                const container = document.getElementById('lesson-task-status');
+                if (!container) return;
+                container.innerHTML = '';
+                container.className = 'mb-4 flex flex-wrap items-center gap-2';
+
+                const label = document.createElement('p');
+                label.className = 'text-xs font-medium text-slate-400';
+                label.innerText = 'Markera:';
+                container.appendChild(label);
+
+                const statusButtons = document.createElement('div');
+                statusButtons.className = 'flex gap-1.5';
+                const statusOptions = [
+                    { value: 'green', label: 'Grön', classes: 'border-emerald-400 bg-emerald-500 text-white' },
+                    { value: 'yellow', label: 'Gul', classes: 'border-amber-300 bg-amber-400 text-slate-900' },
+                    { value: 'red', label: 'Röd', classes: 'border-red-400 bg-red-500 text-white' }
+                ];
+                const taskKey = String(task.lectionid);
+                statusOptions.forEach(option => {
+                    const isSelected = state.lessonProgress[taskKey] === option.value;
+                    const button = document.createElement('button');
+                    button.type = 'button';
+                    button.className = `rounded-full border px-2.5 py-1 text-xs font-semibold transition focus:outline-none focus:ring-2 focus:ring-white ${option.classes} ${isSelected ? 'opacity-100 ring-1 ring-white' : 'opacity-50 hover:opacity-100'}`;
+                    button.innerText = option.label;
+                    button.setAttribute('aria-label', `${option.label} markering`);
+                    button.setAttribute('aria-pressed', String(isSelected));
+                    button.disabled = state.pendingProgressSaves.has(taskKey);
+                    button.classList.toggle('opacity-50', button.disabled && !isSelected);
+                    button.onclick = () => setLessonTaskStatus(task, option.value);
+                    statusButtons.appendChild(button);
+                });
+                container.appendChild(statusButtons);
+
+                if (state.pendingProgressSaves.has(taskKey)) {
+                    const saving = document.createElement('p');
+                    saving.className = 'text-xs text-indigo-300';
+                    saving.innerText = 'Sparar…';
+                    container.appendChild(saving);
+                }
+                if (state.lessonProgressError) {
+                    const error = document.createElement('p');
+                    error.className = 'w-full text-xs text-red-200';
+                    error.setAttribute('role', 'alert');
+                    error.innerText = state.lessonProgressError;
+                    container.appendChild(error);
+                }
+            }
+
             async function setLessonTaskStatus(task, status) {
                 const taskKey = String(task.lectionid);
                 if (state.pendingProgressSaves.has(taskKey)) return;
@@ -1038,7 +1097,11 @@
                 } else {
                     delete state.lessonProgress[taskKey];
                 }
-                renderLessonLevelOverview();
+                if (state.lessonTaskOpen) {
+                    renderTask();
+                } else {
+                    renderLessonLevelOverview();
+                }
 
                 try {
                     await requestLessonApi({
@@ -1059,7 +1122,11 @@
                 } finally {
                     if (state.lessonSession === session) {
                         state.pendingProgressSaves.delete(taskKey);
-                        renderLessonLevelOverview();
+                        if (state.lessonTaskOpen) {
+                            renderTask();
+                        } else {
+                            renderLessonLevelOverview();
+                        }
                     }
                 }
             }

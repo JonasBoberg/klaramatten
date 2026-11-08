@@ -8,6 +8,7 @@ const taskBank = [
 { title: "Andragradsfunktioner del 2", subTitle: "Viktiga begrepp algebraiskt", area: "Andragradare", areaId: "5", videoId: "andragradsfunktioner-del-2", courses: ["Ma2a", "Ma2b", "Ma2c"], lessonVideo: "https://youtu.be/AJdBA-ElnLQ" },
 { title: "Andragradsfunktioner del 3", subTitle: "Problemlösning / Modellering", area: "Andragradare", areaId: "6", videoId: "andragradsfunktioner-del-3", courses: ["Ma2a", "Ma2b", "Ma2c"], lessonVideo: "https://youtu.be/WhtfoaTmp10" },
 { title: "Andragradsfunktioner del 4", subTitle: "Bestäm funktionsuttrycket utifrån graf", area: "Andragradare", areaId: "7", videoId: "andragradsfunktioner-del-4", courses: ["Ma2a", "Ma2b", "Ma2c"], lessonVideo: "https://youtu.be/AGMQZDxbS8M" },
+{ title: "Logaritmer del 1", subTitle: "Räkna med logaritmer", area: "Logaritmer", areaId: "1", videoId: "logaritmer-del-1", courses: ["Ma2b", "Ma2c"], lessonVideo: "https://youtu.be/LbaC5Ps2OuQ" },
 { groupId: "Beräkna del utan räknare", area: "Procent", subArea: "Del, andel, hela", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 1, lectionid: 1, versionLabel: "A", question: "Beräkna:<br>a) 10% av 3000 kr<br>b) 15% av 500 kr", solution: "a) 300 kr<br>b) 75 kr" },
 { id: 2, lectionid: 2, versionLabel: "B", question: "Beräkna:<br>a) 20% av 3000 kr<br>b) 40% av 200 kr", solution: "a) 600 kr<br>b) 80 kr" },

@@ -16,6 +16,11 @@ const lessonBank = [
         title: "Inför prov - SA26BC",
         taskLectionIds: [],
     },
+    {
+        code: "test1-RL26",
+        title: "Förändringsfaktor, linjär och exponentiell förändring - RL26",
+        taskLectionIds: [30, 31, 38, 39, 27, 28, 48, 50, 52, 53, 58, 59, 61, 62, 1251, 1252, 1254, 1255, 64, 65, 66, 67, 71, 1272, 1274, 928, 929],
+    },
 ];
 
 if (typeof module !== 'undefined') {

@@ -2095,7 +2095,7 @@ solution: "a) a är negativ eftersom linjen är \"ledsen\".<br>b) x=1."
 ] },
 { groupId: "Ange funktion utifrån symmetrilinje", area: "Andragradare", subArea: "Andragradsfunktioner", courses: ["Ma2a", "Ma2b", "Ma2c"], difficulty: 1, versions: [
 { id: 1214, lectionid: 1100, versionLabel: "A", question: "Ange en andragradsfunktion med symmetrilinjen \\( x=15,5 \\).", solution: "T.ex. \\( f(x)=(x-15)(x-16) \\) eller \\( f(x)=(x-14)(x-17).\\)" },
-{ id: 1215, lectionid: 1101, versionLabel: "B", question: "Ange en andragradsfunktion med symmetrilinjen \\( x=-12 \\).", solution: "T.ex. \\( f(x)=(x+13)(x+15) \\) eller \\( f(x)=(x+12)^2\\)" },
+{ id: 1215, lectionid: 1101, versionLabel: "B", question: "Ange en andragradsfunktion med symmetrilinjen \\( x=-12 \\).", solution: "T.ex. \\( f(x)=(x+11)(x+13) \\) eller \\( f(x)=(x+12)^2\\)" },
 { id: 1216, lectionid: 1102, versionLabel: "C", question: "Ange en andragradsfunktion med symmetrilinjen \\( x=4,5 \\).", solution: "T.ex. \\( f(x)=(x-4)(x-5) \\) eller \\( f(x)=(x-3)(x-6).\\)" },
 { id: 1217, lectionid: 1103, versionLabel: "D", question: "Ange en andragradsfunktion med symmetrilinjen \\( x=-7,5 \\).", solution: "T.ex. \\( f(x)=(x+7)(x+8) \\) eller \\( f(x)=(x+7,5)^2\\)" },
 ] },

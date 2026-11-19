@@ -80,7 +80,7 @@ const taskBank = [
 { id: 53, lectionid: 49, versionLabel: "E", question: "I glasskiosken kostade en storstrut 12 kr år 2000. Sedan dess har priset ökat med 75%. Vad kostar en stortrut idag?", solution: "Svar: Den kostar 21 kr." },
 { id: 54, lectionid: 50, versionLabel: "F", question: "År 1990 fanns det 780 granar i Svartskogen. Sedan dess har antalet granar ökat med 110%. Hur många granar finns det i skogen idag?", solution: "Svar: Det finns 1638 st." },
 ] },
-{ groupId: "Beräkna nytt värde, många år", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
+{ groupId: "Beräkna nytt värde, många år", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 1, versions: [
 { id: 55, lectionid: 51, versionLabel: "A", question: "Du sätter in 40 000 kr på ett sparkonto med 3% ränta. Hur mycket pengar har du på kontot efter 10 år om du inte sätter in eller tar ut något under denna period?", solution: "\\( 40 000 \\cdot 1,03^{10} = 53 757\\) kr." },
 { id: 56, lectionid: 52, versionLabel: "B", question: "Du köper en motorcykel för 92 500 kr. Motorcykelns värde minskar med 7% per år. Hur mycket är motorcykeln värd 6 år efter att du köpt den?", solution: "\\( 92 500 \\cdot 0,93^6 = 59 847\\) kr." },
 { id: 57, lectionid: 53, versionLabel: "C", question: "Du sätter in 12 800 kr på ett konto. Pengarna ökar med 3,5% per år. Hur mycket finns på kontot efter 9 år?", solution: "\\( 12 800 \\cdot 1,035^9 = 17 440 \\) kr." },
@@ -108,12 +108,12 @@ const taskBank = [
 { id: 71, lectionid: 1255, versionLabel: "B", question: "År 2020 hade Storbyn 12 000 invånare. Ett år senare hade byn 11 700 invånare. Skriv ett uttryck som beskriver antalet invånare i Storbyn efter \\( t \\) år om vi förutsätter att det minsknar procentuellt lika mycket varje år.", solution: "Svar: \\( 12000 \\cdot 0,975^t \\)." },
 { id: 72, lectionid: 1256, versionLabel: "C", question: "Du sätter in 25 000 kr på ett sparkonto. Ett år senare finns det 25 750 kr på kontot. Skriv ett uttryck som beskriver saldot efter \\( x \\) år.", solution: "Svar: \\( 25000 \\cdot 1,03^x \\)." },
 ] },
-{ groupId: "Total förändringsfaktor 1", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
+{ groupId: "Total förändringsfaktor 1", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 1, versions: [
 { id: 73, lectionid: 63, versionLabel: "A", question: "Priset på en vara ökar med 20% och minskar därefter med 20%. Har priset på varan förändrats från ordinarie pris? Om ja, med hur många procent?", solution: "Svar: \\( 1,2 \\cdot 0,8 = 0,96\\).<br>Priset har minskat med 4%." },
 { id: 74, lectionid: 64, versionLabel: "B", question: "Du köper en bil som under första året minskar med 10% i värde. Året därpå minskar den med 12%. Med hur många procent har den minskat i värde totalt? Svara exakt.", solution: "Svar: \\( 0,9 \\cdot 0,88 = 0,792\\). Den har minskat med 20,8%." },
 { id: 75, lectionid: 65, versionLabel: "C", question: "Värdet på en aktie ökar första veckan med 12%. Veckan därpå ökar den med ytterliggare 5%. Sista veckan minskar den med 20%. Vad är den totala procentuella förändringen? Svara exakt.", solution: "Den har minskat med 5,92%.", exp: "Multiplicera förändringsfaktorerna med varandra: \\( 1,12 \\cdot 1,05 \\cdot 0,8 = 0,9408\\)<br>Den totala ff är \\(0,9408\\) så procentuella minskningen är \\(1-0,9408=0,0592=5,92%\\) " },
 ] },
-{ groupId: "Total förändringsfaktor 2", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 2, versions: [
+{ groupId: "Total förändringsfaktor 2", area: "Procent", subArea: "Procentuell förändring och förändringsfaktor", courses: ["Ma1a", "Ma1b", "Ma1c"], calculator: true, difficulty: 1, versions: [
 { id: 76, lectionid: 66, versionLabel: "A", question: "Antalet träd i Trollskogen har de senaste åren ökat med 8,5% per år. Med hur många procent har antalet träd ökat de senaste 4 åren? Svara i procentform med en decimal.", solution: "Svar: \\( 1,085^4 = 1,3856\\). Antalet träd har ökat med 38,6%." },
 { id: 77, lectionid: 67, versionLabel: "B", question: "Din nya TV förväntas minska i värde med 14% per år. Med hur många procent har TV:n minskat i värde efter 5 år? Svara i procent med en decimal.", solution: "Svar: \\( 0,86^5 = 0,470427\\). Värdet har minskat med 53,0%." },
 { id: 78, lectionid: 68, versionLabel: "C", question: "Du sätter in pengar på ett sparkonto med 4% ränta. Med hur många procent har värdet av pengarna ökat efter 3 år? Svara i procent med en decimal.", solution: "Svar: Pengarnas värde har ökat med 12,5%.", exp: "Förändringsfaktorn för ett år är \\(1,04\\). Tre år i rad blir detta: \\( 1,04^3 = 1,124864\\) vilket motsvarar en ökning med ca 12,5%." },
@@ -605,7 +605,7 @@ const taskBank = [
 {id: 432, lectionid: 403, versionLabel: "B", question: "Emma köper 3 chokladkakor och 4 burkar läsk. En chokladkaka kostar 9 kr mer än en läskburk. Hon betalar 160 kr.<br>Vad kostar en chokladkaka? Lös uppgiften med hjälp av en ekvation.", solution: "En chokladkaka kostar 28 kr. "},
 {id: 433, lectionid: 404, versionLabel: "C", question: "Nathalie köper 2 fotbollar och 3 handbollar och betalar 445 kr. Vad kostar en handboll om den är 10 kr billigare än en fotboll? Lös uppgiften med hjälp av en ekvation.", solution: "En handboll kostar 85 kr." },
 ] },
-{ groupId: "Lös linjära ekvationer med parenteser", area: "Algebra", subArea: "Lösa linjära ekvationer", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 2, versions: [
+{ groupId: "Lös linjära ekvationer med parenteser", area: "Algebra", subArea: "Lösa linjära ekvationer", courses: ["Ma1a", "Ma1b", "Ma1c"], difficulty: 1, versions: [
 { id: 434, lectionid: 405, versionLabel: "A", question: "Lös ekvationerna:<br>a) \\( 5(1-2x)=-4x-1 \\)<br>b) \\(17=(x+1)+2(x-4) \\)", solution: "a) \\(x=1\\)<br>b) \\(x=8\\)", exp: "img: 'bilder/Losningsbilder/Uppgift_001.jpg'"},
 {id: 435, lectionid: 406, versionLabel: "B", question: "Lös ekvationerna:<br>a) \\(18+3x-(4-5x)=x\\)<br>b) \\(3(x-1)+5x=1\\)", solution: "a) \\(x=-2\\)<br>b) \\(x=0,5\\)"},
 {id: 436, lectionid: 407, versionLabel: "C", question: "Lös ekvationen: \\( 32=2(x+4) \\)", solution: "\\( x=12 \\)"},
